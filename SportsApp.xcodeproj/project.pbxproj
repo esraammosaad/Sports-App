@@ -14,6 +14,9 @@
 		058474312DCE815D0057DAB9 /* SportsApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0584742F2DCE815D0057DAB9 /* SportsApp.xcdatamodeld */; };
 		058474332DCE815F0057DAB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058474322DCE815F0057DAB9 /* Assets.xcassets */; };
 		058474362DCE815F0057DAB9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 058474342DCE815F0057DAB9 /* LaunchScreen.storyboard */; };
+		229EEAC32DCFAA31009FE7A6 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 229EEAC22DCFAA31009FE7A6 /* Kingfisher */; };
+		229EEAC62DCFAA47009FE7A6 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 229EEAC52DCFAA47009FE7A6 /* Reachability */; };
+		229EEAC92DCFAA62009FE7A6 /* ShimmerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 229EEAC82DCFAA62009FE7A6 /* ShimmerSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +36,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				229EEAC32DCFAA31009FE7A6 /* Kingfisher in Frameworks */,
+				229EEAC92DCFAA62009FE7A6 /* ShimmerSwift in Frameworks */,
+				229EEAC62DCFAA47009FE7A6 /* Reachability in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,6 +92,11 @@
 			dependencies = (
 			);
 			name = SportsApp;
+			packageProductDependencies = (
+				229EEAC22DCFAA31009FE7A6 /* Kingfisher */,
+				229EEAC52DCFAA47009FE7A6 /* Reachability */,
+				229EEAC82DCFAA62009FE7A6 /* ShimmerSwift */,
+			);
 			productName = SportsApp;
 			productReference = 058474232DCE815D0057DAB9 /* SportsApp.app */;
 			productType = "com.apple.product-type.application";
@@ -114,6 +125,11 @@
 				Base,
 			);
 			mainGroup = 0584741A2DCE815D0057DAB9;
+			packageReferences = (
+				229EEAC12DCFAA31009FE7A6 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				229EEAC42DCFAA47009FE7A6 /* XCRemoteSwiftPackageReference "Reachability.swift" */,
+				229EEAC72DCFAA62009FE7A6 /* XCRemoteSwiftPackageReference "ShimmerSwift" */,
+			);
 			productRefGroup = 058474242DCE815D0057DAB9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -362,6 +378,51 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		229EEAC12DCFAA31009FE7A6 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+		229EEAC42DCFAA47009FE7A6 /* XCRemoteSwiftPackageReference "Reachability.swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ashleymills/Reachability.swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		229EEAC72DCFAA62009FE7A6 /* XCRemoteSwiftPackageReference "ShimmerSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/BeauNouvelle/ShimmerSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		229EEAC22DCFAA31009FE7A6 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 229EEAC12DCFAA31009FE7A6 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		229EEAC52DCFAA47009FE7A6 /* Reachability */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 229EEAC42DCFAA47009FE7A6 /* XCRemoteSwiftPackageReference "Reachability.swift" */;
+			productName = Reachability;
+		};
+		229EEAC82DCFAA62009FE7A6 /* ShimmerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 229EEAC72DCFAA62009FE7A6 /* XCRemoteSwiftPackageReference "ShimmerSwift" */;
+			productName = ShimmerSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		0584742F2DCE815D0057DAB9 /* SportsApp.xcdatamodeld */ = {
