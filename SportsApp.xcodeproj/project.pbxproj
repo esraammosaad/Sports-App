@@ -14,9 +14,11 @@
 		058474312DCE815D0057DAB9 /* SportsApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0584742F2DCE815D0057DAB9 /* SportsApp.xcdatamodeld */; };
 		058474332DCE815F0057DAB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058474322DCE815F0057DAB9 /* Assets.xcassets */; };
 		058474362DCE815F0057DAB9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 058474342DCE815F0057DAB9 /* LaunchScreen.storyboard */; };
+		05876E8C2DCFD937006F7830 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 05876E8B2DCFD937006F7830 /* Lottie */; };
 		229EEAC32DCFAA31009FE7A6 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 229EEAC22DCFAA31009FE7A6 /* Kingfisher */; };
 		229EEAC62DCFAA47009FE7A6 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 229EEAC52DCFAA47009FE7A6 /* Reachability */; };
 		229EEAC92DCFAA62009FE7A6 /* ShimmerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 229EEAC82DCFAA62009FE7A6 /* ShimmerSwift */; };
+		229EEACC2DCFC699009FE7A6 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 229EEACB2DCFC699009FE7A6 /* Alamofire */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,7 +38,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05876E8C2DCFD937006F7830 /* Lottie in Frameworks */,
 				229EEAC32DCFAA31009FE7A6 /* Kingfisher in Frameworks */,
+				229EEACC2DCFC699009FE7A6 /* Alamofire in Frameworks */,
 				229EEAC92DCFAA62009FE7A6 /* ShimmerSwift in Frameworks */,
 				229EEAC62DCFAA47009FE7A6 /* Reachability in Frameworks */,
 			);
@@ -96,6 +100,8 @@
 				229EEAC22DCFAA31009FE7A6 /* Kingfisher */,
 				229EEAC52DCFAA47009FE7A6 /* Reachability */,
 				229EEAC82DCFAA62009FE7A6 /* ShimmerSwift */,
+				229EEACB2DCFC699009FE7A6 /* Alamofire */,
+				05876E8B2DCFD937006F7830 /* Lottie */,
 			);
 			productName = SportsApp;
 			productReference = 058474232DCE815D0057DAB9 /* SportsApp.app */;
@@ -129,6 +135,8 @@
 				229EEAC12DCFAA31009FE7A6 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				229EEAC42DCFAA47009FE7A6 /* XCRemoteSwiftPackageReference "Reachability.swift" */,
 				229EEAC72DCFAA62009FE7A6 /* XCRemoteSwiftPackageReference "ShimmerSwift" */,
+				229EEACA2DCFC699009FE7A6 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				05876E8A2DCFD937006F7830 /* XCRemoteSwiftPackageReference "lottie-spm" */,
 			);
 			productRefGroup = 058474242DCE815D0057DAB9 /* Products */;
 			projectDirPath = "";
@@ -380,6 +388,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		05876E8A2DCFD937006F7830 /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-spm.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 		229EEAC12DCFAA31009FE7A6 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -404,9 +420,22 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		229EEACA2DCFC699009FE7A6 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		05876E8B2DCFD937006F7830 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 05876E8A2DCFD937006F7830 /* XCRemoteSwiftPackageReference "lottie-spm" */;
+			productName = Lottie;
+		};
 		229EEAC22DCFAA31009FE7A6 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 229EEAC12DCFAA31009FE7A6 /* XCRemoteSwiftPackageReference "Kingfisher" */;
@@ -421,6 +450,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 229EEAC72DCFAA62009FE7A6 /* XCRemoteSwiftPackageReference "ShimmerSwift" */;
 			productName = ShimmerSwift;
+		};
+		229EEACB2DCFC699009FE7A6 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 229EEACA2DCFC699009FE7A6 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 
