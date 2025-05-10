@@ -15,6 +15,9 @@
 		058474332DCE815F0057DAB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058474322DCE815F0057DAB9 /* Assets.xcassets */; };
 		058474362DCE815F0057DAB9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 058474342DCE815F0057DAB9 /* LaunchScreen.storyboard */; };
 		05876E8C2DCFD937006F7830 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 05876E8B2DCFD937006F7830 /* Lottie */; };
+		05876E902DCFE4BC006F7830 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05876E8F2DCFE4BC006F7830 /* APIService.swift */; };
+		05876E922DCFE514006F7830 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05876E912DCFE514006F7830 /* Strings.swift */; };
+		05876E942DCFEDB6006F7830 /* League.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05876E932DCFEDB6006F7830 /* League.swift */; };
 		229EEAC32DCFAA31009FE7A6 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 229EEAC22DCFAA31009FE7A6 /* Kingfisher */; };
 		229EEAC62DCFAA47009FE7A6 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 229EEAC52DCFAA47009FE7A6 /* Reachability */; };
 		229EEAC92DCFAA62009FE7A6 /* ShimmerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 229EEAC82DCFAA62009FE7A6 /* ShimmerSwift */; };
@@ -31,6 +34,9 @@
 		058474322DCE815F0057DAB9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		058474352DCE815F0057DAB9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		058474372DCE815F0057DAB9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		05876E8F2DCFE4BC006F7830 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		05876E912DCFE514006F7830 /* Strings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Strings.swift; sourceTree = "<group>"; };
+		05876E932DCFEDB6006F7830 /* League.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = League.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -76,6 +82,9 @@
 				058474342DCE815F0057DAB9 /* LaunchScreen.storyboard */,
 				058474372DCE815F0057DAB9 /* Info.plist */,
 				0584742F2DCE815D0057DAB9 /* SportsApp.xcdatamodeld */,
+				05876E8F2DCFE4BC006F7830 /* APIService.swift */,
+				05876E912DCFE514006F7830 /* Strings.swift */,
+				05876E932DCFEDB6006F7830 /* League.swift */,
 			);
 			path = SportsApp;
 			sourceTree = "<group>";
@@ -165,9 +174,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05876E942DCFEDB6006F7830 /* League.swift in Sources */,
 				0584742B2DCE815D0057DAB9 /* ViewController.swift in Sources */,
+				05876E902DCFE4BC006F7830 /* APIService.swift in Sources */,
 				058474272DCE815D0057DAB9 /* AppDelegate.swift in Sources */,
 				058474312DCE815D0057DAB9 /* SportsApp.xcdatamodeld in Sources */,
+				05876E922DCFE514006F7830 /* Strings.swift in Sources */,
 				058474292DCE815D0057DAB9 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
