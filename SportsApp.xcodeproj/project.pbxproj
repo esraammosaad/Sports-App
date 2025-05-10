@@ -17,6 +17,7 @@
 		229EEAC32DCFAA31009FE7A6 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 229EEAC22DCFAA31009FE7A6 /* Kingfisher */; };
 		229EEAC62DCFAA47009FE7A6 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 229EEAC52DCFAA47009FE7A6 /* Reachability */; };
 		229EEAC92DCFAA62009FE7A6 /* ShimmerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 229EEAC82DCFAA62009FE7A6 /* ShimmerSwift */; };
+		229EEACC2DCFC699009FE7A6 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 229EEACB2DCFC699009FE7A6 /* Alamofire */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				229EEAC32DCFAA31009FE7A6 /* Kingfisher in Frameworks */,
+				229EEACC2DCFC699009FE7A6 /* Alamofire in Frameworks */,
 				229EEAC92DCFAA62009FE7A6 /* ShimmerSwift in Frameworks */,
 				229EEAC62DCFAA47009FE7A6 /* Reachability in Frameworks */,
 			);
@@ -96,6 +98,7 @@
 				229EEAC22DCFAA31009FE7A6 /* Kingfisher */,
 				229EEAC52DCFAA47009FE7A6 /* Reachability */,
 				229EEAC82DCFAA62009FE7A6 /* ShimmerSwift */,
+				229EEACB2DCFC699009FE7A6 /* Alamofire */,
 			);
 			productName = SportsApp;
 			productReference = 058474232DCE815D0057DAB9 /* SportsApp.app */;
@@ -129,6 +132,7 @@
 				229EEAC12DCFAA31009FE7A6 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				229EEAC42DCFAA47009FE7A6 /* XCRemoteSwiftPackageReference "Reachability.swift" */,
 				229EEAC72DCFAA62009FE7A6 /* XCRemoteSwiftPackageReference "ShimmerSwift" */,
+				229EEACA2DCFC699009FE7A6 /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			productRefGroup = 058474242DCE815D0057DAB9 /* Products */;
 			projectDirPath = "";
@@ -404,6 +408,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		229EEACA2DCFC699009FE7A6 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -421,6 +433,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 229EEAC72DCFAA62009FE7A6 /* XCRemoteSwiftPackageReference "ShimmerSwift" */;
 			productName = ShimmerSwift;
+		};
+		229EEACB2DCFC699009FE7A6 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 229EEACA2DCFC699009FE7A6 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
 		};
 /* End XCSwiftPackageProductDependency section */
 
