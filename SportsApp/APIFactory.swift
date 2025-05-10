@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-class APIService{
+class APIFactory{
     func  execute (url : String, completion : @escaping ([String : Any]? ,Error?) -> Void){
         AF.request(url).validate(statusCode: 200..<300).responseJSON{
             response in
@@ -24,4 +24,37 @@ class APIService{
             }
         }
     }
+}
+
+class APIServices{
+    
+    let apiFactory = APIFactory()
+    
+    let url =  "\(Strings.BASEURL)\(Strings.FOOTBALL_ENDPOINT)/?APIkey=\(Strings.API_KEY)"
+    
+    
+    func getFootballLeagues(completion : @escaping ([String : Any]?, Error?)-> Void){
+        
+        
+       apiFactory.execute(url: url.appending("&met=\(Strings.LEAGUES_ENDPOINT)"),completion: completion)
+    }
+    
+    
+    func getFootballLeagueDetails(){
+        
+        
+        
+        
+    }
+    
+    func getFootballTeamDetails(){
+        
+        
+        
+        
+        
+    }
+    
+    
+    
 }
