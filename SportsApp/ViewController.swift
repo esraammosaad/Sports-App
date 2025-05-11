@@ -19,7 +19,19 @@ class ViewController: UIViewController {
           
           if let response {
               
-           print( LeagueResponse.fromJson(response: response))
+              print( LeagueResponse.fromJson(response: response)[0].league_name)
+                            
+          }else{
+              print(error!)
+          }
+      }
+        
+        api.getFootballLeagueEvents(leagueID: 4 ){
+            response ,error in
+          
+          if let response {
+              
+              print(EventResponse.fromJson(response: response)[0].league_name)
                             
           }else{
               print(error!)

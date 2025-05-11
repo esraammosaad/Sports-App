@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		055502D32DD01BAB00C4F2C8 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055502D22DD01BAB00C4F2C8 /* Event.swift */; };
+		055502D52DD01CFA00C4F2C8 /* EventResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055502D42DD01CFA00C4F2C8 /* EventResponse.swift */; };
+		055502D72DD0205E00C4F2C8 /* APIServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055502D62DD0205E00C4F2C8 /* APIServices.swift */; };
 		058474272DCE815D0057DAB9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058474262DCE815D0057DAB9 /* AppDelegate.swift */; };
 		058474292DCE815D0057DAB9 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 058474282DCE815D0057DAB9 /* SceneDelegate.swift */; };
 		0584742B2DCE815D0057DAB9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0584742A2DCE815D0057DAB9 /* ViewController.swift */; };
@@ -26,6 +29,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		055502D22DD01BAB00C4F2C8 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		055502D42DD01CFA00C4F2C8 /* EventResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventResponse.swift; sourceTree = "<group>"; };
+		055502D62DD0205E00C4F2C8 /* APIServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIServices.swift; sourceTree = "<group>"; };
 		058474232DCE815D0057DAB9 /* SportsApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SportsApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		058474262DCE815D0057DAB9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		058474282DCE815D0057DAB9 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -57,6 +63,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		055502D82DD0216300C4F2C8 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				05876E932DCFEDB6006F7830 /* League.swift */,
+				05876E952DCFF4FE006F7830 /* LeagueResponse.swift */,
+				055502D22DD01BAB00C4F2C8 /* Event.swift */,
+				055502D42DD01CFA00C4F2C8 /* EventResponse.swift */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
 		0584741A2DCE815D0057DAB9 = {
 			isa = PBXGroup;
 			children = (
@@ -86,8 +103,8 @@
 				0584742F2DCE815D0057DAB9 /* SportsApp.xcdatamodeld */,
 				05876E8F2DCFE4BC006F7830 /* APIFactory.swift */,
 				05876E912DCFE514006F7830 /* Strings.swift */,
-				05876E932DCFEDB6006F7830 /* League.swift */,
-				05876E952DCFF4FE006F7830 /* LeagueResponse.swift */,
+				055502D82DD0216300C4F2C8 /* models */,
+				055502D62DD0205E00C4F2C8 /* APIServices.swift */,
 			);
 			path = SportsApp;
 			sourceTree = "<group>";
@@ -178,9 +195,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				05876E942DCFEDB6006F7830 /* League.swift in Sources */,
+				055502D72DD0205E00C4F2C8 /* APIServices.swift in Sources */,
+				055502D32DD01BAB00C4F2C8 /* Event.swift in Sources */,
 				05876E962DCFF4FE006F7830 /* LeagueResponse.swift in Sources */,
 				0584742B2DCE815D0057DAB9 /* ViewController.swift in Sources */,
 				05876E902DCFE4BC006F7830 /* APIFactory.swift in Sources */,
+				055502D52DD01CFA00C4F2C8 /* EventResponse.swift in Sources */,
 				058474272DCE815D0057DAB9 /* AppDelegate.swift in Sources */,
 				058474312DCE815D0057DAB9 /* SportsApp.xcdatamodeld in Sources */,
 				05876E922DCFE514006F7830 /* Strings.swift in Sources */,
