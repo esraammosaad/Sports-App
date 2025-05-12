@@ -20,43 +20,28 @@ class SportDetailsViewController: UIViewController , UITableViewDataSource, UITa
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        NetworkService.getFootballLeagues(){
-            leaguesResponse in
-            if let leagues = leaguesResponse?.result {
-                self.footballLeagues = leagues
-                self.tableView.reloadData()
-            }
-        }
-        
+        let presenter = SportDetailsPresenter()
+        presenter.setViewController(sportDetailsVireController: self)
+        presenter.getSportDetails()
         self.title = setTitle()
-        
-        // Do any additional setup after loading the view.
-        //
     }
+    
     private func setTitle () -> String{
         if category == 0
             {return "Football"}
         else if category == 1
-            {return " second Option"}
+            {return "Basketball"}
         else if category == 2
-            {return "third option"}
+            {return "Tennis"}
         else if category == 3
-            {return "last option"}
+            {return "Cricket"}
         else
         { return "sport Details"}
         
     }
     
     
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
+
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(footballLeagues == nil)
@@ -64,8 +49,7 @@ class SportDetailsViewController: UIViewController , UITableViewDataSource, UITa
             return 15
         }else {
             return footballLeagues.count
-        }// will be updated
-        
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -81,14 +65,11 @@ class SportDetailsViewController: UIViewController , UITableViewDataSource, UITa
             placeholderView.backgroundColor = UIColor.systemGray5
             shimmerView.contentView = placeholderView
             shimmerView.isShimmering = true
-
             cell.leagueName.text = "Loading"
             cell.LeagueImage.image = nil
         }else{
-
             cell.leagueName.text = footballLeagues[indexPath.row].league_name ?? "league"
             cell.LeagueImage.kf.setImage(with: URL(string: footballLeagues[indexPath.row].league_logo ?? ""), placeholder: UIImage(named: "footballPlaceHolder"))
-
             let radius = CGRectGetWidth(cell.LeagueImage.frame) / 2
             cell.LeagueImage.layer.cornerRadius = radius
             cell.LeagueImage.layer.masksToBounds = true
@@ -98,7 +79,21 @@ class SportDetailsViewController: UIViewController , UITableViewDataSource, UITa
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        // Return a fixed height for all cells
-        return 100    }
+        return 100
+        
+    }
+    
+    
+    func updateLeagues(leagues : [League]){
+
+        self.footballLeagues = leagues
+        DispatchQueue.main.async {
+                    self.tableView.reloadData()
+        } 
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
     
 }

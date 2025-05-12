@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="cgV-Xa-nuS" customClass="HomeCollectionViewCell" customModule="SportsApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="178" height="270"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="dNM-PA-GAH">
+                <rect key="frame" x="0.0" y="0.0" width="178" height="270"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="foot" translatesAutoresizingMaskIntoConstraints="NO" id="xe8-dd-ToW">
+                        <rect key="frame" x="0.0" y="0.0" width="178" height="270"/>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mzz-WI-Gf9">
+                        <rect key="frame" x="0.0" y="0.0" width="178" height="270"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Football" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mUj-G5-uNA">
+                                <rect key="frame" x="36" y="115" width="106" height="40"/>
+                                <fontDescription key="fontDescription" name="Impact" family="Impact" pointSize="32"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="placeholderTextColor"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="178" id="7N5-Do-hRz"/>
+                            <constraint firstItem="mUj-G5-uNA" firstAttribute="centerY" secondItem="Mzz-WI-Gf9" secondAttribute="centerY" id="aQr-gB-iUc"/>
+                            <constraint firstItem="mUj-G5-uNA" firstAttribute="centerX" secondItem="Mzz-WI-Gf9" secondAttribute="centerX" id="bIk-WG-gMO"/>
+                            <constraint firstAttribute="height" constant="270" id="fo8-ds-D6f"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="Mzz-WI-Gf9" firstAttribute="height" secondItem="xe8-dd-ToW" secondAttribute="height" id="5yh-cI-JOa"/>
+                    <constraint firstItem="xe8-dd-ToW" firstAttribute="width" secondItem="dNM-PA-GAH" secondAttribute="width" id="E9L-R6-Iqi"/>
+                    <constraint firstAttribute="bottom" secondItem="xe8-dd-ToW" secondAttribute="bottom" id="G29-yq-kkj"/>
+                    <constraint firstItem="xe8-dd-ToW" firstAttribute="top" secondItem="dNM-PA-GAH" secondAttribute="top" id="H3q-Uu-IO4"/>
+                    <constraint firstItem="Mzz-WI-Gf9" firstAttribute="top" secondItem="dNM-PA-GAH" secondAttribute="top" id="Nkp-ga-EJe"/>
+                    <constraint firstAttribute="trailing" secondItem="xe8-dd-ToW" secondAttribute="trailing" id="QHI-4l-k4n"/>
+                    <constraint firstItem="Mzz-WI-Gf9" firstAttribute="width" secondItem="xe8-dd-ToW" secondAttribute="width" id="U6e-ke-8UK"/>
+                    <constraint firstItem="Mzz-WI-Gf9" firstAttribute="leading" secondItem="dNM-PA-GAH" secondAttribute="leading" id="eZ2-ry-OWO"/>
+                    <constraint firstItem="xe8-dd-ToW" firstAttribute="leading" secondItem="dNM-PA-GAH" secondAttribute="leading" id="feM-9t-Oh2"/>
+                    <constraint firstItem="xe8-dd-ToW" firstAttribute="height" secondItem="dNM-PA-GAH" secondAttribute="height" id="oIZ-V6-GSl"/>
+                    <constraint firstAttribute="bottom" secondItem="Mzz-WI-Gf9" secondAttribute="bottom" id="qof-Sd-olV"/>
+                    <constraint firstAttribute="trailing" secondItem="Mzz-WI-Gf9" secondAttribute="trailing" id="rzU-Mi-r78"/>
+                </constraints>
+            </collectionViewCellContentView>
+            <size key="customSize" width="178" height="270"/>
+            <connections>
+                <outlet property="sportImage" destination="xe8-dd-ToW" id="YMs-sD-E79"/>
+                <outlet property="sportName" destination="mUj-G5-uNA" id="U8u-WD-UO2"/>
+            </connections>
+            <point key="canvasLocation" x="156.92307692307691" y="62.559241706161131"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="foot" width="1080" height="1920"/>
+        <systemColor name="placeholderTextColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29803921568627451" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
