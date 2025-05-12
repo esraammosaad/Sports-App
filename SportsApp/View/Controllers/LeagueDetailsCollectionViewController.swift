@@ -12,11 +12,17 @@ private let reuseIdentifier2 = "cell2"
 
 class LeagueDetailsCollectionViewController: UICollectionViewController,UICollectionViewDelegateFlowLayout {
     
+    var leagueID : Int!
+    var leagueTitle : String!
+    
+    var upComingEvents : [Event] = []
+    var latestEvents : [Event] = []
+    
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.title = "UEFA Champions League"
+        self.title = leagueTitle
 
         let nib1 = UINib(nibName: "LeagueDetailsCollectionViewCell", bundle: nil)
         self.collectionView!.register(nib1, forCellWithReuseIdentifier: reuseIdentifier)
@@ -34,7 +40,6 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
             
             switch(index){
             case 1:
-                
                 return self.drawSectionVertical()
                 
             case 0 :
@@ -47,6 +52,11 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
         }
         
         self.collectionView.setCollectionViewLayout(layout, animated: true)
+        
+        let presenter = LeagueDetailsPresenter()
+        presenter.setViewController(leagueDetailsViewController: self)
+        presenter.getSportDetails(leagueID: leagueID)
+        
     }
 
 
@@ -62,27 +72,61 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return 2
+        switch(section){
+            
+        case 0 :
+            return upComingEvents.count
+        default :
+            return latestEvents.count
+
+        }
+        
     }
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        var cell : UICollectionViewCell!
+       
 
         switch(indexPath.section){
           case 0:
-             cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! LeagueDetailsCollectionViewCell
+             
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! LeagueDetailsCollectionViewCell
+            cell.homeTeamName.text = upComingEvents[indexPath.row].event_home_team
+            cell.awayTeamName.text = upComingEvents[indexPath.row].event_away_team
+            cell.date.text = upComingEvents[indexPath.row].event_date
+            cell.time.text = upComingEvents[indexPath.row].event_time
+            let homeURL = URL(string: upComingEvents[indexPath.row].home_team_logo ?? "")
+            let awayURL = URL(string: upComingEvents[indexPath.row].away_team_logo ?? "")
+            cell.homeTeamImage.kf.setImage(with: homeURL)
+            cell.awayTeamImage.kf.setImage(with: awayURL)
+            cell.layer.cornerRadius = 25
+            cell.clipsToBounds = true
+            
+            return cell
+            
            
           default:
-             cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier2, for: indexPath) as! LatestEventsCollectionViewCell
+           let  cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier2, for: indexPath) as! LatestEventsCollectionViewCell
+            cell.homeTeamName.text = latestEvents[indexPath.row].event_home_team
+            cell.awayTeamName.text = latestEvents[indexPath.row].event_away_team
+            cell.date.text = latestEvents[indexPath.row].event_date
+            cell.finalScore.text = latestEvents[indexPath.row].event_final_result
+            let homeURL = URL(string: latestEvents[indexPath.row].home_team_logo ?? "")
+            let awayURL = URL(string: latestEvents[indexPath.row].away_team_logo ?? "")
+            cell.homeTeamImage.kf.setImage(with: homeURL)
+            cell.awayTeamImage.kf.setImage(with: awayURL)
+            cell.layer.cornerRadius = 25
+            cell.clipsToBounds = true
+            cell.layer.cornerRadius = 25
+            cell.clipsToBounds = true
+            return cell
            
         }
         
-        cell.layer.cornerRadius = 25
-        cell.clipsToBounds = true
+      
         
         
-        return cell
+    
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -124,7 +168,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
        //group >> size , item
         let myGroup = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
 
-        myGroup.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 14, bottom: 0, trailing: 14)
+        myGroup.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)
         
       //section >> group
        let section = NSCollectionLayoutSection(group: myGroup)
@@ -202,6 +246,23 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
         self.setAnimationToSection(section: section)
          
         return section
+    }
+    
+    
+    
+    func updateLeagueDetails(leagueDetails: [Event]){
+                
+        
+       latestEvents = leagueDetails.filter{ $0.event_status == "Finished" }
+       upComingEvents = leagueDetails.filter{ $0.event_status?.isEmpty ?? false || $0.event_status == nil }
+        
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
+        }
+        
+        
+        
+        
     }
     
     
