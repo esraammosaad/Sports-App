@@ -12,6 +12,7 @@ private let reuseIdentifier = "cell"
 
 class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     @IBOutlet weak var collectionView: UICollectionView!
+    var allLeaguesResponse : [League]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,13 +24,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         // Register cell classes
       //  self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         
-        NetworkService.getFootballLeagues(){
-            leaguesResponse in
-               if let leagues = leaguesResponse?.result {
-                   print("heyy")
-                   print(leagues[0].league_name?.trimmingCharacters(in: .whitespacesAndNewlines))
-               }
-        }
+       
         NetworkService.getFootballLeagueDetails(leagueID: 4 ){
             leagueDetailsResponse in
                if let leagueDetails = leagueDetailsResponse?.result {
@@ -77,6 +72,13 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         // Configure the cell
     
         return cell
+    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if(indexPath.row == 0 ){
+            var vc = self.storyboard?.instantiateViewController(withIdentifier: "details") as! SportDetailsViewController
+            vc.category = 0
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
     }
 
     // MARK: UICollectionViewDelegate

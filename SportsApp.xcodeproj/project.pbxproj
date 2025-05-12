@@ -19,7 +19,6 @@
 		058474312DCE815D0057DAB9 /* SportsApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0584742F2DCE815D0057DAB9 /* SportsApp.xcdatamodeld */; };
 		058474332DCE815F0057DAB9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058474322DCE815F0057DAB9 /* Assets.xcassets */; };
 		058474362DCE815F0057DAB9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 058474342DCE815F0057DAB9 /* LaunchScreen.storyboard */; };
-		05876E8C2DCFD937006F7830 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 05876E8B2DCFD937006F7830 /* Lottie */; };
 		05876E902DCFE4BC006F7830 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05876E8F2DCFE4BC006F7830 /* NetworkService.swift */; };
 		05876E922DCFE514006F7830 /* Strings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05876E912DCFE514006F7830 /* Strings.swift */; };
 		05876E942DCFEDB6006F7830 /* League.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05876E932DCFEDB6006F7830 /* League.swift */; };
@@ -29,6 +28,10 @@
 		05BA88122DD169A6007C34A5 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BA88112DD169A6007C34A5 /* Player.swift */; };
 		05BA88142DD16BE3007C34A5 /* Coach.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05BA88132DD16BE3007C34A5 /* Coach.swift */; };
 		05D059FF2DD132AE00893E85 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05D059FE2DD132AE00893E85 /* PageViewController.swift */; };
+		2279EAB62DD21A2100FBDCB1 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2279EAB52DD21A2000FBDCB1 /* SplashViewController.swift */; };
+		2279EABA2DD220AC00FBDCB1 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 2279EAB92DD220AC00FBDCB1 /* Lottie */; };
+		2279EABC2DD221C600FBDCB1 /* SportDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2279EABB2DD221C600FBDCB1 /* SportDetailsViewController.swift */; };
+		2279EABE2DD221E000FBDCB1 /* SportDetailsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2279EABD2DD221E000FBDCB1 /* SportDetailsCell.swift */; };
 		229EEAC32DCFAA31009FE7A6 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 229EEAC22DCFAA31009FE7A6 /* Kingfisher */; };
 		229EEAC62DCFAA47009FE7A6 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 229EEAC52DCFAA47009FE7A6 /* Reachability */; };
 		229EEAC92DCFAA62009FE7A6 /* ShimmerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 229EEAC82DCFAA62009FE7A6 /* ShimmerSwift */; };
@@ -59,6 +62,9 @@
 		05BA88112DD169A6007C34A5 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
 		05BA88132DD16BE3007C34A5 /* Coach.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coach.swift; sourceTree = "<group>"; };
 		05D059FE2DD132AE00893E85 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
+		2279EAB52DD21A2000FBDCB1 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		2279EABB2DD221C600FBDCB1 /* SportDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportDetailsViewController.swift; sourceTree = "<group>"; };
+		2279EABD2DD221E000FBDCB1 /* SportDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportDetailsCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,7 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05876E8C2DCFD937006F7830 /* Lottie in Frameworks */,
+				2279EABA2DD220AC00FBDCB1 /* Lottie in Frameworks */,
 				229EEAC32DCFAA31009FE7A6 /* Kingfisher in Frameworks */,
 				229EEACC2DCFC699009FE7A6 /* Alamofire in Frameworks */,
 				229EEAC92DCFAA62009FE7A6 /* ShimmerSwift in Frameworks */,
@@ -92,6 +98,9 @@
 				058474342DCE815F0057DAB9 /* LaunchScreen.storyboard */,
 				05D059FE2DD132AE00893E85 /* PageViewController.swift */,
 				0553A1312DD1580400E06D37 /* HomeViewController.swift */,
+				2279EAB52DD21A2000FBDCB1 /* SplashViewController.swift */,
+				2279EABB2DD221C600FBDCB1 /* SportDetailsViewController.swift */,
+				2279EABD2DD221E000FBDCB1 /* SportDetailsCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -207,7 +216,7 @@
 				229EEAC52DCFAA47009FE7A6 /* Reachability */,
 				229EEAC82DCFAA62009FE7A6 /* ShimmerSwift */,
 				229EEACB2DCFC699009FE7A6 /* Alamofire */,
-				05876E8B2DCFD937006F7830 /* Lottie */,
+				2279EAB92DD220AC00FBDCB1 /* Lottie */,
 			);
 			productName = SportsApp;
 			productReference = 058474232DCE815D0057DAB9 /* SportsApp.app */;
@@ -242,7 +251,7 @@
 				229EEAC42DCFAA47009FE7A6 /* XCRemoteSwiftPackageReference "Reachability.swift" */,
 				229EEAC72DCFAA62009FE7A6 /* XCRemoteSwiftPackageReference "ShimmerSwift" */,
 				229EEACA2DCFC699009FE7A6 /* XCRemoteSwiftPackageReference "Alamofire" */,
-				05876E8A2DCFD937006F7830 /* XCRemoteSwiftPackageReference "lottie-spm" */,
+				2279EAB82DD220AC00FBDCB1 /* XCRemoteSwiftPackageReference "lottie-spm" */,
 			);
 			productRefGroup = 058474242DCE815D0057DAB9 /* Products */;
 			projectDirPath = "";
@@ -275,6 +284,7 @@
 				055502D32DD01BAB00C4F2C8 /* Event.swift in Sources */,
 				05BA88102DD167B4007C34A5 /* Team.swift in Sources */,
 				05BA88122DD169A6007C34A5 /* Player.swift in Sources */,
+				2279EABC2DD221C600FBDCB1 /* SportDetailsViewController.swift in Sources */,
 				05BA88142DD16BE3007C34A5 /* Coach.swift in Sources */,
 				05D059FF2DD132AE00893E85 /* PageViewController.swift in Sources */,
 				05876E962DCFF4FE006F7830 /* LeagueResponse.swift in Sources */,
@@ -282,9 +292,11 @@
 				05876E902DCFE4BC006F7830 /* NetworkService.swift in Sources */,
 				055502D52DD01CFA00C4F2C8 /* EventResponse.swift in Sources */,
 				051853E02DD20BFF00B53629 /* SavedLeague.swift in Sources */,
+				2279EABE2DD221E000FBDCB1 /* SportDetailsCell.swift in Sources */,
 				058474272DCE815D0057DAB9 /* AppDelegate.swift in Sources */,
 				058474312DCE815D0057DAB9 /* SportsApp.xcdatamodeld in Sources */,
 				051853DC2DD20BB700B53629 /* CoreDataUtilis.swift in Sources */,
+				2279EAB62DD21A2100FBDCB1 /* SplashViewController.swift in Sources */,
 				05876E922DCFE514006F7830 /* Strings.swift in Sources */,
 				0553A1322DD1580400E06D37 /* HomeViewController.swift in Sources */,
 				058474292DCE815D0057DAB9 /* SceneDelegate.swift in Sources */,
@@ -508,12 +520,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		05876E8A2DCFD937006F7830 /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
+		2279EAB82DD220AC00FBDCB1 /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-spm.git";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.0.0;
+				branch = main;
+				kind = branch;
 			};
 		};
 		229EEAC12DCFAA31009FE7A6 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
@@ -551,9 +563,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		05876E8B2DCFD937006F7830 /* Lottie */ = {
+		2279EAB92DD220AC00FBDCB1 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 05876E8A2DCFD937006F7830 /* XCRemoteSwiftPackageReference "lottie-spm" */;
+			package = 2279EAB82DD220AC00FBDCB1 /* XCRemoteSwiftPackageReference "lottie-spm" */;
 			productName = Lottie;
 		};
 		229EEAC22DCFAA31009FE7A6 /* Kingfisher */ = {
