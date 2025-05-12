@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		051853DC2DD20BB700B53629 /* CoreDataUtilis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051853DB2DD20BB700B53629 /* CoreDataUtilis.swift */; };
+		051853E02DD20BFF00B53629 /* SavedLeague.swift in Sources */ = {isa = PBXBuildFile; fileRef = 051853DF2DD20BFF00B53629 /* SavedLeague.swift */; };
 		0553A1322DD1580400E06D37 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0553A1312DD1580400E06D37 /* HomeViewController.swift */; };
 		055502D32DD01BAB00C4F2C8 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055502D22DD01BAB00C4F2C8 /* Event.swift */; };
 		055502D52DD01CFA00C4F2C8 /* EventResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 055502D42DD01CFA00C4F2C8 /* EventResponse.swift */; };
@@ -34,6 +36,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		051853DB2DD20BB700B53629 /* CoreDataUtilis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataUtilis.swift; sourceTree = "<group>"; };
+		051853DF2DD20BFF00B53629 /* SavedLeague.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedLeague.swift; sourceTree = "<group>"; };
 		0553A1312DD1580400E06D37 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		055502D22DD01BAB00C4F2C8 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		055502D42DD01CFA00C4F2C8 /* EventResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventResponse.swift; sourceTree = "<group>"; };
@@ -129,6 +133,8 @@
 			isa = PBXGroup;
 			children = (
 				0584742F2DCE815D0057DAB9 /* SportsApp.xcdatamodeld */,
+				051853DB2DD20BB700B53629 /* CoreDataUtilis.swift */,
+				051853DF2DD20BFF00B53629 /* SavedLeague.swift */,
 			);
 			path = Local;
 			sourceTree = "<group>";
@@ -275,8 +281,10 @@
 				0584742B2DCE815D0057DAB9 /* MainViewController.swift in Sources */,
 				05876E902DCFE4BC006F7830 /* NetworkService.swift in Sources */,
 				055502D52DD01CFA00C4F2C8 /* EventResponse.swift in Sources */,
+				051853E02DD20BFF00B53629 /* SavedLeague.swift in Sources */,
 				058474272DCE815D0057DAB9 /* AppDelegate.swift in Sources */,
 				058474312DCE815D0057DAB9 /* SportsApp.xcdatamodeld in Sources */,
+				051853DC2DD20BB700B53629 /* CoreDataUtilis.swift in Sources */,
 				05876E922DCFE514006F7830 /* Strings.swift in Sources */,
 				0553A1322DD1580400E06D37 /* HomeViewController.swift in Sources */,
 				058474292DCE815D0057DAB9 /* SceneDelegate.swift in Sources */,
