@@ -94,6 +94,13 @@ class SportDetailsViewController: UIViewController , UITableViewDataSource, UITa
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
+        let leagueDetailsViewController = self.storyboard?.instantiateViewController(withIdentifier: "leagueDetails") as! LeagueDetailsCollectionViewController
+        
+        leagueDetailsViewController.leagueID = footballLeagues[indexPath.row].league_key
+        leagueDetailsViewController.leagueTitle = footballLeagues[indexPath.row].league_name
+        
+        self.navigationController?.pushViewController(leagueDetailsViewController, animated: true)
+        
     }
     
 }

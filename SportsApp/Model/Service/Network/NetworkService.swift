@@ -27,7 +27,7 @@ class NetworkService{
     }
     
     static func getFootballLeagueDetails (leagueID : Int,completion : @escaping (EventResponse?) -> Void){
-    let url =  "\(Strings.BASEURL)\(Strings.FOOTBALL_ENDPOINT)/?APIkey=\(Strings.API_KEY)&met=\(Strings.EVENTS_ENDPOINT)&from=2024-05-01&to=2024-05-18&leagueId=\(leagueID)"
+    let url =  "\(Strings.BASEURL)\(Strings.FOOTBALL_ENDPOINT)/?APIkey=\(Strings.API_KEY)&met=\(Strings.EVENTS_ENDPOINT)&from=2025-05-01&to=2025-05-30&leagueId=\(leagueID)"
         
         AF.request(url).validate(statusCode: 200..<300).responseDecodable(of:EventResponse.self){
             response in
