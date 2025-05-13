@@ -19,12 +19,15 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
     var latestEvents : [Event] = []
     
     var category: Int!
+    var sportType : String!
+    var image : UIImage!
 
     
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setSportType()
         self.title = leagueTitle
 
         let nib1 = UINib(nibName: "LeagueDetailsCollectionViewCell", bundle: nil)
@@ -58,8 +61,28 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
         
         let presenter = LeagueDetailsPresenter()
         presenter.setViewController(leagueDetailsViewController: self)
-        presenter.getSportDetails(leagueID: leagueID)
+        presenter.getLeagueDetails(sportType: sportType, leagueID: leagueID)
         
+    }
+    
+    
+    private func setSportType(){
+
+        switch(category){
+        case 0:
+            image = UIImage(named: "bg")
+            sportType = Strings.FOOTBALL_ENDPOINT
+        case 1 :
+             image = UIImage(named: "basketballbg")
+             sportType = Strings.BASKETBALL_ENDPOINT
+        case 2 :
+             image = UIImage(named: "tennisbg")
+             sportType = Strings.TENNIS_ENDPOINT
+        default:
+            image = UIImage(named: "cricketbg")
+            sportType = Strings.CRICKET_ENDPOINT
+        }
+ 
     }
 
 
@@ -88,17 +111,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        var image : UIImage!
-        switch(category){
-        case 0:
-            image = UIImage(named: "bg")
-        case 1 :
-             image = UIImage(named: "basketballbg")
-        case 2 :
-             image = UIImage(named: "tennisbg")
-        default:
-            image = UIImage(named: "cricketbg")
-        }
+   
         
        
 

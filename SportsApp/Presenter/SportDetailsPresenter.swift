@@ -19,32 +19,14 @@ class SportDetailsPresenter{
     }
     
     
-    func getSportDetails(){
+    func getSportDetails(sportType : String){
         
-        if(self.sportDetailsViewController.category == 0){
-            NetworkService.getFootballLeagues(){
-                leaguesResponse in
-                if let leagues = leaguesResponse?.result{
-                    self.sportDetailsViewController.updateLeagues(leagues: leagues)
-                }
+        SportsServices.getLeagues(sportType: sportType){
+            leaguesResponse in
+            if let leagues = leaguesResponse?.result{
+                self.sportDetailsViewController.updateLeagues(leagues: leagues)
             }
-        }else if(self.sportDetailsViewController.category == 1){
-            NetworkService.getBasketballLeagues{
-                leaguesResponse in
-                if let leagues = leaguesResponse?.result{
-                    self.sportDetailsViewController.updateLeagues(leagues: leagues)
-                }
-            }
-        }else if(self.sportDetailsViewController.category == 2){
-            
-            
-        }else{
-            
-            
         }
-
-        
-          
     }
     
 }

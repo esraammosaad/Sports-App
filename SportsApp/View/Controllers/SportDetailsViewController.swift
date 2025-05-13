@@ -15,34 +15,44 @@ class SportDetailsViewController: UIViewController , UITableViewDataSource, UITa
     var footballLeagues : [League]!
     var  shimmerView : ShimmeringView!
     var category: Int!
+    var sportTitle : String!
+    var sportType : String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.setSportType()
         tableView.delegate = self
         tableView.dataSource = self
         let presenter = SportDetailsPresenter()
         presenter.setViewController(sportDetailsVireController: self)
-        presenter.getSportDetails()
-        self.title = setTitle()
+        presenter.getSportDetails(sportType: sportType)
+        self.title = sportTitle
     }
     
-    private func setTitle () -> String{
-        if category == 0
-            {return "Football"}
-        else if category == 1
-            {return "Basketball"}
-        else if category == 2
-            {return "Tennis"}
-        else if category == 3
-            {return "Cricket"}
-        else
-        { return "sport Details"}
+    
+    private func setSportType(){
+        
+        switch(category){
+            
+        case 0 :
+            sportType = Strings.FOOTBALL_ENDPOINT
+            sportTitle = "Football"
+        case 1 :
+            sportType = Strings.BASKETBALL_ENDPOINT
+            sportTitle = "Basketball"
+        case 2 :
+            sportType = Strings.TENNIS_ENDPOINT
+            sportTitle = "Tennis"
+        default :
+            sportType = Strings.CRICKET_ENDPOINT
+            sportTitle = "Cricket"
+            
+            
+        }
         
     }
     
-    
-
-    
+ 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(footballLeagues == nil)
         {
