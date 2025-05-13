@@ -128,6 +128,7 @@
             <connections>
                 <outlet property="awayTeamImage" destination="RWF-Md-jqb" id="kdN-WU-VWi"/>
                 <outlet property="awayTeamName" destination="geX-cO-pcW" id="4NZ-2R-vcm"/>
+                <outlet property="background" destination="3N8-AR-PHM" id="YvY-CY-3qn"/>
                 <outlet property="date" destination="POQ-gz-hqb" id="OuW-Ov-V4L"/>
                 <outlet property="homeTeamImage" destination="g1K-Hg-ECG" id="Toi-GX-i60"/>
                 <outlet property="homeTeamName" destination="PB1-Dy-v7f" id="Gaw-vo-Qvt"/>

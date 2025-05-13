@@ -98,6 +98,7 @@ class SportDetailsViewController: UIViewController , UITableViewDataSource, UITa
         
         leagueDetailsViewController.leagueID = footballLeagues[indexPath.row].league_key
         leagueDetailsViewController.leagueTitle = footballLeagues[indexPath.row].league_name
+        leagueDetailsViewController.category = self.category
         
         self.navigationController?.pushViewController(leagueDetailsViewController, animated: true)
         

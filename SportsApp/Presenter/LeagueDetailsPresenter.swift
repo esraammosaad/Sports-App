@@ -21,18 +21,32 @@ class LeagueDetailsPresenter{
     
     func getSportDetails(leagueID : Int){
         
-        NetworkService.getFootballLeagueDetails(leagueID: leagueID  ){
-            leagueDetailsResponse in
-            if let leagueDetails = leagueDetailsResponse?.result {
-                self.leagueDetailsViewController.updateLeagueDetails(leagueDetails: leagueDetails)
-                print(leagueDetails)
-                print(leagueID)
+        if(self.leagueDetailsViewController.category == 0){
+            NetworkService.getFootballLeagueDetails(leagueID: leagueID  ){
+                leagueDetailsResponse in
+                if let leagueDetails = leagueDetailsResponse?.result {
+                    self.leagueDetailsViewController.updateLeagueDetails(leagueDetails: leagueDetails)
+                    print(leagueDetails)
+                    print(leagueID)
+                }
             }
+        }else if(self.leagueDetailsViewController.category == 1){
+            NetworkService.getBasketballLeagueDetails(leagueID: leagueID){
+                leagueDetailsResponse in
+                if let leagueDetails = leagueDetailsResponse?.result {
+                    self.leagueDetailsViewController.updateLeagueDetails(leagueDetails: leagueDetails)
+                    print(leagueDetails)
+                    print(leagueID)
+                }
+            }
+            
+        }else if(self.leagueDetailsViewController.category == 2){
+            
+        }else{
+            
+            
         }
-        
-        
-        
-        
+   
     }
     
     

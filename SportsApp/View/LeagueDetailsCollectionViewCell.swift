@@ -13,6 +13,7 @@ class LeagueDetailsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var awayTeamName: UILabel!
     @IBOutlet weak var homeTeamImage: UIImageView!
     
+    @IBOutlet weak var background: UIImageView!
     @IBOutlet weak var homeTeamName: UILabel!
     @IBOutlet weak var awayTeamImage: UIImageView!
     override func awakeFromNib() {

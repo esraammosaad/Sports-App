@@ -18,6 +18,9 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
     var upComingEvents : [Event] = []
     var latestEvents : [Event] = []
     
+    var category: Int!
+
+    
     
 
     override func viewDidLoad() {
@@ -85,6 +88,18 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
+        var image : UIImage!
+        switch(category){
+        case 0:
+            image = UIImage(named: "bg")
+        case 1 :
+             image = UIImage(named: "basketballbg")
+        case 2 :
+             image = UIImage(named: "tennisbg")
+        default:
+            image = UIImage(named: "cricketbg")
+        }
+        
        
 
         switch(indexPath.section){
@@ -101,6 +116,9 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
             cell.awayTeamImage.kf.setImage(with: awayURL)
             cell.layer.cornerRadius = 25
             cell.clipsToBounds = true
+            cell.background.image = image
+            
+           
             
             return cell
             
@@ -119,6 +137,8 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
             cell.clipsToBounds = true
             cell.layer.cornerRadius = 25
             cell.clipsToBounds = true
+            cell.background.image = image
+
             return cell
            
         }
