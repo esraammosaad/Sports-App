@@ -19,9 +19,9 @@ class LeagueDetailsPresenter{
     }
     
     
-    func getSportDetails(leagueID : Int){
-        
-        NetworkService.getFootballLeagueDetails(leagueID: leagueID  ){
+    func getLeagueDetails(sportType : String, leagueID : Int){
+
+        SportsServices.getLeagueDetails(sportType: sportType, leagueID: leagueID  ){
             leagueDetailsResponse in
             if let leagueDetails = leagueDetailsResponse?.result {
                 self.leagueDetailsViewController.updateLeagueDetails(leagueDetails: leagueDetails)
@@ -30,18 +30,6 @@ class LeagueDetailsPresenter{
             }
         }
         
-        
-        
-        
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+  
 }

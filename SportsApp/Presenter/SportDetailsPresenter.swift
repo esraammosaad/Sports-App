@@ -13,33 +13,20 @@ class SportDetailsPresenter{
     var sportDetailsViewController : SportDetailsViewController!
     
     func setViewController(sportDetailsVireController : SportDetailsViewController){
-
+        
         self.sportDetailsViewController = sportDetailsVireController
- 
+        
     }
     
     
-    func getSportDetails(){
+    func getSportDetails(sportType : String){
         
-        NetworkService.getFootballLeagues(){
+        SportsServices.getLeagues(sportType: sportType){
             leaguesResponse in
-            if let leagues = leaguesResponse?.result {
+            if let leagues = leaguesResponse?.result{
                 self.sportDetailsViewController.updateLeagues(leagues: leagues)
             }
         }
-        
-        
-        
-        
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
 }
