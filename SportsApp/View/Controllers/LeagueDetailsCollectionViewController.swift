@@ -9,6 +9,8 @@ import UIKit
 
 private let reuseIdentifier = "cell"
 private let reuseIdentifier2 = "cell2"
+private let reuseIdentifier3 = "cell3"
+
 
 class LeagueDetailsCollectionViewController: UICollectionViewController,UICollectionViewDelegateFlowLayout {
     
@@ -17,6 +19,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
     
     var upComingEvents : [Event] = []
     var latestEvents : [Event] = []
+    var teams : [Team] = []
     
     var category: Int!
     var sportType : String!
@@ -34,6 +37,8 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
         self.collectionView!.register(nib1, forCellWithReuseIdentifier: reuseIdentifier)
         let nib2 = UINib(nibName: "LatestEventsCollectionViewCell", bundle: nil)
         self.collectionView!.register(nib2, forCellWithReuseIdentifier: reuseIdentifier2)
+        let nib3 = UINib(nibName: "TeamSectionCollectionViewCell", bundle: nil)
+        self.collectionView!.register(nib3, forCellWithReuseIdentifier: reuseIdentifier3)
         
         
         let headerNib = UINib(nibName: "LeagueDetailsHeaderCollectionReusableView", bundle: nil)
@@ -50,6 +55,9 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
                 
             case 0 :
                 return self.drawSection()
+            
+            case 2 :
+                return self.drwaTeamSection()
                 
             default:
                 return self.drawSection()
@@ -62,7 +70,25 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
         let presenter = LeagueDetailsPresenter()
         presenter.setViewController(leagueDetailsViewController: self)
         presenter.getLeagueDetails(sportType: sportType, leagueID: leagueID)
+        presenter.getLeagueTeams(sportType: sportType, leagueID: leagueID)
         
+        
+        
+        
+        
+        let button = UIBarButtonItem(
+            image: UIImage(systemName: "heart"),
+            //title : "add",
+            style: .plain,
+            target: self,
+            action: #selector(didTapRightButton)
+        )
+        navigationItem.rightBarButtonItem = button
+        
+    }
+    @objc func didTapRightButton() {
+      
+     
     }
     
     
@@ -84,12 +110,13 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
         }
  
     }
+  
 
 
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         
-        return 2
+        return 3
     }
     
     
@@ -135,7 +162,31 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
             
             return cell
             
-           
+        case 2:
+            
+            switch (category) {
+            case 0 :
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier3, for: indexPath) as! TeamSectionCollectionViewCell
+                cell.teamImage.kf.setImage(with: URL(string: teams[indexPath.row].team_logo ?? ""))
+                return cell
+            case 1:
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier3, for: indexPath) as! TeamSectionCollectionViewCell
+                cell.teamImage.kf.setImage(with: URL(string: teams[indexPath.row].team_logo ?? ""))
+                return cell
+            case 2 :
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier3, for: indexPath) as! TeamSectionCollectionViewCell
+                cell.teamImage.kf.setImage(with: URL(string: teams[indexPath.row].team_logo ?? ""))
+                return cell
+                
+            default :
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier3, for: indexPath) as! TeamSectionCollectionViewCell
+                cell.teamImage.kf.setImage(with: URL(string: teams[indexPath.row].team_logo ?? ""))
+                return cell
+                
+            }
+            
+            
+            
           default:
            let  cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier2, for: indexPath) as! LatestEventsCollectionViewCell
             cell.homeTeamName.text = latestEvents[indexPath.row].event_home_team
@@ -280,6 +331,38 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
          
         return section
     }
+
+
+    private func drwaTeamSection()->NSCollectionLayoutSection{
+        
+        //item size
+        let bigItemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+
+        // item >> size
+        let item = NSCollectionLayoutItem(layoutSize: bigItemSize)
+        
+        //groupsize
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(250))
+ 
+       //group >> size , item
+        let myGroup = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+
+        myGroup.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 2, bottom: 0, trailing: 2)
+        
+      //section >> group
+       let section = NSCollectionLayoutSection(group: myGroup)
+        section.orthogonalScrollingBehavior = .continuous
+        section.contentInsets = NSDirectionalEdgeInsets(top: 15, leading: 0, bottom: 15, trailing: 0)
+        
+        self.setHeaderForSection(section: section)
+        self.setAnimationToSection(section: section)
+
+
+        
+        return section
+        
+        
+    }
     
     
     
@@ -292,10 +375,14 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
         DispatchQueue.main.async {
             self.collectionView.reloadData()
         }
-        
-        
-        
-        
+    }
+    
+    func getLeagueTeams(teams :[Team]){
+    
+        DispatchQueue.main.async {
+            self.teams = teams
+            self.collectionView.reloadData()
+        }
     }
     
     

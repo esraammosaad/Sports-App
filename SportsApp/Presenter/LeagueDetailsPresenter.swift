@@ -31,5 +31,16 @@ class LeagueDetailsPresenter{
         }
         
     }
+    func getLeagueTeams(sportType : String, leagueID : Int){
+
+        SportsServices.getLeagueTeams(sportType: sportType, leagueID: leagueID  ){
+            leagueTeams in
+            if let teams = leagueTeams?.result {
+                self.leagueDetailsViewController.getLeagueTeams(teams: teams)
+               
+            }
+        }
+        
+    }
   
 }
