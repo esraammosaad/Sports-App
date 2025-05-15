@@ -42,5 +42,13 @@ class LeagueDetailsPresenter{
         }
         
     }
+    func getCricketLeagueDetails (){
+        SportsServices.getCricketLeagueDetails{
+            cricketEvents in
+            if let cricketEvents = cricketEvents?.result {
+                self.leagueDetailsViewController.udateCricketDetails(cricketEvents: cricketEvents)
+            }
+        }
+    }
   
 }

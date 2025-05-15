@@ -22,10 +22,14 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
     var latestEvents : [Event] = []
     var teams : [Team] = []
     
+    var cricketUpComingEvents : [CricketEvent] = []
+    var cricketLatestEvents : [CricketEvent] = []
+    
     var category: Int!
     var sportType : String!
     var image : UIImage!
     private  var isUpcomingEvents :Bool!
+    private let presenter = LeagueDetailsPresenter()
 
     
     
@@ -69,9 +73,9 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
         
         self.collectionView.setCollectionViewLayout(layout, animated: true)
         
-        let presenter = LeagueDetailsPresenter()
+       
         presenter.setViewController(leagueDetailsViewController: self)
-        presenter.getLeagueDetails(sportType: sportType, leagueID: leagueID)
+        getCategoryData(category: category)
         presenter.getLeagueTeams(sportType: sportType, leagueID: leagueID)
         
     
@@ -92,11 +96,32 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
         )
         navigationItem.rightBarButtonItem = button
         
+        
+        
+      
     }
     @objc func didTapRightButton() {
       // add to core data
         
      
+    }
+    
+    private func getCategoryData(category :Int){
+        
+        switch (category)
+        {
+        case 0 , 1:
+            self.presenter.getLeagueDetails(sportType: sportType, leagueID: leagueID)
+        case 3 :
+            presenter.getCricketLeagueDetails()
+            
+            
+        // must be case 2 to the tennis
+            
+        default:
+            self.presenter.getLeagueDetails(sportType: sportType, leagueID: leagueID)
+        }
+        
     }
     
     
@@ -132,95 +157,106 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        switch(section){
-            
-        case 0 :
+        switch section {
+        case 0:
             return upComingEvents.count
-        case 2 :
+        case 2:
             return teams.count
-        default :
-            return latestEvents.count
-
+        default:
+            switch category {
+            case 3:
+                return cricketLatestEvents.count
+            default:
+                return latestEvents.count
+            }
         }
         
     }
-
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        switch(indexPath.section){
-          case 0:
-             
+        switch indexPath.section {
+        case 0:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! LeagueDetailsCollectionViewCell
-            cell.homeTeamName.text = upComingEvents[indexPath.row].event_home_team
-            cell.awayTeamName.text = upComingEvents[indexPath.row].event_away_team
-            cell.date.text = upComingEvents[indexPath.row].event_date
-            cell.time.text = upComingEvents[indexPath.row].event_time
-            let homeURL = URL(string: upComingEvents[indexPath.row].home_team_logo ?? "")
-            let awayURL = URL(string: upComingEvents[indexPath.row].away_team_logo ?? "")
-            cell.homeTeamImage.kf.setImage(with: homeURL)
-            cell.awayTeamImage.kf.setImage(with: awayURL)
-            cell.layer.cornerRadius = 25
-            cell.clipsToBounds = true
-            cell.background.image = image
-            
-           
-            
+            configureUpcomingEventCell(cell, at: indexPath)
             return cell
             
         case 2:
-            
-            switch (category) {
-            case 0 :
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier3, for: indexPath) as! TeamSectionCollectionViewCell
-                cell.teamImage.kf.setImage(with: URL(string: teams[indexPath.row].team_logo ?? ""),placeholder: UIImage(named: "footballTeam"))
-                cell.teamName.text = teams[indexPath.row].team_name
-                return cell
-            case 1:
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier3, for: indexPath) as! TeamSectionCollectionViewCell
-                cell.teamImage.kf.setImage(with: URL(string: teams[indexPath.row].team_logo ?? ""),placeholder: UIImage(named: "baskteballTeam"))
-                cell.teamName.text = teams[indexPath.row].team_name
-                return cell
-            case 2 :
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier3, for: indexPath) as! TeamSectionCollectionViewCell
-                cell.teamImage.kf.setImage(with: URL(string: teams[indexPath.row].team_logo ?? ""),placeholder: UIImage(named: "tennisTeam"))
-                cell.teamName.text = teams[indexPath.row].team_name
-                return cell
-                
-            default :
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier3, for: indexPath) as! TeamSectionCollectionViewCell
-                cell.teamImage.kf.setImage(with: URL(string: teams[indexPath.row].team_logo ?? ""),placeholder: UIImage(named: "cricketTeam"))
-                cell.teamName.text = teams[indexPath.row].team_name
-                return cell
-                
-            }
-            
-            
-            
-          default:
-           let  cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier2, for: indexPath) as! LatestEventsCollectionViewCell
-            cell.homeTeamName.text = latestEvents[indexPath.row].event_home_team
-            cell.awayTeamName.text = latestEvents[indexPath.row].event_away_team
-            cell.date.text = latestEvents[indexPath.row].event_date
-            cell.finalScore.text = latestEvents[indexPath.row].event_final_result
-            let homeURL = URL(string: latestEvents[indexPath.row].home_team_logo ?? "")
-            let awayURL = URL(string: latestEvents[indexPath.row].away_team_logo ?? "")
-            cell.homeTeamImage.kf.setImage(with: homeURL)
-            cell.awayTeamImage.kf.setImage(with: awayURL)
-            cell.layer.cornerRadius = 25
-            cell.clipsToBounds = true
-            cell.layer.cornerRadius = 25
-            cell.clipsToBounds = true
-            cell.background.image = image
-
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier3, for: indexPath) as! TeamSectionCollectionViewCell
+            configureTeamCell(cell, at: indexPath)
             return cell
-           
+            
+        default:
+      
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier2, for: indexPath) as! LatestEventsCollectionViewCell
+            configureLatestEventCell(cell, at: indexPath)
+            return cell
+        }
+    }
+
+    private func configureUpcomingEventCell(_ cell: LeagueDetailsCollectionViewCell, at indexPath: IndexPath) {
+        cell.homeTeamName.text = upComingEvents[indexPath.row].event_home_team
+        cell.awayTeamName.text = upComingEvents[indexPath.row].event_away_team
+        cell.date.text = upComingEvents[indexPath.row].event_date
+        cell.time.text = upComingEvents[indexPath.row].event_time
+        let homeURL = URL(string: upComingEvents[indexPath.row].home_team_logo ?? "")
+        let awayURL = URL(string: upComingEvents[indexPath.row].away_team_logo ?? "")
+        cell.homeTeamImage.kf.setImage(with: homeURL)
+        cell.awayTeamImage.kf.setImage(with: awayURL)
+        cell.layer.cornerRadius = 25
+        cell.clipsToBounds = true
+        cell.background.image = image
+    }
+
+    private func configureTeamCell(_ cell: TeamSectionCollectionViewCell, at indexPath: IndexPath) {
+        let placeholderImage: UIImage?
+        switch category {
+        case 0: placeholderImage = UIImage(named: "footballTeam")
+        case 1: placeholderImage = UIImage(named: "baskteballTeam")
+        case 2: placeholderImage = UIImage(named: "tennisTeam")
+        default: placeholderImage = UIImage(named: "cricketTeam")
         }
         
-      
-        
-        
-    
+        cell.teamImage.kf.setImage(with: URL(string: teams[indexPath.row].team_logo ?? ""), placeholder: placeholderImage)
+        cell.teamName.text = teams[indexPath.row].team_name
     }
+
+    private func configureLatestEventCell(_ cell: LatestEventsCollectionViewCell, at indexPath: IndexPath) {
+        switch category {
+        case 0, 1:
+            configureFootballBasketballLatestEventCell(cell, at: indexPath)
+        case 3:
+            configureCricketLatestEventCell(cell, at: indexPath)
+        default:
+            configureFootballBasketballLatestEventCell(cell, at: indexPath)
+        }
+        
+        cell.layer.cornerRadius = 25
+        cell.clipsToBounds = true
+        cell.background.image = image
+    }
+
+    private func configureFootballBasketballLatestEventCell(_ cell: LatestEventsCollectionViewCell, at indexPath: IndexPath) {
+        cell.homeTeamName.text = latestEvents[indexPath.row].event_home_team
+        cell.awayTeamName.text = latestEvents[indexPath.row].event_away_team
+        cell.date.text = latestEvents[indexPath.row].event_date
+        cell.finalScore.text = latestEvents[indexPath.row].event_final_result
+        let homeURL = URL(string: latestEvents[indexPath.row].home_team_logo ?? "")
+        let awayURL = URL(string: latestEvents[indexPath.row].away_team_logo ?? "")
+        cell.homeTeamImage.kf.setImage(with: homeURL)
+        cell.awayTeamImage.kf.setImage(with: awayURL)
+    }
+
+    private func configureCricketLatestEventCell(_ cell: LatestEventsCollectionViewCell, at indexPath: IndexPath) {
+        cell.homeTeamName.text = cricketLatestEvents[indexPath.row].event_home_team
+        cell.awayTeamName.text = cricketLatestEvents[indexPath.row].event_away_team
+        cell.date.text = cricketLatestEvents[indexPath.row].event_date_start
+        cell.finalScore.text = cricketLatestEvents[indexPath.row].event_away_final_result
+        let homeURL = URL(string: cricketLatestEvents[indexPath.row].event_home_team_logo ?? "")
+        let awayURL = URL(string: cricketLatestEvents[indexPath.row].event_away_team_logo ?? "")
+        cell.homeTeamImage.kf.setImage(with: homeURL)
+        cell.awayTeamImage.kf.setImage(with: awayURL)
+    }
+
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         
@@ -392,6 +428,15 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
             self.teams = teams
             self.collectionView.reloadData()
         }
+    }
+    
+    func udateCricketDetails (cricketEvents :[CricketEvent]){
+        cricketLatestEvents = cricketEvents.filter{ $0.event_status == "Finished" }
+        cricketUpComingEvents = cricketEvents.filter{ $0.event_status?.isEmpty ?? false || $0.event_status == nil }
+        print(cricketEvents[1].event_home_team)
+         DispatchQueue.main.async {
+             self.collectionView.reloadData()
+         }
     }
     
     

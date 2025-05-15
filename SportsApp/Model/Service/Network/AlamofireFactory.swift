@@ -67,5 +67,21 @@ class AlamofireFactory{
     }
     
     
+    static func  getCricketLeagueDetails(url : String, completion : @escaping (CricketEventResponse?) -> Void){
+        AF.request(url).validate(statusCode: 200..<300).responseDecodable(of:CricketEventResponse.self){
+            response in
+            switch response.result{
+            case .failure(let error):
+                print(error.localizedDescription)
+                completion(nil)
+            case .success(let successResponse):
+                completion(successResponse)
+            }
+        }
+    }
+    
+    
+    
+    
     
 }

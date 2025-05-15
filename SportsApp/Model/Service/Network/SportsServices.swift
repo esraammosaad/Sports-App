@@ -49,6 +49,15 @@ class SportsServices{
         }
     }
     
+    static func getCricketLeagueDetails (completion : @escaping (CricketEventResponse?) -> Void){
+        let url = "https://apiv2.allsportsapi.com/cricket/?met=Fixtures&APIkey=edaabe5e8bfd4f780d114f7cafd181e0acc496f308f7685089b5cd9ecf224f5d&from=2024-03-13&to=2025-05-17&leagueId=747"
+        
+        AlamofireFactory.getCricketLeagueDetails(url: url){
+            cricketTeamResponse in
+            completion(cricketTeamResponse)
+        }
+    }
+    
     
 }
 
