@@ -16,6 +16,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
     
     var leagueID : Int!
     var leagueTitle : String!
+    var countryId :Int!
     
     var upComingEvents : [Event] = []
     var latestEvents : [Event] = []
@@ -24,6 +25,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
     var category: Int!
     var sportType : String!
     var image : UIImage!
+    private  var isUpcomingEvents :Bool!
 
     
     
@@ -72,13 +74,18 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
         presenter.getLeagueDetails(sportType: sportType, leagueID: leagueID)
         presenter.getLeagueTeams(sportType: sportType, leagueID: leagueID)
         
+    
         
-        
+        if(upComingEvents.isEmpty){
+            isUpcomingEvents = false
+        }
+        else{
+            isUpcomingEvents = true
+        }
         
         
         let button = UIBarButtonItem(
             image: UIImage(systemName: "heart"),
-            //title : "add",
             style: .plain,
             target: self,
             action: #selector(didTapRightButton)
@@ -87,7 +94,8 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
         
     }
     @objc func didTapRightButton() {
-      
+      // add to core data
+        
      
     }
     
@@ -115,7 +123,6 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
 
 
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        
         return 3
     }
     
@@ -129,6 +136,8 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
             
         case 0 :
             return upComingEvents.count
+        case 2 :
+            return teams.count
         default :
             return latestEvents.count
 
@@ -138,10 +147,6 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-   
-        
-       
-
         switch(indexPath.section){
           case 0:
              
@@ -167,20 +172,24 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
             switch (category) {
             case 0 :
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier3, for: indexPath) as! TeamSectionCollectionViewCell
-                cell.teamImage.kf.setImage(with: URL(string: teams[indexPath.row].team_logo ?? ""))
+                cell.teamImage.kf.setImage(with: URL(string: teams[indexPath.row].team_logo ?? ""),placeholder: UIImage(named: "footballTeam"))
+                cell.teamName.text = teams[indexPath.row].team_name
                 return cell
             case 1:
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier3, for: indexPath) as! TeamSectionCollectionViewCell
-                cell.teamImage.kf.setImage(with: URL(string: teams[indexPath.row].team_logo ?? ""))
+                cell.teamImage.kf.setImage(with: URL(string: teams[indexPath.row].team_logo ?? ""),placeholder: UIImage(named: "baskteballTeam"))
+                cell.teamName.text = teams[indexPath.row].team_name
                 return cell
             case 2 :
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier3, for: indexPath) as! TeamSectionCollectionViewCell
-                cell.teamImage.kf.setImage(with: URL(string: teams[indexPath.row].team_logo ?? ""))
+                cell.teamImage.kf.setImage(with: URL(string: teams[indexPath.row].team_logo ?? ""),placeholder: UIImage(named: "tennisTeam"))
+                cell.teamName.text = teams[indexPath.row].team_name
                 return cell
                 
             default :
                 let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier3, for: indexPath) as! TeamSectionCollectionViewCell
-                cell.teamImage.kf.setImage(with: URL(string: teams[indexPath.row].team_logo ?? ""))
+                cell.teamImage.kf.setImage(with: URL(string: teams[indexPath.row].team_logo ?? ""),placeholder: UIImage(named: "cricketTeam"))
+                cell.teamName.text = teams[indexPath.row].team_name
                 return cell
                 
             }

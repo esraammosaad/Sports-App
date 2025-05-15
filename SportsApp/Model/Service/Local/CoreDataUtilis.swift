@@ -41,16 +41,13 @@ class CoreDataUtils{
         let savedLeagues = nsManagedArray.compactMap { object in
             let name = object.value(forKey: "leagueName") as? String ?? "name default"
             let imagePath = object.value(forKey: "imagePath") as? String ?? "image path default"
-            
             return SavedLeague(leageuName: name, imagePath: imagePath)
         }
-        
         return savedLeagues
     }
     
     
     private func readFromCoreData() -> [NSManagedObject]?{
-        
         
         let fetchReq = NSFetchRequest<NSManagedObject>(entityName: "FavouriteLeague")
         

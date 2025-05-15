@@ -24,7 +24,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         
        let nib = UINib(nibName: "HomeCollectionViewCell", bundle: nil)
        self.collectionView!.register(nib, forCellWithReuseIdentifier: reuseIdentifier)
-        
+        print("fiiiiiirst")
 //
 //        NetworkService.getFootballLeagueDetails(leagueID: 4 ){
 //            leagueDetailsResponse in

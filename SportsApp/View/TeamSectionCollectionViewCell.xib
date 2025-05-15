@@ -18,18 +18,28 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PgO-up-THf">
-                        <rect key="frame" x="0.0" y="0.0" width="120" height="128"/>
+                        <rect key="frame" x="0.0" y="0.0" width="120" height="92"/>
                     </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C72-9C-c7V">
+                        <rect key="frame" x="5" y="92" width="110" height="32.333333333333343"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="PgO-up-THf" firstAttribute="leading" secondItem="bAA-4i-CcZ" secondAttribute="leading" id="1VT-6c-aCd"/>
                     <constraint firstItem="PgO-up-THf" firstAttribute="top" secondItem="bAA-4i-CcZ" secondAttribute="top" id="B1X-tY-8ib"/>
-                    <constraint firstAttribute="bottom" secondItem="PgO-up-THf" secondAttribute="bottom" id="kX2-Wp-nxa"/>
+                    <constraint firstItem="C72-9C-c7V" firstAttribute="leading" secondItem="bAA-4i-CcZ" secondAttribute="leading" constant="5" id="C9y-PA-DvO"/>
+                    <constraint firstAttribute="trailing" secondItem="C72-9C-c7V" secondAttribute="trailing" constant="5" id="cag-GW-cJa"/>
+                    <constraint firstItem="C72-9C-c7V" firstAttribute="top" secondItem="PgO-up-THf" secondAttribute="bottom" id="dtI-UV-ePv"/>
+                    <constraint firstAttribute="bottom" secondItem="PgO-up-THf" secondAttribute="bottom" constant="36" id="kX2-Wp-nxa"/>
                     <constraint firstAttribute="trailing" secondItem="PgO-up-THf" secondAttribute="trailing" id="tL4-ii-4rg"/>
                 </constraints>
             </collectionViewCellContentView>
             <connections>
                 <outlet property="teamImage" destination="PgO-up-THf" id="JEn-ti-Tke"/>
+                <outlet property="teamName" destination="C72-9C-c7V" id="mCr-KM-lmb"/>
             </connections>
             <point key="canvasLocation" x="378.1395348837209" y="-61.15879828326181"/>
         </collectionViewCell>

@@ -26,6 +26,8 @@ class SportsServices{
     }
     
     static func getLeagueDetails (sportType : String, leagueID : Int,completion : @escaping (EventResponse?) -> Void){
+        
+        
     let url =  "\(Strings.BASEURL)\(sportType)/?APIkey=\(Strings.API_KEY)&met=\(Strings.EVENTS_ENDPOINT)&from=2025-01-01&to=2025-06-30&leagueId=\(leagueID)"
         
         AlamofireFactory.leagueDetailsRequest(url: url){
@@ -43,11 +45,8 @@ class SportsServices{
         
         AlamofireFactory.teamsRequest(url: url){
             teamsResponse in
-               
             completion(teamsResponse)
-           
         }
-  
     }
     
     
