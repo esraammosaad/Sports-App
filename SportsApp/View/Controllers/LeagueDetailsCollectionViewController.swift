@@ -172,28 +172,71 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
         }
         
     }
+//    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+//
+//        switch indexPath.section {
+//        case 0:
+//            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! LeagueDetailsCollectionViewCell
+//            configureUpcomingEventCell(cell, at: indexPath)
+//            return cell
+//
+//        case 2:
+//            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier3, for: indexPath) as! TeamSectionCollectionViewCell
+//            configureTeamCell(cell, at: indexPath)
+//            return cell
+//
+//        default:
+//
+//            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier2, for: indexPath) as! LatestEventsCollectionViewCell
+//            configureLatestEventCell(cell, at: indexPath)
+//            return cell
+//        }
+//    }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         switch indexPath.section {
         case 0:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! LeagueDetailsCollectionViewCell
-            configureUpcomingEventCell(cell, at: indexPath)
+            
+            // Remove any existing shimmer views
+            cell.contentView.subviews.filter { $0 is ShimmeringView }.forEach { $0.removeFromSuperview() }
+            
+            if shouldShowShimmer(for: indexPath.section) {
+                addShimmerToCell(cell)
+            } else {
+                configureUpcomingEventCell(cell, at: indexPath)
+            }
             return cell
             
         case 2:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier3, for: indexPath) as! TeamSectionCollectionViewCell
-            configureTeamCell(cell, at: indexPath)
+            
+            cell.contentView.subviews.filter { $0 is ShimmeringView }.forEach { $0.removeFromSuperview() }
+            
+            if teams.isEmpty {
+                addShimmerToCell(cell)
+            } else {
+                configureTeamCell(cell, at: indexPath)
+            }
             return cell
             
         default:
-      
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier2, for: indexPath) as! LatestEventsCollectionViewCell
-            configureLatestEventCell(cell, at: indexPath)
+            
+            cell.contentView.subviews.filter { $0 is ShimmeringView }.forEach { $0.removeFromSuperview() }
+            
+            if shouldShowShimmer(for: indexPath.section) {
+                addShimmerToCell(cell)
+            } else {
+                configureLatestEventCell(cell, at: indexPath)
+            }
             return cell
         }
     }
 
+
     private func configureUpcomingEventCell(_ cell: LeagueDetailsCollectionViewCell, at indexPath: IndexPath) {
+        cell.contentView.subviews.filter { $0 is ShimmeringView }.forEach { $0.removeFromSuperview() }
         switch category {
         case 0, 1:
             configureUpComingFootballAndBasktballCell(cell, at: indexPath)
@@ -247,6 +290,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
 
     private func configureTeamCell(_ cell: TeamSectionCollectionViewCell, at indexPath: IndexPath) {
         let placeholderImage: UIImage?
+        cell.contentView.subviews.filter { $0 is ShimmeringView }.forEach { $0.removeFromSuperview() }
         switch category {
         case 0: placeholderImage = UIImage(named: "footballTeam")
         case 1: placeholderImage = UIImage(named: "baskteballTeam")
@@ -259,6 +303,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
     }
 
     private func configureLatestEventCell(_ cell: LatestEventsCollectionViewCell, at indexPath: IndexPath) {
+        cell.contentView.subviews.filter { $0 is ShimmeringView }.forEach { $0.removeFromSuperview() }
         switch category {
         case 0, 1:
             configureFootballBasketballLatestEventCell(cell, at: indexPath)
@@ -463,7 +508,40 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
         
         
     }
-    
+    private func addShimmerToCell(_ cell: UICollectionViewCell) {
+        let shimmerView = ShimmeringView(frame: cell.bounds)
+        shimmerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        shimmerView.backgroundColor = .red
+        
+        let placeholderView = UIView(frame: cell.bounds)
+        placeholderView.backgroundColor = .systemGray5
+        placeholderView.layer.cornerRadius = 12
+        placeholderView.clipsToBounds = true
+        
+        shimmerView.contentView = placeholderView
+        shimmerView.isShimmering = true
+        
+        cell.contentView.addSubview(shimmerView)
+    }
+
+    private func shouldShowShimmer(for section: Int) -> Bool {
+        switch section {
+        case 0:
+            switch category {
+            case 0,1: return upComingEvents.isEmpty
+            case 2: return tennisUpCommingEvents.isEmpty
+            default: return cricketUpComingEvents.isEmpty
+            }
+        case 1:
+            switch category {
+            case 3: return cricketLatestEvents.isEmpty
+            case 2: return tennisLatestEvents.isEmpty
+            default: return latestEvents.isEmpty
+            }
+        case 2: return teams.isEmpty
+        default: return false
+        }
+    }
     
     
     func updateLeagueDetails(leagueDetails: [Event]){
