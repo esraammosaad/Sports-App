@@ -25,5 +25,9 @@ class Strings{
     "Teams"
     static let EVENTS_ENDPOINT =
     "Fixtures"
+    static let UPCOMING_EVENTS_CELL_IDENTIFIER = "cell"
+    static let LATEST_EVENTS_CELL_IDENTIFIER = "cell2"
+    static let TEAM_CELL_IDENTIFIER = "cell3"
+    static let HEADER_LABEL_IDENTIFIER = "header"
 
 }
