@@ -33,7 +33,6 @@ class SportDetailsViewController: UIViewController , UITableViewDataSource, UITa
     private func setSportType(){
         
         switch(category){
-            
         case 0 :
             sportType = Strings.FOOTBALL_ENDPOINT
             sportTitle = "Football"
@@ -46,10 +45,7 @@ class SportDetailsViewController: UIViewController , UITableViewDataSource, UITa
         default :
             sportType = Strings.CRICKET_ENDPOINT
             sportTitle = "Cricket"
-            
-            
         }
-        
     }
     
  
@@ -70,7 +66,6 @@ class SportDetailsViewController: UIViewController , UITableViewDataSource, UITa
            let shimmerView = ShimmeringView(frame: cell.bounds)
             shimmerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             cell.contentView.addSubview(shimmerView)
-
             let placeholderView = UIView(frame: cell.bounds)
             placeholderView.backgroundColor = UIColor.systemGray5
             shimmerView.contentView = placeholderView
@@ -84,7 +79,6 @@ class SportDetailsViewController: UIViewController , UITableViewDataSource, UITa
             cell.LeagueImage.layer.cornerRadius = radius
             cell.LeagueImage.layer.masksToBounds = true
         }
-
         return cell
     }
     
@@ -95,7 +89,6 @@ class SportDetailsViewController: UIViewController , UITableViewDataSource, UITa
     
     
     func updateLeagues(leagues : [League]){
-
         self.footballLeagues = leagues
         DispatchQueue.main.async {
                     self.tableView.reloadData()
@@ -105,11 +98,9 @@ class SportDetailsViewController: UIViewController , UITableViewDataSource, UITa
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let leagueDetailsViewController = self.storyboard?.instantiateViewController(withIdentifier: "leagueDetails") as! LeagueDetailsCollectionViewController
-        
         leagueDetailsViewController.leagueID = footballLeagues[indexPath.row].league_key
         leagueDetailsViewController.leagueTitle = footballLeagues[indexPath.row].league_name
         leagueDetailsViewController.category = self.category
-        
         self.navigationController?.pushViewController(leagueDetailsViewController, animated: true)
         
     }
