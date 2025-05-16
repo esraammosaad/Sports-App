@@ -42,13 +42,22 @@ class LeagueDetailsPresenter{
         }
         
     }
-    func getCricketLeagueDetails (){
-        SportsServices.getCricketLeagueDetails{
+    func getCricketLeagueDetails (leagueId:Int){
+        SportsServices.getCricketLeagueDetails(leagueID: leagueId){
             cricketEvents in
             if let cricketEvents = cricketEvents?.result {
                 self.leagueDetailsViewController.udateCricketDetails(cricketEvents: cricketEvents)
             }
         }
+    }
+    func getTnnisEvents (countryId:Int){
+        SportsServices.getTenniseDetails(countryID: countryId){
+            tennisEvents in
+            if let tennisEvents = tennisEvents?.result{
+                self.leagueDetailsViewController.getTennisEvents(tennisEvents: tennisEvents)
+            }
+        }
+        
     }
   
 }
