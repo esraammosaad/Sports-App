@@ -80,6 +80,20 @@ class AlamofireFactory{
         }
     }
     
+    static func  getTennisDetails(url : String, completion : @escaping (TennisEventResponse?) -> Void){
+        AF.request(url).validate(statusCode: 200..<300).responseDecodable(of:TennisEventResponse.self){
+            response in
+            switch response.result{
+            case .failure(let error):
+                print(error.localizedDescription)
+                completion(nil)
+            case .success(let successResponse):
+                completion(successResponse)
+            }
+        }
+    }
+    
+    
     
     
     

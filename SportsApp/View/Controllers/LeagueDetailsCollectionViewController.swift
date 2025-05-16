@@ -25,10 +25,14 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
     var cricketUpComingEvents : [CricketEvent] = []
     var cricketLatestEvents : [CricketEvent] = []
     
+    var tennisUpCommingEvents : [TennisEvent] = []
+    var tennisLatestEvents : [TennisEvent] = []
+ 
+    
+    
     var category: Int!
     var sportType : String!
     var image : UIImage!
-    private  var isUpcomingEvents :Bool!
     private let presenter = LeagueDetailsPresenter()
 
     
@@ -78,15 +82,6 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
         getCategoryData(category: category)
         presenter.getLeagueTeams(sportType: sportType, leagueID: leagueID)
         
-    
-        
-        if(upComingEvents.isEmpty){
-            isUpcomingEvents = false
-        }
-        else{
-            isUpcomingEvents = true
-        }
-        
         
         let button = UIBarButtonItem(
             image: UIImage(systemName: "heart"),
@@ -112,12 +107,11 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
         {
         case 0 , 1:
             self.presenter.getLeagueDetails(sportType: sportType, leagueID: leagueID)
+        case 2 :
+            presenter.getTnnisEvents(countryId: countryId)
         case 3 :
-            presenter.getCricketLeagueDetails()
-            
-            
-        // must be case 2 to the tennis
-            
+            presenter.getCricketLeagueDetails(leagueId: leagueID)
+            print(leagueID)
         default:
             self.presenter.getLeagueDetails(sportType: sportType, leagueID: leagueID)
         }
@@ -144,9 +138,6 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
  
     }
   
-
-
-
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 3
     }
@@ -159,13 +150,22 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
         
         switch section {
         case 0:
-            return upComingEvents.count
+            switch category {
+            case 0 ,1 :
+                return upComingEvents.count
+            case 2 :
+                return tennisUpCommingEvents.count
+            default:
+                return cricketUpComingEvents.count
+            }
         case 2:
             return teams.count
         default:
             switch category {
             case 3:
                 return cricketLatestEvents.count
+            case 2 :
+                return tennisLatestEvents.count
             default:
                 return latestEvents.count
             }
@@ -194,6 +194,22 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
     }
 
     private func configureUpcomingEventCell(_ cell: LeagueDetailsCollectionViewCell, at indexPath: IndexPath) {
+        switch category {
+        case 0, 1:
+            configureUpComingFootballAndBasktballCell(cell, at: indexPath)
+        case 2 :
+            configureUpComingTEnnisEvents(cell, at: indexPath)
+        case 3:
+            configureUpComingCricketEvents(cell, at: indexPath)
+        default:
+            configureUpComingFootballAndBasktballCell(cell, at: indexPath)
+        }
+        cell.layer.cornerRadius = 25
+        cell.clipsToBounds = true
+        cell.background.image = image
+    }
+    
+    private func configureUpComingFootballAndBasktballCell (_ cell: LeagueDetailsCollectionViewCell, at indexPath: IndexPath){
         cell.homeTeamName.text = upComingEvents[indexPath.row].event_home_team
         cell.awayTeamName.text = upComingEvents[indexPath.row].event_away_team
         cell.date.text = upComingEvents[indexPath.row].event_date
@@ -202,9 +218,31 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
         let awayURL = URL(string: upComingEvents[indexPath.row].away_team_logo ?? "")
         cell.homeTeamImage.kf.setImage(with: homeURL)
         cell.awayTeamImage.kf.setImage(with: awayURL)
-        cell.layer.cornerRadius = 25
-        cell.clipsToBounds = true
-        cell.background.image = image
+       
+    }
+    
+    private func configureUpComingTEnnisEvents (_ cell: LeagueDetailsCollectionViewCell, at indexPath: IndexPath){
+        cell.homeTeamName.text = tennisUpCommingEvents[indexPath.row].event_first_player
+        cell.awayTeamName.text = tennisUpCommingEvents[indexPath.row].event_second_player
+        cell.date.text = tennisUpCommingEvents[indexPath.row].event_date
+        cell.time.text = tennisUpCommingEvents[indexPath.row].event_time
+        cell.homeTeamImage.image = UIImage(named: "tennisP1")
+        cell.awayTeamImage.image = UIImage(named: "tennisP2")
+//        let homeURL = URL(string: tennisUpCommingEvents[indexPath.row].home_team_logo ?? "")
+//        let awayURL = URL(string: tennisUpCommingEvents[indexPath.row].away_team_logo ?? "")
+//        cell.homeTeamImage.kf.setImage(with: homeURL)
+//        cell.awayTeamImage.kf.setImage(with: awayURL)
+    }
+    
+    private func configureUpComingCricketEvents(_ cell: LeagueDetailsCollectionViewCell, at indexPath: IndexPath){
+        cell.homeTeamName.text = cricketUpComingEvents[indexPath.row].event_home_team
+        cell.awayTeamName.text = cricketUpComingEvents[indexPath.row].event_away_team
+        cell.date.text = cricketUpComingEvents[indexPath.row].event_date_start
+        cell.time.text = cricketUpComingEvents[indexPath.row].event_time
+        let homeURL = URL(string: cricketUpComingEvents[indexPath.row].event_home_team_logo ?? "")
+        let awayURL = URL(string: cricketUpComingEvents[indexPath.row].event_away_team_logo ?? "")
+        cell.homeTeamImage.kf.setImage(with: homeURL)
+        cell.awayTeamImage.kf.setImage(with: awayURL)
     }
 
     private func configureTeamCell(_ cell: TeamSectionCollectionViewCell, at indexPath: IndexPath) {
@@ -224,6 +262,8 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
         switch category {
         case 0, 1:
             configureFootballBasketballLatestEventCell(cell, at: indexPath)
+        case 2 :
+            configureTennisLatestEventCell(cell, at: indexPath)
         case 3:
             configureCricketLatestEventCell(cell, at: indexPath)
         default:
@@ -245,7 +285,22 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
         cell.homeTeamImage.kf.setImage(with: homeURL)
         cell.awayTeamImage.kf.setImage(with: awayURL)
     }
+    private func configureTennisLatestEventCell (_ cell: LatestEventsCollectionViewCell, at indexPath: IndexPath){
+        cell.homeTeamName.text = tennisLatestEvents[indexPath.row].event_first_player
+        cell.awayTeamName.text = tennisLatestEvents[indexPath.row].event_second_player
+        cell.date.text = tennisLatestEvents[indexPath.row].event_date
+        cell.finalScore.text = tennisLatestEvents[indexPath.row].event_final_result
+        cell.homeTeamImage.image = UIImage(named: "tennisP1")
+        cell.awayTeamImage.image = UIImage(named: "tennisP2")
 
+//        let homeURL = URL(string: tennisLatestEvents[indexPath.row].home_team_logo ?? "")
+//        let awayURL = URL(string: tennisLatestEvents[indexPath.row].away_team_logo ?? "")
+//        cell.homeTeamImage.kf.setImage(with: homeURL)
+//        cell.awayTeamImage.kf.setImage(with: awayURL)
+        
+        
+        
+    }
     private func configureCricketLatestEventCell(_ cell: LatestEventsCollectionViewCell, at indexPath: IndexPath) {
         cell.homeTeamName.text = cricketLatestEvents[indexPath.row].event_home_team
         cell.awayTeamName.text = cricketLatestEvents[indexPath.row].event_away_team
@@ -253,8 +308,8 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
         cell.finalScore.text = cricketLatestEvents[indexPath.row].event_away_final_result
         let homeURL = URL(string: cricketLatestEvents[indexPath.row].event_home_team_logo ?? "")
         let awayURL = URL(string: cricketLatestEvents[indexPath.row].event_away_team_logo ?? "")
-        cell.homeTeamImage.kf.setImage(with: homeURL)
-        cell.awayTeamImage.kf.setImage(with: awayURL)
+        cell.homeTeamImage.kf.setImage(with: homeURL,placeholder: UIImage(named: "cricketTeam"))
+        cell.awayTeamImage.kf.setImage(with: awayURL,placeholder: UIImage(named: "cricketTeam"))
     }
 
     
@@ -433,12 +488,19 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
     func udateCricketDetails (cricketEvents :[CricketEvent]){
         cricketLatestEvents = cricketEvents.filter{ $0.event_status == "Finished" }
         cricketUpComingEvents = cricketEvents.filter{ $0.event_status?.isEmpty ?? false || $0.event_status == nil }
-        print(cricketEvents[1].event_home_team)
+        print(cricketUpComingEvents.count)
          DispatchQueue.main.async {
              self.collectionView.reloadData()
          }
     }
-    
+    func getTennisEvents (tennisEvents :[TennisEvent]){
+        tennisLatestEvents = tennisEvents.filter{ $0.event_status == "Finished" }
+        tennisUpCommingEvents = tennisEvents.filter{ $0.event_status?.isEmpty ?? false || $0.event_status == nil }
+        print(cricketUpComingEvents.count)
+         DispatchQueue.main.async {
+             self.collectionView.reloadData()
+         }
+    }
     
 
 
