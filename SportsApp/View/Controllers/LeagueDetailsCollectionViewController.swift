@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ShimmerSwift
 
 private let reuseIdentifier = "cell"
 private let reuseIdentifier2 = "cell2"
@@ -147,31 +148,31 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
 
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        switch section {
-        case 0:
-            switch category {
-            case 0 ,1 :
-                return upComingEvents.count
-            case 2 :
-                return tennisUpCommingEvents.count
+            
+            switch section {
+            case 0:
+                switch category {
+                case 0 ,1 :
+                    return upComingEvents.isEmpty ? 1 : upComingEvents.count
+                case 2 :
+                    return tennisUpCommingEvents.isEmpty ? 1 :tennisUpCommingEvents.count
+                default:
+                    return cricketUpComingEvents.isEmpty ? 1 : cricketUpComingEvents.count
+                }
+            case 2:
+                return teams.count
             default:
-                return cricketUpComingEvents.count
+                switch category {
+                case 3:
+                    return cricketLatestEvents.count
+                case 2 :
+                    return tennisLatestEvents.count
+                default:
+                    return latestEvents.count
+                }
             }
-        case 2:
-            return teams.count
-        default:
-            switch category {
-            case 3:
-                return cricketLatestEvents.count
-            case 2 :
-                return tennisLatestEvents.count
-            default:
-                return latestEvents.count
-            }
+            
         }
-        
-    }
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         switch indexPath.section {
@@ -194,13 +195,29 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
     }
 
     private func configureUpcomingEventCell(_ cell: LeagueDetailsCollectionViewCell, at indexPath: IndexPath) {
+        cell.contentView.subviews.filter { $0 is ShimmeringView }.forEach {  $0.removeFromSuperview() }
+
+        
         switch category {
         case 0, 1:
-            configureUpComingFootballAndBasktballCell(cell, at: indexPath)
+            if(upComingEvents.count == 0){
+                sectionOneShimmer(cell)
+            }else{
+                configureUpComingFootballAndBasktballCell(cell, at: indexPath)
+            }
+   
         case 2 :
-            configureUpComingTEnnisEvents(cell, at: indexPath)
+            if(tennisUpCommingEvents.count == 0){
+                sectionOneShimmer(cell)
+            }else{
+                configureUpComingTEnnisEvents(cell, at: indexPath)
+            }
         case 3:
-            configureUpComingCricketEvents(cell, at: indexPath)
+            if(cricketUpComingEvents.count == 0){
+                sectionOneShimmer(cell)
+            }else{
+                configureUpComingCricketEvents(cell, at: indexPath)
+            }
         default:
             configureUpComingFootballAndBasktballCell(cell, at: indexPath)
         }
@@ -323,7 +340,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
               case 0 :
                 headerView.headerLabel.text = "Upcoming Events"
               default:
-                headerView.headerLabel.text = "Latest Events" 
+                headerView.headerLabel.text = "Latest Events"
             }
             
                return headerView
@@ -504,7 +521,23 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
     
 
 
-    
+    private func sectionOneShimmer (_ cell: LeagueDetailsCollectionViewCell){
+            
+            let shimmerView = ShimmeringView(frame: cell.bounds)
+            shimmerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+            cell.contentView.addSubview(shimmerView)
+            let placeholderView = UIView(frame: cell.bounds)
+            placeholderView.backgroundColor = UIColor.systemGray5
+            shimmerView.contentView = placeholderView
+            shimmerView.isShimmering = true
+            cell.homeTeamImage.image = nil
+            cell.awayTeamImage.image = nil
+            cell.date.text = ""
+            cell.time.text = ""
+            cell.homeTeamName.text = ""
+            cell.awayTeamName.text = ""
+            
+        }
     
     
 
