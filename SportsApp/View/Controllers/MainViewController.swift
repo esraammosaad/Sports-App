@@ -20,10 +20,11 @@ class MainViewController: UIViewController {
     }
 
     @IBAction func onGetStartedButtonClicked(_ sender: Any) {
-        
-        let homeViewController = self.storyboard?.instantiateViewController(withIdentifier: "main") as! HomeViewController
-        
-        self.navigationController?.setViewControllers([homeViewController], animated: true)
+     
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        if let tabBarVC = storyboard.instantiateViewController(withIdentifier: "tabBar") as? TabBarController {
+            navigationController?.pushViewController(tabBarVC, animated: true)
+        }
     }
     
 }

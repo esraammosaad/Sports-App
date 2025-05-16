@@ -31,5 +31,33 @@ class LeagueDetailsPresenter{
         }
         
     }
+    func getLeagueTeams(sportType : String, leagueID : Int){
+
+        SportsServices.getLeagueTeams(sportType: sportType, leagueID: leagueID  ){
+            leagueTeams in
+            if let teams = leagueTeams?.result {
+                self.leagueDetailsViewController.getLeagueTeams(teams: teams)
+               
+            }
+        }
+        
+    }
+    func getCricketLeagueDetails (leagueId:Int){
+        SportsServices.getCricketLeagueDetails(leagueID: leagueId){
+            cricketEvents in
+            if let cricketEvents = cricketEvents?.result {
+                self.leagueDetailsViewController.udateCricketDetails(cricketEvents: cricketEvents)
+            }
+        }
+    }
+    func getTnnisEvents (countryId:Int){
+        SportsServices.getTenniseDetails(countryID: countryId){
+            tennisEvents in
+            if let tennisEvents = tennisEvents?.result{
+                self.leagueDetailsViewController.getTennisEvents(tennisEvents: tennisEvents)
+            }
+        }
+        
+    }
   
 }

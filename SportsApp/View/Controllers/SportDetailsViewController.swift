@@ -73,8 +73,20 @@ class SportDetailsViewController: UIViewController , UITableViewDataSource, UITa
             cell.leagueName.text = "Loading"
             cell.LeagueImage.image = nil
         }else{
+            var image :String!
+            switch (category) {
+            case 0:
+                image = "footballPlaceHolder"
+            case 2:
+                image = "tennisLeague"
+            case 1 :
+                image = "basketballLeague"
+            default :
+              image = "cricketLeague"
+            }
+       
             cell.leagueName.text = footballLeagues[indexPath.row].league_name ?? "league"
-            cell.LeagueImage.kf.setImage(with: URL(string: footballLeagues[indexPath.row].league_logo ?? ""), placeholder: UIImage(named: "footballPlaceHolder"))
+            cell.LeagueImage.kf.setImage(with: URL(string: footballLeagues[indexPath.row].league_logo ?? ""), placeholder: UIImage(named: image))
             let radius = CGRectGetWidth(cell.LeagueImage.frame) / 2
             cell.LeagueImage.layer.cornerRadius = radius
             cell.LeagueImage.layer.masksToBounds = true
@@ -101,6 +113,10 @@ class SportDetailsViewController: UIViewController , UITableViewDataSource, UITa
         leagueDetailsViewController.leagueID = footballLeagues[indexPath.row].league_key
         leagueDetailsViewController.leagueTitle = footballLeagues[indexPath.row].league_name
         leagueDetailsViewController.category = self.category
+
+        leagueDetailsViewController.countryId = footballLeagues[indexPath.row].country_key
+        
+
         self.navigationController?.pushViewController(leagueDetailsViewController, animated: true)
         
     }
