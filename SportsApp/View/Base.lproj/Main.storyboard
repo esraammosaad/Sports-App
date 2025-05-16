@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="2SK-oN-goF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qTa-X7-9LR">
     <device id="retina6_72" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -13,12 +13,12 @@
         <!--Page View Controller-->
         <scene sceneID="5WV-po-jDF">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="qTa-X7-9LR" customClass="PageViewController" customModule="SportsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <pageViewController storyboardIdentifier="PageViewController" autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="qTa-X7-9LR" customClass="PageViewController" customModule="SportsApp" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="53L-Yq-8eW"/>
                 </pageViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JpD-V8-9Qj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-60" y="-559"/>
+            <point key="canvasLocation" x="-1743" y="-559"/>
         </scene>
         <!--Home-->
         <scene sceneID="JMv-ee-hXH">
@@ -28,8 +28,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="av3-0a-7nl">
-                                <rect key="frame" x="0.0" y="169" width="430" height="763"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="av3-0a-7nl">
+                                <rect key="frame" x="0.0" y="213" width="430" height="719"/>
                                 <color key="backgroundColor" systemColor="systemGray5Color"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="HeE-Yb-Bdw">
                                     <size key="itemSize" width="128" height="128"/>
@@ -50,7 +50,7 @@
                                 </cells>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your sport, your updates—choose now!" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hdn-3n-dcu">
-                                <rect key="frame" x="18" y="59" width="313" height="98"/>
+                                <rect key="frame" x="18" y="103" width="313" height="98"/>
                                 <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="28"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -104,7 +104,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="dPp-aC-MGl">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="dPp-aC-MGl">
                                 <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="102" id="qsO-gt-IQc" customClass="SportDetailsCell" customModule="SportsApp" customModuleProvider="target">
@@ -168,7 +168,7 @@
         <scene sceneID="gj5-Ok-Brj">
             <objects>
                 <collectionViewController storyboardIdentifier="leagueDetails" id="lxz-3o-M52" customClass="LeagueDetailsCollectionViewController" customModule="SportsApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="4dP-EK-NR1">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="4dP-EK-NR1">
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemGray5Color"/>
@@ -295,7 +295,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NcS-Ks-OEg" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1519.2" y="163.26836581709148"/>
+            <point key="canvasLocation" x="-2431" y="136"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="kq9-ZC-SNj">
@@ -355,7 +355,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lMv-FY-nJ2" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-840" y="163"/>
+            <point key="canvasLocation" x="-1751" y="136"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="zV6-Ij-l2i">
@@ -429,12 +429,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7zs-qw-wnX" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-145.80152671755724" y="162.67605633802819"/>
+            <point key="canvasLocation" x="-1058" y="135"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="SNq-Br-Bvj">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="2SK-oN-goF" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="navigationController" automaticallyAdjustsScrollViewInsets="NO" id="2SK-oN-goF" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="RXC-dT-4e8">
                         <rect key="frame" x="0.0" y="59" width="430" height="44"/>
@@ -442,19 +442,21 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="qTa-X7-9LR" kind="relationship" relationship="rootViewController" id="1EX-ZE-0Ic"/>
+                        <segue destination="79g-Y4-uSx" kind="relationship" relationship="rootViewController" id="0yz-7l-8w6"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="F0S-q4-cSI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-956.48854961832058" y="-558.45070422535218"/>
+            <point key="canvasLocation" x="-6" y="-559"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="mJa-23-aRg">
             <objects>
                 <tabBarController storyboardIdentifier="tabBar" automaticallyAdjustsScrollViewInsets="NO" id="79g-Y4-uSx" customClass="TabBarController" customModule="SportsApp" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="3f7-DV-yGc"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hb8-ew-1o8">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
