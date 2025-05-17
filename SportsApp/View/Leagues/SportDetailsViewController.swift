@@ -17,7 +17,7 @@ class SportDetailsViewController: UIViewController , UITableViewDataSource, UITa
     var category: Int!
     var sportTitle : String!
     var sportType : String!
-    
+    var imagePlaceHolder :String!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setSportType()
@@ -73,20 +73,20 @@ class SportDetailsViewController: UIViewController , UITableViewDataSource, UITa
             cell.leagueName.text = "Loading"
             cell.LeagueImage.image = nil
         }else{
-            var image :String!
+          
             switch (category) {
             case 0:
-                image = "footballPlaceHolder"
+                imagePlaceHolder = "footballPlaceHolder"
             case 2:
-                image = "tennisLeague"
+                imagePlaceHolder = "tennisLeague"
             case 1 :
-                image = "basketballLeague"
+                imagePlaceHolder = "basketballLeague"
             default :
-              image = "cricketLeague"
+                imagePlaceHolder = "cricketLeague"
             }
        
             cell.leagueName.text = footballLeagues[indexPath.row].league_name ?? "league"
-            cell.LeagueImage.kf.setImage(with: URL(string: footballLeagues[indexPath.row].league_logo ?? ""), placeholder: UIImage(named: image))
+            cell.LeagueImage.kf.setImage(with: URL(string: footballLeagues[indexPath.row].league_logo ?? ""), placeholder: UIImage(named: imagePlaceHolder))
             let radius = CGRectGetWidth(cell.LeagueImage.frame) / 2
             cell.LeagueImage.layer.cornerRadius = radius
             cell.LeagueImage.layer.masksToBounds = true
@@ -113,7 +113,8 @@ class SportDetailsViewController: UIViewController , UITableViewDataSource, UITa
         leagueDetailsViewController.leagueID = footballLeagues[indexPath.row].league_key
         leagueDetailsViewController.leagueTitle = footballLeagues[indexPath.row].league_name
         leagueDetailsViewController.category = self.category
-
+        leagueDetailsViewController.leagueImage = footballLeagues[indexPath.row].league_logo == nil ? imagePlaceHolder : footballLeagues[indexPath.row].league_logo
+        
         leagueDetailsViewController.countryId = footballLeagues[indexPath.row].country_key
         
 

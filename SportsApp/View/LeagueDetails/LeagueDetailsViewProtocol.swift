@@ -13,5 +13,6 @@ protocol LeagueDetailsViewProtocol{
     func getLeagueTeams(teams :[Team])
     func updateCricketDetails (cricketEvents :[CricketEvent])
     func getTennisEvents (tennisEvents :[TennisEvent])
+
     
 }

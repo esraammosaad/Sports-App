@@ -87,10 +87,52 @@
                     <view key="view" contentMode="scaleToFill" id="fn9-qi-nsa">
                         <rect key="frame" x="0.0" y="0.0" width="430" height="932"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="WoP-Il-TpV">
+                                <rect key="frame" x="0.0" y="103" width="430" height="746"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="favCell" rowHeight="130" id="Ava-sK-BC7" customClass="FavouriteTableViewCell" customModule="SportsApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="50" width="430" height="130"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ava-sK-BC7" id="sDZ-Vg-taj">
+                                            <rect key="frame" x="0.0" y="0.0" width="430" height="130"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="NCJ-pF-Pjj">
+                                                    <rect key="frame" x="20" y="21" width="118" height="88"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WVL-WO-1vG">
+                                                    <rect key="frame" x="166" y="40" width="216" height="51"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="leagueImage" destination="NCJ-pF-Pjj" id="afp-sd-4ie"/>
+                                            <outlet property="leagueName" destination="WVL-WO-1vG" id="LUO-kE-VAU"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="y1V-DJ-HQU"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="WoP-Il-TpV" firstAttribute="centerX" secondItem="fn9-qi-nsa" secondAttribute="centerX" id="1WG-IN-TxC"/>
+                            <constraint firstItem="WoP-Il-TpV" firstAttribute="trailing" secondItem="y1V-DJ-HQU" secondAttribute="trailing" id="ExD-de-VjS"/>
+                            <constraint firstItem="WoP-Il-TpV" firstAttribute="top" secondItem="y1V-DJ-HQU" secondAttribute="top" id="QDm-i3-XjH"/>
+                            <constraint firstItem="WoP-Il-TpV" firstAttribute="bottom" secondItem="y1V-DJ-HQU" secondAttribute="bottom" id="iEq-mr-JhK"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Favourits" image="heart.fill" catalog="system" selectedImage="heart.fill" id="ShW-FP-J8a"/>
+                    <connections>
+                        <outlet property="tableView" destination="WoP-Il-TpV" id="sfI-Yo-hrF"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tvl-h1-Z4q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -228,6 +270,12 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="heart" catalog="system" title="Button"/>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Obo-nb-16F">
+                                <rect key="frame" x="119" y="405" width="102" height="35"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="heart.fill" catalog="system" title="Button"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="rfD-gV-GsL"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -235,7 +283,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="utb-rm-Ajz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-60" y="-1248"/>
+            <point key="canvasLocation" x="554" y="-1603"/>
         </scene>
         <!--Main View Controller-->
         <scene sceneID="T1L-JR-p2b">
