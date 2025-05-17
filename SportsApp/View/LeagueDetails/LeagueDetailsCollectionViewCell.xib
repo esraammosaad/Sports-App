@@ -84,7 +84,6 @@
                             <constraint firstItem="RWF-Md-jqb" firstAttribute="top" secondItem="wlZ-S1-acE" secondAttribute="top" constant="35" id="Bob-2b-rbF"/>
                             <constraint firstItem="geX-cO-pcW" firstAttribute="centerX" secondItem="RWF-Md-jqb" secondAttribute="centerX" id="GGf-sG-9Ug"/>
                             <constraint firstItem="Ped-rs-z98" firstAttribute="top" secondItem="PB1-Dy-v7f" secondAttribute="bottom" constant="4" id="IUy-gs-Bqz"/>
-                            <constraint firstAttribute="height" constant="204" id="Jtv-7m-V01"/>
                             <constraint firstItem="POQ-gz-hqb" firstAttribute="top" secondItem="gdQ-OU-m7Q" secondAttribute="bottom" constant="9.3333333333333428" id="LwG-V1-lDz"/>
                             <constraint firstItem="g1K-Hg-ECG" firstAttribute="width" secondItem="wlZ-S1-acE" secondAttribute="width" multiplier="0.230769" id="NTt-33-HVl"/>
                             <constraint firstItem="geX-cO-pcW" firstAttribute="leading" secondItem="oKj-mS-Uaj" secondAttribute="trailing" constant="4.6666666666666288" id="NrL-Ib-n1u"/>
@@ -104,7 +103,6 @@
                             <constraint firstItem="g1K-Hg-ECG" firstAttribute="height" secondItem="wlZ-S1-acE" secondAttribute="height" multiplier="0.35" id="qTN-yl-QRA"/>
                             <constraint firstItem="PB1-Dy-v7f" firstAttribute="top" secondItem="g1K-Hg-ECG" secondAttribute="bottom" constant="8" id="tBm-G4-HMT"/>
                             <constraint firstItem="PB1-Dy-v7f" firstAttribute="centerX" secondItem="g1K-Hg-ECG" secondAttribute="centerX" id="tdd-AD-58M"/>
-                            <constraint firstAttribute="width" constant="338" id="tqK-I8-dxu"/>
                             <constraint firstItem="geX-cO-pcW" firstAttribute="top" secondItem="RWF-Md-jqb" secondAttribute="bottom" constant="8" id="yGB-0u-Sgp"/>
                             <constraint firstItem="PB1-Dy-v7f" firstAttribute="centerY" secondItem="geX-cO-pcW" secondAttribute="centerY" id="yiW-QU-pAb"/>
                             <constraint firstItem="g1K-Hg-ECG" firstAttribute="top" secondItem="wlZ-S1-acE" secondAttribute="top" priority="750" constant="35" id="zsh-10-NI5"/>
