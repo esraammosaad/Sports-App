@@ -10,9 +10,9 @@ import Foundation
 class LeagueDetailsPresenter{
     
     
-    var leagueDetailsViewController : LeagueDetailsCollectionViewController!
+    var leagueDetailsViewController : LeagueDetailsViewProtocol!
     
-    func setViewController(leagueDetailsViewController : LeagueDetailsCollectionViewController){
+    func setViewController(leagueDetailsViewController : LeagueDetailsViewProtocol){
 
         self.leagueDetailsViewController = leagueDetailsViewController
  

@@ -8,7 +8,7 @@
 import UIKit
 import ShimmerSwift
 
-class LeagueDetailsCollectionViewController: UICollectionViewController,UICollectionViewDelegateFlowLayout {
+class LeagueDetailsCollectionViewController: UICollectionViewController,UICollectionViewDelegateFlowLayout,LeagueDetailsViewProtocol {
     
     var leagueID : Int!
     var leagueTitle : String!
