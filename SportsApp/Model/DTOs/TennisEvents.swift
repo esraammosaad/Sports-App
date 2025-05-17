@@ -6,7 +6,7 @@
 //
 
 import Foundation
-class TennisEvent :Decodable {
+class TennisEvent :Decodable, EventProtocol {
     
 //    "event_key": 12032968,
 //                "event_date": "2025-05-12",

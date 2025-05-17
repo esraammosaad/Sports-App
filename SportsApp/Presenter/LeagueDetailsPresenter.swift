@@ -25,14 +25,13 @@ class LeagueDetailsPresenter{
             leagueDetailsResponse in
             if let leagueDetails = leagueDetailsResponse?.result {
                 self.leagueDetailsViewController.updateLeagueDetails(leagueDetails: leagueDetails)
-                print(leagueDetails)
-                print(leagueID)
+              
             }
         }
         
     }
+    
     func getLeagueTeams(sportType : String, leagueID : Int){
-
         SportsServices.getLeagueTeams(sportType: sportType, leagueID: leagueID  ){
             leagueTeams in
             if let teams = leagueTeams?.result {
@@ -46,7 +45,7 @@ class LeagueDetailsPresenter{
         SportsServices.getCricketLeagueDetails(leagueID: leagueId){
             cricketEvents in
             if let cricketEvents = cricketEvents?.result {
-                self.leagueDetailsViewController.udateCricketDetails(cricketEvents: cricketEvents)
+                self.leagueDetailsViewController.updateCricketDetails(cricketEvents: cricketEvents)
             }
         }
     }
