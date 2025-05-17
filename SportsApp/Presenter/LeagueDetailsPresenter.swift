@@ -56,7 +56,13 @@ class LeagueDetailsPresenter{
                 self.leagueDetailsViewController.getTennisEvents(tennisEvents: tennisEvents)
             }
         }
-        
+    }
+    
+    func setFavouriteLeague(imagePath:String , leagueTitle:String){
+        CoreDataUtils.shared.setFavouriteLeague(name: leagueTitle, imagePath: imagePath)
+    }
+    func deleteFavouriteLeague (savedLeague :SavedLeague){
+        CoreDataUtils.shared.deleteLeagueFromFavourits(savedLeague: savedLeague)
     }
   
 }

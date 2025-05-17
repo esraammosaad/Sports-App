@@ -10,16 +10,16 @@ import CoreData
 import UIKit
 
 class CoreDataUtils{
+    static let shared = CoreDataUtils()
+   private var  context:NSManagedObjectContext!
+    private var entity:NSEntityDescription!
     
-    var  context:NSManagedObjectContext!
-    var entity:NSEntityDescription!
-    
-    init(){
+    private init(){
         setDeclarition()
     }
     
     
-    func setFavouriteLeague(name : String , imagePath : String){
+      func setFavouriteLeague(name : String , imagePath : String){
         
         let favouriteLeague = NSManagedObject(entity: entity, insertInto: context)
         favouriteLeague.setValue( name, forKey: "leagueName")
@@ -35,7 +35,7 @@ class CoreDataUtils{
     }
     
     
-    func getFavouriteLeagues () -> [SavedLeague]{
+   func getFavouriteLeagues () -> [SavedLeague]{
         
         let nsManagedArray = self.readFromCoreData() ?? []
         let savedLeagues = nsManagedArray.compactMap { object in
@@ -47,7 +47,7 @@ class CoreDataUtils{
     }
     
     
-    private func readFromCoreData() -> [NSManagedObject]?{
+    func readFromCoreData() -> [NSManagedObject]?{
         
         let fetchReq = NSFetchRequest<NSManagedObject>(entityName: "FavouriteLeague")
         
@@ -63,7 +63,7 @@ class CoreDataUtils{
     }
     
     
-    func deleteLeagueFromFavourits (savedLeague:SavedLeague) {
+  func deleteLeagueFromFavourits (savedLeague:SavedLeague) {
         
         
         let fetchReq = NSFetchRequest<NSManagedObject>(entityName: "FavouriteLeague")

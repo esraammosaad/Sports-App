@@ -9,17 +9,21 @@ import UIKit
 import ShimmerSwift
 
 class LeagueDetailsCollectionViewController: UICollectionViewController,UICollectionViewDelegateFlowLayout,LeagueDetailsViewProtocol {
+
+    
     
     var leagueID : Int!
     var leagueTitle : String!
     var countryId :Int!
     var category: Int!
+    var leagueImage :String!
     private var currentSport : SportProtocol!
     private var sportType : String!
     private var image : UIImage!
     private var imageName : String!
     private let presenter = LeagueDetailsPresenter()
     private var shimmerView : ShimmeringView!
+    private var  rightButton : UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,18 +48,27 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
         addFavoriteBtn()
     }
     @objc func didTapRightButton() {
-        // add to core data
+        if rightButton.image == UIImage(systemName: "heart"){
+            presenter.setFavouriteLeague(imagePath: leagueImage, leagueTitle: leagueTitle)
+            rightButton.image = UIImage(systemName: "heart.fill")
+        }else
+        {
+            presenter
+            rightButton.image = UIImage(systemName: "heart")
+        }
+        
+      
     }
     
     
     fileprivate func addFavoriteBtn() {
-        let button = UIBarButtonItem(
+        rightButton = UIBarButtonItem(
             image: UIImage(systemName: "heart"),
             style: .plain,
             target: self,
             action: #selector(didTapRightButton)
         )
-        navigationItem.rightBarButtonItem = button
+        navigationItem.rightBarButtonItem = rightButton
     }
     
     fileprivate func nibRegistration() {
@@ -229,6 +242,8 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
     func getTennisEvents (tennisEvents :[TennisEvent]){
         currentSport.updateLeagueDetails(leagueDetails: tennisEvents, collectionView: self.collectionView)
     }
+    
+
 }
 
 
