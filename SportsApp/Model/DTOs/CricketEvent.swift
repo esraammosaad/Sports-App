@@ -6,7 +6,7 @@
 //
 
 import Foundation
-class CricketEvent : Decodable {
+class CricketEvent : Decodable, EventProtocol {
     
 //    "event_key": 13826,
 //                "event_date_start": "2024-07-18",

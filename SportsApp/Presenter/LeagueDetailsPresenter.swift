@@ -45,7 +45,7 @@ class LeagueDetailsPresenter{
         SportsServices.getCricketLeagueDetails(leagueID: leagueId){
             cricketEvents in
             if let cricketEvents = cricketEvents?.result {
-                self.leagueDetailsViewController.udateCricketDetails(cricketEvents: cricketEvents)
+                self.leagueDetailsViewController.updateCricketDetails(cricketEvents: cricketEvents)
             }
         }
     }

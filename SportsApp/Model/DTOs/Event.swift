@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Event : Decodable{
+struct Event : Decodable, EventProtocol{
     
     
     var event_key : Int?
