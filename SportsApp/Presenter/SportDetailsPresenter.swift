@@ -10,9 +10,9 @@ import Foundation
 class SportDetailsPresenter{
     
     
-    var sportDetailsViewController : SportDetailsViewController!
+    var sportDetailsViewController : SportDetailsViewProtocol!
     
-    func setViewController(sportDetailsVireController : SportDetailsViewController){
+    func setViewController(sportDetailsVireController : SportDetailsViewProtocol){
         
         self.sportDetailsViewController = sportDetailsVireController
         

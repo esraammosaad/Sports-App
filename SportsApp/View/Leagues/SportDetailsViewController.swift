@@ -9,7 +9,7 @@ import UIKit
 import Kingfisher
 import ShimmerSwift
 
-class SportDetailsViewController: UIViewController , UITableViewDataSource, UITableViewDelegate {
+class SportDetailsViewController: UIViewController , UITableViewDataSource, UITableViewDelegate, SportDetailsViewProtocol {
     
     @IBOutlet weak var tableView: UITableView!
     var footballLeagues : [League]!
