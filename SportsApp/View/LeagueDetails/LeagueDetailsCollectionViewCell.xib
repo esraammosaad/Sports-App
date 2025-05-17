@@ -24,10 +24,10 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wlZ-S1-acE">
                         <rect key="frame" x="0.0" y="0.0" width="338" height="204"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="83_marseille" translatesAutoresizingMaskIntoConstraints="NO" id="g1K-Hg-ECG">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="g1K-Hg-ECG">
                                 <rect key="frame" x="10" y="34.999999999999993" width="78" height="71.333333333333314"/>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="85_atalanta" translatesAutoresizingMaskIntoConstraints="NO" id="RWF-Md-jqb">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RWF-Md-jqb">
                                 <rect key="frame" x="239" y="34.999999999999993" width="78" height="71.333333333333314"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vs" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gdQ-OU-m7Q">
@@ -138,8 +138,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="83_marseille" width="150" height="150"/>
-        <image name="85_atalanta" width="150" height="150"/>
         <image name="bg" width="2560" height="1599"/>
         <systemColor name="secondarySystemBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

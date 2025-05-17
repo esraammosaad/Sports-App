@@ -151,7 +151,6 @@
 		0553A1352DD15CA000E06D37 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				05783F272DD831BA0012AD4E /* test */,
 				05C48AFD2DD7AC300038EB2E /* OnBoarding */,
 				05C48AFC2DD7AC1A0038EB2E /* Favorite */,
 				05C48AF82DD7AB440038EB2E /* LeagueDetails */,
@@ -219,18 +218,6 @@
 				05876E912DCFE514006F7830 /* Strings.swift */,
 			);
 			path = SupportFiles;
-			sourceTree = "<group>";
-		};
-		05783F272DD831BA0012AD4E /* test */ = {
-			isa = PBXGroup;
-			children = (
-				05783F282DD831CA0012AD4E /* SportProtocol.swift */,
-				05783F2A2DD8330A0012AD4E /* Football.swift */,
-				05783F2C2DD8377D0012AD4E /* Basketball.swift */,
-				05783F2E2DD83A430012AD4E /* Tennis.swift */,
-				05783F302DD83A5A0012AD4E /* Cricket.swift */,
-			);
-			path = test;
 			sourceTree = "<group>";
 		};
 		058195D82DD39ADB006A49FA /* DTOs */ = {
@@ -305,6 +292,11 @@
 		05C48AF82DD7AB440038EB2E /* LeagueDetails */ = {
 			isa = PBXGroup;
 			children = (
+				05783F282DD831CA0012AD4E /* SportProtocol.swift */,
+				05783F2A2DD8330A0012AD4E /* Football.swift */,
+				05783F2C2DD8377D0012AD4E /* Basketball.swift */,
+				05783F2E2DD83A430012AD4E /* Tennis.swift */,
+				05783F302DD83A5A0012AD4E /* Cricket.swift */,
 				051853F22DD264D100B53629 /* LeagueDetailsCollectionViewController.swift */,
 				051853EE2DD2649900B53629 /* LeagueDetailsCollectionViewCell.swift */,
 				051853EF2DD2649900B53629 /* LeagueDetailsCollectionViewCell.xib */,
