@@ -89,14 +89,19 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
             imageName = "tennisTeam"
             sportType = Strings.TENNIS_ENDPOINT
             presenter.getTnnisEvents(countryId: countryId)
+
         default:
             currentSport = Cricket()
             image = UIImage(named: "cricketbg")
             sportType = Strings.CRICKET_ENDPOINT
             imageName = "cricketTeam"
             presenter.getCricketLeagueDetails(leagueId: leagueID)
+           
         }
+        print(currentSport.teams.count)
+        print("tot")
         presenter.getLeagueTeams(sportType: sportType, leagueID: leagueID)
+
     }
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
@@ -106,7 +111,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
         case 0: return currentSport.upComingEvents.count == 0 ? 1 : currentSport.upComingEvents.count
-        case 1: return currentSport.teams.count
+        case 1: return currentSport.teams.count  == 0 ? 8 : currentSport.teams.count
         case 2 :return currentSport.latestEvents.count == 0 ? 3 : currentSport.latestEvents.count
         default: return 0
             
@@ -122,8 +127,8 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
             
         case 1:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Strings.TEAM_CELL_IDENTIFIER, for: indexPath) as! TeamSectionCollectionViewCell
-            currentSport.configureTeamCell(cell, at: indexPath, imageName: imageName)
-            return cell
+            setTeamsImageCell(cell, at: indexPath)
+           return cell
             
         default:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Strings.LATEST_EVENTS_CELL_IDENTIFIER, for: indexPath) as! LatestEventsCollectionViewCell
@@ -169,7 +174,16 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
         cell.clipsToBounds = true
         cell.background.image = image
     }
-    
+    private func setTeamsImageCell(_ cell: TeamSectionCollectionViewCell, at indexPath: IndexPath){
+        if currentSport.teams.count == 0 {
+            setupShimmer(cell)
+        }else
+        {
+            currentSport.configureTeamCell(cell, at: indexPath, imageName: imageName)
+        }
+        cell.layer.cornerRadius = 25
+        cell.clipsToBounds = true
+    }
     
     private func configureLatestEventCell(_ cell: LatestEventsCollectionViewCell, at indexPath: IndexPath) {
         if currentSport.latestEvents.count == 0
@@ -201,13 +215,10 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
     
 //Presenter --> Methods
     func updateLeagueDetails(leagueDetails: [Event]){
-        
        currentSport.updateLeagueDetails(leagueDetails: leagueDetails, collectionView: self.collectionView)
-   
     }
     
     func getLeagueTeams(teams :[Team]){
-      
         currentSport.getLeagueTeams(teams: teams,collectionView: self.collectionView)
     }
     

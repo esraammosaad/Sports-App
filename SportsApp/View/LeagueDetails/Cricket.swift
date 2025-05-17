@@ -54,7 +54,6 @@ class Cricket : SportProtocol{
             let awayURL = URL(string: latestList[indexPath.row].event_away_team_logo ?? "")
             cell.homeTeamImage.kf.setImage(with: homeURL,placeholder: UIImage(named: "cricketTeam"))
             cell.awayTeamImage.kf.setImage(with: awayURL,placeholder: UIImage(named: "cricketTeam"))
-            
         }
     }
     
@@ -65,10 +64,7 @@ class Cricket : SportProtocol{
             DispatchQueue.main.async {
                 collectionView.reloadData()
             }
-           
         }
-        
-    
     }
     
     func getLeagueTeams(teams :[Team],collectionView : UICollectionView){

@@ -63,7 +63,7 @@ class Tennis : SportProtocol{
         }
     }
     func getLeagueTeams(teams :[Team],collectionView : UICollectionView){
-      
+        
         DispatchQueue.main.async {
             self.teams = teams
             collectionView.reloadData()
