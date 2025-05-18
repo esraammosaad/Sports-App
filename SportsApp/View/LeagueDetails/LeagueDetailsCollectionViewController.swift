@@ -17,6 +17,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
     var countryId :Int!
     var category: Int!
     var leagueImage :String!
+    var isSavedLeague :Bool!
     private var currentSport : SportProtocol!
     private var sportType : String!
     private var image : UIImage!
@@ -24,6 +25,12 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
     private let presenter = LeagueDetailsPresenter()
     private var shimmerView : ShimmeringView!
     private var  rightButton : UIBarButtonItem!
+    
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        addFavoriteBtn()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,15 +52,18 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
         }
         self.collectionView.setCollectionViewLayout(layout, animated: true)
         presenter.setViewController(leagueDetailsViewController: self)
-        addFavoriteBtn()
+
     }
     @objc func didTapRightButton() {
         if rightButton.image == UIImage(systemName: "heart"){
-            presenter.setFavouriteLeague(imagePath: leagueImage, leagueTitle: leagueTitle)
+            var savedObj = SavedLeague(leageuName: leagueTitle, imagePath:leagueImage, leagueID: leagueID, countryId: countryId ?? 00, category: category)
+            presenter.setFavouriteLeague(SavedLeague: savedObj)
             rightButton.image = UIImage(systemName: "heart.fill")
         }else
         {
-            presenter
+           var savedObj =  SavedLeague(leageuName: leagueTitle, imagePath: leagueImage, leagueID: leagueID, countryId: countryId, category: category)
+            
+            presenter.deleteFavouriteLeague(savedLeague: savedObj)
             rightButton.image = UIImage(systemName: "heart")
         }
         
@@ -63,7 +73,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
     
     fileprivate func addFavoriteBtn() {
         rightButton = UIBarButtonItem(
-            image: UIImage(systemName: "heart"),
+            image:  isSavedLeague == true ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart"),
             style: .plain,
             target: self,
             action: #selector(didTapRightButton)

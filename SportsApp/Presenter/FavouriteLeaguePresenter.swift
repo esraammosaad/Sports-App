@@ -20,6 +20,9 @@ class FavouriteLeaguePresenter {
        var favouriteLeagues = CoreDataUtils.shared.getFavouriteLeagues()
         viewController.getFavouriteLeagues(favouriteLeagues: favouriteLeagues)
     }
+    func deleteFavouriteLeague(saveLeague : SavedLeague){
+        CoreDataUtils.shared.deleteLeagueFromFavourits(savedLeague: saveLeague )
+    }
     
     
     

@@ -58,8 +58,9 @@ class LeagueDetailsPresenter{
         }
     }
     
-    func setFavouriteLeague(imagePath:String , leagueTitle:String){
-        CoreDataUtils.shared.setFavouriteLeague(name: leagueTitle, imagePath: imagePath)
+    func setFavouriteLeague(SavedLeague : SavedLeague){
+        
+        CoreDataUtils.shared.setFavouriteLeague(savedLeague: SavedLeague)
     }
     func deleteFavouriteLeague (savedLeague :SavedLeague){
         CoreDataUtils.shared.deleteLeagueFromFavourits(savedLeague: savedLeague)
