@@ -29,5 +29,10 @@ class SportDetailsPresenter{
         }
     }
     
+    func getAllFavourite(){
+        var favourites = CoreDataUtils.shared.getFavouriteLeagues()
+        sportDetailsViewController.getFavouriteLEagues(favouriteLEagues: favourites)
+        
+    }
     
 }

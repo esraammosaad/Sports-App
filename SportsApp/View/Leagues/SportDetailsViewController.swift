@@ -11,6 +11,8 @@ import ShimmerSwift
 
 class SportDetailsViewController: UIViewController , UITableViewDataSource, UITableViewDelegate, SportDetailsViewProtocol {
     
+    
+    
     @IBOutlet weak var tableView: UITableView!
     var footballLeagues : [League]!
     var  shimmerView : ShimmeringView!
@@ -18,15 +20,20 @@ class SportDetailsViewController: UIViewController , UITableViewDataSource, UITa
     var sportTitle : String!
     var sportType : String!
     var imagePlaceHolder :String!
+    var favouriteLEagues : [SavedLeague] = []
+    let presenter = SportDetailsPresenter()
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setSportType()
         tableView.delegate = self
         tableView.dataSource = self
-        let presenter = SportDetailsPresenter()
+       
         presenter.setViewController(sportDetailsVireController: self)
         presenter.getSportDetails(sportType: sportType)
+        
         self.title = sportTitle
+        
+        
     }
     
     
@@ -48,7 +55,7 @@ class SportDetailsViewController: UIViewController , UITableViewDataSource, UITa
         }
     }
     
- 
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(footballLeagues == nil)
         {
@@ -60,10 +67,10 @@ class SportDetailsViewController: UIViewController , UITableViewDataSource, UITa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SportDetailsCell
-
+        
         cell.contentView.subviews.filter { $0 is ShimmeringView }.forEach {  $0.removeFromSuperview() }
         if(footballLeagues == nil){
-           let shimmerView = ShimmeringView(frame: cell.bounds)
+            let shimmerView = ShimmeringView(frame: cell.bounds)
             shimmerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             cell.contentView.addSubview(shimmerView)
             let placeholderView = UIView(frame: cell.bounds)
@@ -73,7 +80,7 @@ class SportDetailsViewController: UIViewController , UITableViewDataSource, UITa
             cell.leagueName.text = "Loading"
             cell.LeagueImage.image = nil
         }else{
-          
+            
             switch (category) {
             case 0:
                 imagePlaceHolder = "footballPlaceHolder"
@@ -84,7 +91,7 @@ class SportDetailsViewController: UIViewController , UITableViewDataSource, UITa
             default :
                 imagePlaceHolder = "cricketLeague"
             }
-       
+            
             cell.leagueName.text = footballLeagues[indexPath.row].league_name ?? "league"
             cell.LeagueImage.kf.setImage(with: URL(string: footballLeagues[indexPath.row].league_logo ?? ""), placeholder: UIImage(named: imagePlaceHolder))
             let radius = CGRectGetWidth(cell.LeagueImage.frame) / 2
@@ -103,8 +110,11 @@ class SportDetailsViewController: UIViewController , UITableViewDataSource, UITa
     func updateLeagues(leagues : [League]){
         self.footballLeagues = leagues
         DispatchQueue.main.async {
-                    self.tableView.reloadData()
-        } 
+            self.tableView.reloadData()
+        }
+    }
+    func getFavouriteLEagues(favouriteLEagues: [SavedLeague]) {
+        self.favouriteLEagues = favouriteLEagues
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -117,9 +127,19 @@ class SportDetailsViewController: UIViewController , UITableViewDataSource, UITa
         
         leagueDetailsViewController.countryId = footballLeagues[indexPath.row].country_key
         
-
-        self.navigationController?.pushViewController(leagueDetailsViewController, animated: true)
+        var savedObj = SavedLeague(leageuName : footballLeagues[indexPath.row].league_name! , imagePath: (footballLeagues[indexPath.row].league_logo == nil ? imagePlaceHolder : footballLeagues[indexPath.row].league_logo) ?? imagePlaceHolder)
+   
+        presenter.getAllFavourite()
         
+        if favouriteLEagues.contains(savedObj) {
+            leagueDetailsViewController.isSavedLeague = true
+           
+        }else{
+            leagueDetailsViewController.isSavedLeague = false
+        }
+            
+            self.navigationController?.pushViewController(leagueDetailsViewController, animated: true)
+            
     }
     
 }

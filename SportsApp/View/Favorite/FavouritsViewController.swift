@@ -10,27 +10,34 @@ import ShimmerSwift
 import Kingfisher
 
 class FavouritsViewController: UIViewController ,UITableViewDataSource, UITableViewDelegate{
-
+    
     @IBOutlet weak var tableView: UITableView!
     private var presenter = FavouriteLeaguePresenter()
     var favouriteLeagues : [SavedLeague]!
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        presenter.getAllFavourite()
+        tableView.reloadData()
+        
+        
+    }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
         self.navigationItem.title = "Favorites"
         presenter.setViewController(viewController: self)
-        presenter.getAllFavourite()
-        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "favCell", for: indexPath) as! FavouriteTableViewCell
-
         cell.contentView.subviews.filter { $0 is ShimmeringView }.forEach {  $0.removeFromSuperview() }
-        if(favouriteLeagues == nil){
-           let shimmerView = ShimmeringView(frame: cell.bounds)
+        if(favouriteLeagues == nil ){
+            let shimmerView = ShimmeringView(frame: cell.bounds)
             shimmerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             cell.contentView.addSubview(shimmerView)
             let placeholderView = UIView(frame: cell.bounds)
@@ -38,15 +45,20 @@ class FavouritsViewController: UIViewController ,UITableViewDataSource, UITableV
             shimmerView.contentView = placeholderView
             shimmerView.isShimmering = true
             cell.leagueName.text = "Loading"
-        }else{
+        }else if favouriteLeagues.count == 0 {
             
+            /// on empity faavouries
+        }
+        else {
             cell.leagueImage.kf.setImage(with: URL(string: favouriteLeagues[indexPath.row].imagePath),placeholder: UIImage(named: favouriteLeagues[indexPath.row].imagePath))
             cell.leagueName.text = favouriteLeagues[indexPath.row].leageuName
-   
+            
         }
         
         return cell
     }
+    
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if(favouriteLeagues == nil)
         {
@@ -55,22 +67,51 @@ class FavouritsViewController: UIViewController ,UITableViewDataSource, UITableV
             return favouriteLeagues.count
         }
     }
+    
+    
     func getFavouriteLeagues (favouriteLeagues : [SavedLeague]){
         self.favouriteLeagues = favouriteLeagues
-    }
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 130
-        
+        tableView.reloadData()
+        print(favouriteLeagues.count)
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 130
     }
-    */
-
+    
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+    
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        showDeleteConfirmationAlert(for: indexPath)
+    }
+    
+    
+    func showDeleteConfirmationAlert(for indexPath: IndexPath) {
+        let alert = UIAlertController(
+            title: "Delete Favorite",
+            message: "Are you sure you want to remove this league from your favorites?",
+            preferredStyle: .alert
+        )
+        
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
+            self.presenter.deleteFavouriteLeague(saveLeague: self.favouriteLeagues[indexPath.row])
+            self.presenter.getAllFavourite()
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        alert.addAction(deleteAction)
+        alert.addAction(cancelAction)
+        
+        present(alert, animated: true, completion: nil)
+    }
+    
+    
+    
+    
 }

@@ -7,7 +7,11 @@
 
 import Foundation
 
-class SavedLeague{
+class SavedLeague : Equatable{
+   
+    
+   
+    
     
     let leageuName :String
     let imagePath :String
@@ -16,4 +20,9 @@ class SavedLeague{
         self.leageuName = leageuName
         self.imagePath = imagePath
     }
+    
+    static func == (lhs: SavedLeague, rhs: SavedLeague) -> Bool {
+        return lhs.leageuName == rhs.leageuName && lhs.imagePath == rhs.imagePath
+    }
+    
 }
