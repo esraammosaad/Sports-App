@@ -56,11 +56,14 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
     }
     @objc func didTapRightButton() {
         if rightButton.image == UIImage(systemName: "heart"){
-            presenter.setFavouriteLeague(imagePath: leagueImage, leagueTitle: leagueTitle)
+            var savedObj = SavedLeague(leageuName: leagueTitle, imagePath:leagueImage, leagueID: leagueID, countryId: countryId ?? 00, category: category)
+            presenter.setFavouriteLeague(SavedLeague: savedObj)
             rightButton.image = UIImage(systemName: "heart.fill")
         }else
         {
-            presenter.deleteFavouriteLeague(savedLeague: SavedLeague(leageuName: leagueTitle, imagePath: leagueImage))
+           var savedObj =  SavedLeague(leageuName: leagueTitle, imagePath: leagueImage, leagueID: leagueID, countryId: countryId, category: category)
+            
+            presenter.deleteFavouriteLeague(savedLeague: savedObj)
             rightButton.image = UIImage(systemName: "heart")
         }
         

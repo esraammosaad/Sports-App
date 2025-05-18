@@ -123,11 +123,12 @@ class SportDetailsViewController: UIViewController , UITableViewDataSource, UITa
         leagueDetailsViewController.leagueID = footballLeagues[indexPath.row].league_key
         leagueDetailsViewController.leagueTitle = footballLeagues[indexPath.row].league_name
         leagueDetailsViewController.category = self.category
+        leagueDetailsViewController.countryId = footballLeagues[indexPath.row].country_key
         leagueDetailsViewController.leagueImage = footballLeagues[indexPath.row].league_logo == nil ? imagePlaceHolder : footballLeagues[indexPath.row].league_logo
         
-        leagueDetailsViewController.countryId = footballLeagues[indexPath.row].country_key
+      
         
-        var savedObj = SavedLeague(leageuName : footballLeagues[indexPath.row].league_name! , imagePath: (footballLeagues[indexPath.row].league_logo == nil ? imagePlaceHolder : footballLeagues[indexPath.row].league_logo) ?? imagePlaceHolder)
+      var savedObj =   SavedLeague(leageuName: footballLeagues[indexPath.row].league_name! , imagePath:  (footballLeagues[indexPath.row].league_logo == nil ? imagePlaceHolder : footballLeagues[indexPath.row].league_logo) ?? imagePlaceHolder, leagueID: footballLeagues[indexPath.row].league_key ?? 0, countryId: footballLeagues[indexPath.row].country_key ?? 0, category: self.category)
    
         presenter.getAllFavourite()
         

@@ -8,13 +8,15 @@
 import UIKit
 import ShimmerSwift
 import Kingfisher
+import Reachability
+
 
 class FavouritsViewController: UIViewController ,UITableViewDataSource, UITableViewDelegate{
     
     @IBOutlet weak var tableView: UITableView!
     private var presenter = FavouriteLeaguePresenter()
     var favouriteLeagues : [SavedLeague]!
-    
+    private let reachability = try! Reachability()
     
     override func viewWillAppear(_ animated: Bool) {
         presenter.getAllFavourite()
@@ -72,7 +74,6 @@ class FavouritsViewController: UIViewController ,UITableViewDataSource, UITableV
     func getFavouriteLeagues (favouriteLeagues : [SavedLeague]){
         self.favouriteLeagues = favouriteLeagues
         tableView.reloadData()
-        print(favouriteLeagues.count)
     }
     
     
@@ -111,6 +112,30 @@ class FavouritsViewController: UIViewController ,UITableViewDataSource, UITableV
         present(alert, animated: true, completion: nil)
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if reachability.connection != .unavailable {
+            let leagueDetailsViewController = self.storyboard?.instantiateViewController(withIdentifier: "leagueDetails") as! LeagueDetailsCollectionViewController
+            leagueDetailsViewController.leagueID = favouriteLeagues[indexPath.row].leagueID
+            leagueDetailsViewController.leagueTitle = favouriteLeagues[indexPath.row].leageuName
+            leagueDetailsViewController.category = favouriteLeagues[indexPath.row].category
+            leagueDetailsViewController.countryId = favouriteLeagues[indexPath.row].countryId
+            leagueDetailsViewController.leagueImage = favouriteLeagues[indexPath.row].imagePath
+            
+            leagueDetailsViewController.isSavedLeague = true
+            self.navigationController?.pushViewController(leagueDetailsViewController, animated: true)
+
+            
+         } else {
+           
+             let alert = UIAlertController(
+                 title: "No Internet Connection",
+                 message: "Please check your connection and try again.",
+                 preferredStyle: .alert
+             )
+             alert.addAction(UIAlertAction(title: "OK", style: .default))
+             present(alert, animated: true)
+         }
+    }
     
     
     
