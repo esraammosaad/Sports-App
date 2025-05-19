@@ -66,6 +66,7 @@
 		229EEAC62DCFAA47009FE7A6 /* Reachability in Frameworks */ = {isa = PBXBuildFile; productRef = 229EEAC52DCFAA47009FE7A6 /* Reachability */; };
 		229EEAC92DCFAA62009FE7A6 /* ShimmerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 229EEAC82DCFAA62009FE7A6 /* ShimmerSwift */; };
 		229EEACC2DCFC699009FE7A6 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 229EEACB2DCFC699009FE7A6 /* Alamofire */; };
+		22CB67AE2DDB896F004A7CC0 /* empty.json in Resources */ = {isa = PBXBuildFile; fileRef = 22CB67AD2DDB896F004A7CC0 /* empty.json */; };
 		22D861FD2DD4BA6100B8883F /* TeamSectionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 22D861FC2DD4BA6100B8883F /* TeamSectionCollectionViewCell.xib */; };
 		22D861FF2DD4BBC400B8883F /* TeamSectionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D861FE2DD4BBC400B8883F /* TeamSectionCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
@@ -127,6 +128,7 @@
 		2279EAB52DD21A2000FBDCB1 /* SplashViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
 		2279EABB2DD221C600FBDCB1 /* SportDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportDetailsViewController.swift; sourceTree = "<group>"; };
 		2279EABD2DD221E000FBDCB1 /* SportDetailsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SportDetailsCell.swift; sourceTree = "<group>"; };
+		22CB67AD2DDB896F004A7CC0 /* empty.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = empty.json; sourceTree = "<group>"; };
 		22D861FC2DD4BA6100B8883F /* TeamSectionCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeamSectionCollectionViewCell.xib; sourceTree = "<group>"; };
 		22D861FE2DD4BBC400B8883F /* TeamSectionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamSectionCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -224,6 +226,7 @@
 			isa = PBXGroup;
 			children = (
 				058474322DCE815F0057DAB9 /* Assets.xcassets */,
+				22CB67AD2DDB896F004A7CC0 /* empty.json */,
 				05876E912DCFE514006F7830 /* Strings.swift */,
 			);
 			path = SupportFiles;
@@ -417,6 +420,7 @@
 				058474332DCE815F0057DAB9 /* Assets.xcassets in Resources */,
 				22D861FD2DD4BA6100B8883F /* TeamSectionCollectionViewCell.xib in Resources */,
 				051853FB2DD270A600B53629 /* LeagueDetailsHeaderCollectionReusableView.xib in Resources */,
+				22CB67AE2DDB896F004A7CC0 /* empty.json in Resources */,
 				0584742E2DCE815D0057DAB9 /* Main.storyboard in Resources */,
 				051853EB2DD2541500B53629 /* HomeCollectionViewCell.xib in Resources */,
 			);
