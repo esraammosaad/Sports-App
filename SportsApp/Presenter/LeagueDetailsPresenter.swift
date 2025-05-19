@@ -36,11 +36,10 @@ class LeagueDetailsPresenter{
             leagueTeams in
             if let teams = leagueTeams?.result {
                 self.leagueDetailsViewController.getLeagueTeams(teams: teams)
-               
             }
         }
-        
     }
+    
     func getCricketLeagueDetails (leagueId:Int){
         SportsServices.getCricketLeagueDetails(leagueID: leagueId){
             cricketEvents in
@@ -49,6 +48,7 @@ class LeagueDetailsPresenter{
             }
         }
     }
+    
     func getTnnisEvents (countryId:Int){
         SportsServices.getTenniseDetails(countryID: countryId){
             tennisEvents in
