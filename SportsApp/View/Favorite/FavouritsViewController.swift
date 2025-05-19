@@ -9,7 +9,7 @@ import UIKit
 import ShimmerSwift
 import Kingfisher
 import Reachability
-
+import Lottie
 
 class FavouritsViewController: UIViewController ,UITableViewDataSource, UITableViewDelegate{
     
@@ -17,12 +17,14 @@ class FavouritsViewController: UIViewController ,UITableViewDataSource, UITableV
     private var presenter = FavouriteLeaguePresenter()
     var favouriteLeagues : [SavedLeague]!
     private let reachability = try! Reachability()
+    private var animationView : LottieAnimationView!
+    private var label : UILabel!
     
     override func viewWillAppear(_ animated: Bool) {
         presenter.getAllFavourite()
         tableView.reloadData()
-        
-        
+        updateFavoritesUI()
+
     }
     
     
@@ -32,6 +34,8 @@ class FavouritsViewController: UIViewController ,UITableViewDataSource, UITableV
         tableView.dataSource = self
         self.navigationItem.title = "Favorites"
         presenter.setViewController(viewController: self)
+        updateFavoritesUI()
+
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -47,20 +51,7 @@ class FavouritsViewController: UIViewController ,UITableViewDataSource, UITableV
             shimmerView.contentView = placeholderView
             shimmerView.isShimmering = true
             cell.leagueName.text = "Loading"
-        }else if favouriteLeagues.count == 0 {
-            let animationView = LottieAnimationView(name: "your_animation_file") // without ".json" extension
 
-            // Set frame or use Auto Layout
-            animationView.frame = CGRect(x: 0, y: 0, width: 300, height: 300)
-            animationView.center = view.center
-            animationView.contentMode = .scaleAspectFit
-
-            // Add to the view
-            view.addSubview(animationView)
-
-            // Play the animation
-            animationView.play()
-            /// on empity faavouries
         }
         else {
             cell.leagueImage.kf.setImage(with: URL(string: favouriteLeagues[indexPath.row].imagePath),placeholder: UIImage(named: favouriteLeagues[indexPath.row].imagePath))
@@ -85,6 +76,7 @@ class FavouritsViewController: UIViewController ,UITableViewDataSource, UITableV
     func getFavouriteLeagues (favouriteLeagues : [SavedLeague]){
         self.favouriteLeagues = favouriteLeagues
         tableView.reloadData()
+        updateFavoritesUI()
     }
     
     
@@ -113,6 +105,7 @@ class FavouritsViewController: UIViewController ,UITableViewDataSource, UITableV
         let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { _ in
             self.presenter.deleteFavouriteLeague(saveLeague: self.favouriteLeagues[indexPath.row])
             self.presenter.getAllFavourite()
+            self.updateFavoritesUI()
         }
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -148,6 +141,44 @@ class FavouritsViewController: UIViewController ,UITableViewDataSource, UITableV
          }
     }
     
+    func updateFavoritesUI() {
+        animationView?.removeFromSuperview()
+        animationView = nil
+        label?.removeFromSuperview()
+        label = nil
+        
+        if favouriteLeagues == nil || favouriteLeagues.isEmpty {
+            showEmptyAnimation()
+        } else {
+            tableView.reloadData()
+        }
+    }
+    func showEmptyAnimation() {
+     
+        animationView = LottieAnimationView(name: "list")
+        animationView.frame = CGRect(x: 0, y: 0, width: 300, height: 300)
+        animationView.center = view.center
+        animationView.contentMode = .scaleAspectFit
+        animationView.loopMode = .loop
+        animationView.play()
+        view.addSubview(animationView)
+        
+         label = UILabel()
+        label.text = "No favorite items yet"
+        label.textColor = .gray
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 18, weight: .medium)
+        
+       
+        let labelWidth: CGFloat = 300
+        let labelHeight: CGFloat = 30
+        let labelX = (view.frame.width - labelWidth) / 2
+        let labelY = animationView.frame.origin.y + animationView.frame.height + 10
+        
+        label.frame = CGRect(x: labelX, y: labelY, width: labelWidth, height: labelHeight)
+        
+        view.addSubview(label)
+    }
     
     
 }
