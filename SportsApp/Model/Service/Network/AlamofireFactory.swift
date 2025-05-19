@@ -51,7 +51,7 @@ class AlamofireFactory{
     }
     
     
-//https://apiv2.allsportsapi.com/tennis/?met=Leagues&APIkey=edaabe5e8bfd4f780d114f7cafd181e0acc496f308f7685089b5cd9ecf224f5d&countryId=267
+    //https://apiv2.allsportsapi.com/tennis/?met=Leagues&APIkey=edaabe5e8bfd4f780d114f7cafd181e0acc496f308f7685089b5cd9ecf224f5d&countryId=267
     
     static func tennisLeagueDetails(url : String, completion : @escaping (TeamResponse?) -> Void){
         AF.request(url).validate(statusCode: 200..<300).responseDecodable(of:TeamResponse.self){
@@ -92,6 +92,7 @@ class AlamofireFactory{
             }
         }
     }
+    
     
     
     

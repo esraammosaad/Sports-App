@@ -21,7 +21,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
     private var currentSport : SportProtocol!
     private var sportType : String!
     private var image : UIImage!
-    private var imageName : String!
+    private var teameLogoPlaceholder : String!
     private let presenter = LeagueDetailsPresenter()
     private var shimmerView : ShimmeringView!
     private var  rightButton : UIBarButtonItem!
@@ -52,16 +52,18 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
         }
         self.collectionView.setCollectionViewLayout(layout, animated: true)
         presenter.setViewController(leagueDetailsViewController: self)
+        
+
 
     }
     @objc func didTapRightButton() {
         if rightButton.image == UIImage(systemName: "heart"){
-            var savedObj = SavedLeague(leageuName: leagueTitle, imagePath:leagueImage, leagueID: leagueID, countryId: countryId ?? 00, category: category)
+            let savedObj = SavedLeague(leageuName: leagueTitle, imagePath:leagueImage, leagueID: leagueID, countryId: countryId ?? 00, category: category)
             presenter.setFavouriteLeague(SavedLeague: savedObj)
             rightButton.image = UIImage(systemName: "heart.fill")
         }else
         {
-           var savedObj =  SavedLeague(leageuName: leagueTitle, imagePath: leagueImage, leagueID: leagueID, countryId: countryId, category: category)
+           let savedObj =  SavedLeague(leageuName: leagueTitle, imagePath: leagueImage, leagueID: leagueID, countryId: countryId, category: category)
             
             presenter.deleteFavouriteLeague(savedLeague: savedObj)
             rightButton.image = UIImage(systemName: "heart")
@@ -97,19 +99,19 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
         case 0:
             currentSport = Football()
             image = UIImage(named: "bg")
-            imageName = "footballTeam"
+            teameLogoPlaceholder = "footballTeam"
             sportType = Strings.FOOTBALL_ENDPOINT
             presenter.getLeagueDetails(sportType: sportType, leagueID: leagueID)
         case 1 :
             currentSport = Basketball()
             image = UIImage(named: "basketballbg")
-            imageName = "basketballTeam"
+            teameLogoPlaceholder = "basketballTeam"
             sportType = Strings.BASKETBALL_ENDPOINT
             presenter.getLeagueDetails(sportType: sportType, leagueID: leagueID)
         case 2 :
             currentSport = Tennis()
             image = UIImage(named: "tennisbg")
-            imageName = "tennisTeam"
+            teameLogoPlaceholder = "tennisTeam"
             sportType = Strings.TENNIS_ENDPOINT
             presenter.getTnnisEvents(countryId: countryId)
 
@@ -117,12 +119,10 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
             currentSport = Cricket()
             image = UIImage(named: "cricketbg")
             sportType = Strings.CRICKET_ENDPOINT
-            imageName = "cricketTeam"
+            teameLogoPlaceholder = "cricketTeam"
             presenter.getCricketLeagueDetails(leagueId: leagueID)
            
         }
-        print(currentSport.teams.count)
-        print("tot")
         presenter.getLeagueTeams(sportType: sportType, leagueID: leagueID)
 
     }
@@ -202,7 +202,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
             setupShimmer(cell)
         }else
         {
-            currentSport.configureTeamCell(cell, at: indexPath, imageName: imageName)
+            currentSport.configureTeamCell(cell, at: indexPath, imageName: teameLogoPlaceholder)
         }
         cell.layer.cornerRadius = 25
         cell.clipsToBounds = true
@@ -371,6 +371,16 @@ extension LeagueDetailsCollectionViewController{
             }
         }
         
+    }
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if (indexPath.section == 1 ){
+            var vc = storyboard?.instantiateViewController(withIdentifier: "teamDetailsd") as! TeamDetailsCollectionViewController
+            vc.teamDetailsItem = currentSport.teams[indexPath.row]
+            vc.placeHolder = teameLogoPlaceholder
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+            
+        }
     }
 
     

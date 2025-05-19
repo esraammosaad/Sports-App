@@ -51,6 +51,7 @@ class FavouritsViewController: UIViewController ,UITableViewDataSource, UITableV
             shimmerView.contentView = placeholderView
             shimmerView.isShimmering = true
             cell.leagueName.text = "Loading"
+
         }
         else {
             cell.leagueImage.kf.setImage(with: URL(string: favouriteLeagues[indexPath.row].imagePath),placeholder: UIImage(named: favouriteLeagues[indexPath.row].imagePath))
@@ -154,7 +155,7 @@ class FavouritsViewController: UIViewController ,UITableViewDataSource, UITableV
     }
     func showEmptyAnimation() {
      
-        animationView = LottieAnimationView(name: "empty")
+        animationView = LottieAnimationView(name: "list")
         animationView.frame = CGRect(x: 0, y: 0, width: 300, height: 300)
         animationView.center = view.center
         animationView.contentMode = .scaleAspectFit
