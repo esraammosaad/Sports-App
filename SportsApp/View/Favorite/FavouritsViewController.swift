@@ -48,7 +48,18 @@ class FavouritsViewController: UIViewController ,UITableViewDataSource, UITableV
             shimmerView.isShimmering = true
             cell.leagueName.text = "Loading"
         }else if favouriteLeagues.count == 0 {
-            
+            let animationView = LottieAnimationView(name: "your_animation_file") // without ".json" extension
+
+            // Set frame or use Auto Layout
+            animationView.frame = CGRect(x: 0, y: 0, width: 300, height: 300)
+            animationView.center = view.center
+            animationView.contentMode = .scaleAspectFit
+
+            // Add to the view
+            view.addSubview(animationView)
+
+            // Play the animation
+            animationView.play()
             /// on empity faavouries
         }
         else {

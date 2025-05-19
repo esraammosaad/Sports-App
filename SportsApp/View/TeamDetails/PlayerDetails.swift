@@ -9,6 +9,11 @@ import UIKit
 
 class PlayerDetails: UICollectionViewCell {
     
+//    @IBOutlet weak var playerName: UILabel!
+//    @IBOutlet weak var playerImage: UIImageView!
+    
+    
+    @IBOutlet weak var playerRole: UILabel!
     @IBOutlet weak var playerName: UILabel!
     @IBOutlet weak var playerImage: UIImageView!
 }

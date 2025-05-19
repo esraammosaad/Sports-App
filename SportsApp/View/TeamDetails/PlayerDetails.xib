@@ -11,43 +11,37 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PlayerDetails" id="hZN-Uc-lkL" customClass="PlayerDetails" customModule="SportsApp" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="235" height="81"/>
+            <rect key="frame" x="0.0" y="0.0" width="292" height="57"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="bVj-Bn-Q8U">
-                <rect key="frame" x="0.0" y="0.0" width="235" height="81"/>
+                <rect key="frame" x="0.0" y="0.0" width="292" height="57"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="KVS-rD-x8T">
-                        <rect key="frame" x="0.0" y="0.0" width="150" height="81"/>
-                    </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="88" translatesAutoresizingMaskIntoConstraints="NO" id="f9x-id-lL0">
-                        <rect key="frame" x="149" y="0.0" width="82" height="81"/>
+                        <rect key="frame" x="0.0" y="0.0" width="47.333333333333336" height="57"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="81" id="OKp-v2-XoS"/>
-                            <constraint firstAttribute="width" constant="82" id="cfR-AI-K4K"/>
+                            <constraint firstAttribute="width" constant="47.333333333333336" id="kpf-mW-Mpi"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="88" translatesAutoresizingMaskIntoConstraints="NO" id="f9x-id-lL0">
+                        <rect key="frame" x="45" y="0.0" width="247" height="57"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="31"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="KVS-rD-x8T" firstAttribute="top" secondItem="bVj-Bn-Q8U" secondAttribute="top" id="5wE-0C-U5Q"/>
-                    <constraint firstAttribute="trailing" secondItem="f9x-id-lL0" secondAttribute="trailing" constant="4" id="6kI-UB-Cgq"/>
-                    <constraint firstAttribute="bottom" secondItem="KVS-rD-x8T" secondAttribute="bottom" id="Erg-Pb-Vb3"/>
-                    <constraint firstItem="f9x-id-lL0" firstAttribute="leading" secondItem="KVS-rD-x8T" secondAttribute="trailing" constant="20" id="IJx-Jh-WoQ"/>
-                    <constraint firstAttribute="bottom" secondItem="f9x-id-lL0" secondAttribute="bottom" id="K3p-bY-UyY"/>
-                    <constraint firstItem="KVS-rD-x8T" firstAttribute="leading" secondItem="bVj-Bn-Q8U" secondAttribute="leading" id="Mmq-NB-vUl"/>
-                    <constraint firstAttribute="width" secondItem="KVS-rD-x8T" secondAttribute="height" multiplier="275:87" id="arw-go-9zu"/>
-                    <constraint firstItem="f9x-id-lL0" firstAttribute="top" secondItem="KVS-rD-x8T" secondAttribute="top" id="yIa-7T-6E1"/>
+                    <constraint firstItem="f9x-id-lL0" firstAttribute="leading" secondItem="bVj-Bn-Q8U" secondAttribute="leading" constant="45" id="INy-ZL-akn"/>
+                    <constraint firstItem="f9x-id-lL0" firstAttribute="top" secondItem="KVS-rD-x8T" secondAttribute="top" id="IPj-u9-tbX"/>
+                    <constraint firstItem="KVS-rD-x8T" firstAttribute="top" secondItem="bVj-Bn-Q8U" secondAttribute="top" id="MhA-xg-0pT"/>
+                    <constraint firstItem="KVS-rD-x8T" firstAttribute="leading" secondItem="bVj-Bn-Q8U" secondAttribute="leading" id="ObT-iU-GVa"/>
+                    <constraint firstAttribute="trailing" secondItem="f9x-id-lL0" secondAttribute="trailing" id="keA-cm-m7V"/>
+                    <constraint firstItem="f9x-id-lL0" firstAttribute="bottom" secondItem="KVS-rD-x8T" secondAttribute="bottom" id="nyE-76-1Tl"/>
+                    <constraint firstItem="KVS-rD-x8T" firstAttribute="centerY" secondItem="bVj-Bn-Q8U" secondAttribute="centerY" id="vys-oW-TDg"/>
                 </constraints>
             </collectionViewCellContentView>
-            <size key="customSize" width="70" height="19"/>
-            <connections>
-                <outlet property="playerImage" destination="KVS-rD-x8T" id="j9w-Nh-hkS"/>
-                <outlet property="playerName" destination="f9x-id-lL0" id="mIO-df-Tqi"/>
-            </connections>
-            <point key="canvasLocation" x="313.74045801526717" y="-162.32394366197184"/>
+            <size key="customSize" width="219" height="21"/>
+            <point key="canvasLocation" x="354.19847328244271" y="-170.77464788732397"/>
         </collectionViewCell>
     </objects>
 </document>
