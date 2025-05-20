@@ -8,6 +8,7 @@
 import UIKit
 import Kingfisher
 import ShimmerSwift
+import Reachability
 
 private let reuseIdentifier = "favCellOne"
 
@@ -15,13 +16,13 @@ class TeamDetailsCollectionViewController: UICollectionViewController , UICollec
  
     var teamDetailsItem : Team!
     var placeHolder : String!
+    var reachability : Reachability!
+    var isConnectedToInternet : Bool!
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupReachability()
         let nib1 = UINib(nibName: "TeamLogo", bundle: nil)
         self.collectionView!.register(nib1, forCellWithReuseIdentifier: "TeamLogo")
-        
-        
-       
         let nib3 = UINib(nibName: "TeamSectionCollectionViewCell", bundle: nil)
         self.collectionView!.register(nib3, forCellWithReuseIdentifier: Strings.TEAM_CELL_IDENTIFIER)
         let headerNib = UINib(nibName: "LeagueDetailsHeaderCollectionReusableView", bundle: nil)
@@ -31,9 +32,31 @@ class TeamDetailsCollectionViewController: UICollectionViewController , UICollec
 
     }
     
+    func setupReachability() {
+        do {
+            
+            reachability = try Reachability()
+
+            reachability.whenReachable = { reachability in
+                self.isConnectedToInternet = true
+            }
+
+            reachability.whenUnreachable = { _ in
+                self.isConnectedToInternet = false
+                let alert = showNoInternetAlert()
+                self.present(alert, animated: true)
+
+            }
+
+            try reachability.startNotifier()
+
+        } catch {
+            print("Unable to start Reachability: \(error)")
+        }
+    }
     
     
-    // MARK: UICollectionViewDataSource
+    
     
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         // #warning Incomplete implementation, return the number of sections

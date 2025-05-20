@@ -23,7 +23,7 @@ class SportsServices : SportsServicesProtocol{
     
     func getLeagueDetails (sportType : String, leagueID : Int,completion : @escaping (EventResponse?) -> Void){
      
-    let url =  "\(Strings.BASEURL)\(sportType)/?APIkey=\(Strings.API_KEY)&met=\(Strings.EVENTS_ENDPOINT)&from=2025-01-01&to=2025-06-30&leagueId=\(leagueID)"
+    let url =  "\(Strings.BASEURL)\(sportType)/?APIkey=\(Strings.API_KEY)&met=\(Strings.EVENTS_ENDPOINT)&from=2025-05-01&to=2025-07-30&leagueId=\(leagueID)"
         
         AlamofireFactory.leagueDetailsRequest(url: url){
             leagueDetailsResponse in
@@ -45,7 +45,7 @@ class SportsServices : SportsServicesProtocol{
     }
     
      func getCricketLeagueDetails (leagueID : Int,completion : @escaping (CricketEventResponse?) -> Void){
-        let url = "\(Strings.BASEURL)\(Strings.CRICKET_ENDPOINT)/?met=\(Strings.EVENTS_ENDPOINT)&APIkey=\(Strings.API_KEY)&from=2024-03-13&to=2025-05-17&leagueId=\(leagueID)"
+        let url = "\(Strings.BASEURL)\(Strings.CRICKET_ENDPOINT)/?met=\(Strings.EVENTS_ENDPOINT)&APIkey=\(Strings.API_KEY)&from=2025-05-01&to=2025-07-30&leagueId=\(leagueID)"
         
         AlamofireFactory.getCricketLeagueDetails(url: url){
             cricketTeamResponse in
@@ -53,7 +53,7 @@ class SportsServices : SportsServicesProtocol{
         }
     }
      func getTenniseLeagueDetails (countryID : Int,completion : @escaping (TennisEventResponse?) -> Void){
-        let url = "\(Strings.BASEURL)\(Strings.TENNIS_ENDPOINT)/?met=\(Strings.EVENTS_ENDPOINT)&APIkey=\(Strings.API_KEY)&from=2025-05-9&to=2025-05-18&countryId=\(countryID)"
+        let url = "\(Strings.BASEURL)\(Strings.TENNIS_ENDPOINT)/?met=\(Strings.EVENTS_ENDPOINT)&APIkey=\(Strings.API_KEY)&from=2025-05-01&to=2025-07-30&countryId=\(countryID)"
         
         AlamofireFactory.getTennisLeagueDetails(url: url){
             tennisEventResponse in

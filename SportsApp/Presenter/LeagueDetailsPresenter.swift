@@ -7,7 +7,7 @@
 
 import Foundation
 
-class LeagueDetailsPresenter{
+class LeagueDetailsPresenter : LeagueDetailsPresenterProtocol{
     
     
     var leagueDetailsViewController : LeagueDetailsViewProtocol!

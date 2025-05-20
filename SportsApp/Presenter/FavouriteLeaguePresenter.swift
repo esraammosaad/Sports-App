@@ -7,7 +7,7 @@
 
 import Foundation
 
-class FavouriteLeaguePresenter {
+class FavouriteLeaguePresenter : FavoriteLeaguePresenterProtocol {
     
     var viewController : FavouritsViewController!
     

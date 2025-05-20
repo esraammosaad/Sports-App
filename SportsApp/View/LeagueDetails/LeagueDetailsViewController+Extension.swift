@@ -51,7 +51,7 @@ extension LeagueDetailsCollectionViewController{
         
         
         //groupsize
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(200))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(250))
         
         //group >> size , item
         let myGroup = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
@@ -59,7 +59,7 @@ extension LeagueDetailsCollectionViewController{
         
         //section >> group
         let section = NSCollectionLayoutSection(group: myGroup)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 14, bottom: 0, trailing: 14)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 12, bottom: 0, trailing: 12)
 
         self.setHeaderForSection(section: section)
         self.setAnimationToSection(section: section)
@@ -70,13 +70,13 @@ extension LeagueDetailsCollectionViewController{
     
     func drawTeamSection()->NSCollectionLayoutSection{
         //item size
-        let bigItemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+        let bigItemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(self.category != 2 ? 1 : 0.01), heightDimension: .fractionalHeight(self.category != 2 ? 1 : 0.01))
         
         // item >> size
         let item = NSCollectionLayoutItem(layoutSize: bigItemSize)
         
         //groupsize
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.3), heightDimension: .absolute(110))
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.3), heightDimension: .absolute(self.category != 2 ? 110 : 0))
         
         //group >> size , item
         let myGroup = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])

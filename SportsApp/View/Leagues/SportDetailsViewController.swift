@@ -8,6 +8,7 @@
 import UIKit
 import Kingfisher
 import ShimmerSwift
+import Reachability
 
 class SportDetailsViewController: UIViewController , UITableViewDataSource, UITableViewDelegate, SportDetailsViewProtocol {
     
@@ -18,21 +19,45 @@ class SportDetailsViewController: UIViewController , UITableViewDataSource, UITa
     var sportTitle : String!
     var sportType : String!
     var imagePlaceHolder :String!
-    let presenter = SportDetailsPresenter()
+    var reachability : Reachability!
+    var isConnectedToInternet : Bool!
+    
+    let presenter : SportsDetailsPresenterProtocol = SportDetailsPresenter()
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.setSportType()
-        
+        setupReachability()
         tableView.delegate = self
         tableView.dataSource = self
-       
+        tableView.contentInsetAdjustmentBehavior = .automatic
         presenter.setViewController(sportDetailsVireController: self)
         presenter.getSportDetails(sportType: sportType)
-        
         self.title = sportTitle
         
         
+    }
+    
+    func setupReachability() {
+        do {
+            
+            reachability = try Reachability()
+
+            reachability.whenReachable = { reachability in
+                self.isConnectedToInternet = true
+            }
+
+            reachability.whenUnreachable = { _ in
+                self.isConnectedToInternet = false
+                let alert = showNoInternetAlert()
+                self.present(alert, animated: true)
+
+            }
+
+            try reachability.startNotifier()
+
+        } catch {
+            print("Unable to start Reachability: \(error)")
+        }
     }
     
     

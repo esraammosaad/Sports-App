@@ -7,6 +7,7 @@
 
 import UIKit
 import ShimmerSwift
+import Reachability
 
 class LeagueDetailsCollectionViewController: UICollectionViewController,UICollectionViewDelegateFlowLayout,LeagueDetailsViewProtocol {
 
@@ -22,9 +23,11 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
     var isFavorite : Bool!
     private var sportType : String!
     private var image : UIImage!
-    private let presenter = LeagueDetailsPresenter()
+    private let presenter : LeagueDetailsPresenterProtocol  = LeagueDetailsPresenter()
     private var shimmerView : ShimmeringView!
     private var  rightButton : UIBarButtonItem!
+    var reachability : Reachability!
+    var isConnectedToInternet : Bool!
     
     
     
@@ -36,6 +39,8 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
         }else{
             rightButton.image = UIImage(systemName: "heart")
         }
+        
+        
     }
     
     override func viewDidLoad() {
@@ -43,7 +48,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
         setSportType()
         self.title = leagueTitle
         nibRegistration()
-        
+        setupReachability()
         let layout = UICollectionViewCompositionalLayout{index ,environement in
             switch(index){
             case 0 :
@@ -58,6 +63,29 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
         }
         self.collectionView.setCollectionViewLayout(layout, animated: true)
         presenter.setViewController(leagueDetailsViewController: self)
+    }
+    
+    func setupReachability() {
+        do {
+            
+            reachability = try Reachability()
+
+            reachability.whenReachable = { reachability in
+                self.isConnectedToInternet = true
+            }
+
+            reachability.whenUnreachable = { _ in
+                self.isConnectedToInternet = false
+                let alert = showNoInternetAlert()
+                self.present(alert, animated: true)
+
+            }
+
+            try reachability.startNotifier()
+
+        } catch {
+            print("Unable to start Reachability: \(error)")
+        }
     }
     @objc func didTapRightButton() {
         if !isFavorite{
@@ -161,7 +189,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
         case 0: return currentSport.upComingEvents.count == 0 ? 1 : currentSport.upComingEvents.count
-        case 1: return currentSport.teams.count  == 0 ? 8 : currentSport.teams.count
+        case 1: return currentSport.teams.count  == 0 && self.category != 2 ? 8 : currentSport.teams.count
         case 2 :return currentSport.latestEvents.count == 0 ? 3 : currentSport.latestEvents.count
         default: return 0
             
@@ -196,7 +224,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
             case 2 :
                 headerView.headerLabel.text = "Latest Events"
               default:
-                headerView.headerLabel.text = "Teams"
+                headerView.headerLabel.text = self.category != 2 ? "Teams" : ""
             }
             return headerView
         }
