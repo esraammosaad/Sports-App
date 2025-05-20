@@ -15,15 +15,20 @@ class MainViewController: UIViewController {
         // Do any additional setup after loading the view.
         
         
+        
      
 
     }
 
     @IBAction func onGetStartedButtonClicked(_ sender: Any) {
         
-        let homeViewController = self.storyboard?.instantiateViewController(withIdentifier: "main") as! HomeViewController
+        let controller = self.storyboard?.instantiateViewController(withIdentifier: "navigationController") as! UINavigationController
         
-        self.navigationController?.setViewControllers([homeViewController], animated: true)
+        controller.modalPresentationStyle = .fullScreen
+        controller.modalTransitionStyle = .flipHorizontal
+        present(controller, animated: true)
+            UserDefaults.standard.hasOnboarded = true
+        
     }
     
 }

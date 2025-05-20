@@ -10,20 +10,25 @@ import CoreData
 import UIKit
 
 class CoreDataUtils{
+    static let shared = CoreDataUtils()
+    private var  context:NSManagedObjectContext!
+    private var entity:NSEntityDescription!
     
-    var  context:NSManagedObjectContext!
-    var entity:NSEntityDescription!
-    
-    init(){
+    private init(){
         setDeclarition()
     }
     
     
-    func setFavouriteLeague(name : String , imagePath : String){
+    func setFavouriteLeague(savedLeague :SavedLeague){
         
         let favouriteLeague = NSManagedObject(entity: entity, insertInto: context)
-        favouriteLeague.setValue( name, forKey: "leagueName")
-        favouriteLeague.setValue( imagePath , forKey: "imagePath")
+        
+        favouriteLeague.setValue( savedLeague.leageuName, forKey: "leagueName")
+        favouriteLeague.setValue( savedLeague.imagePath , forKey: "imagePath")
+        favouriteLeague.setValue( savedLeague.countryId, forKey: "countryId")
+        favouriteLeague.setValue( savedLeague.category , forKey: "category")
+        favouriteLeague.setValue( savedLeague.leagueID, forKey: "leagueID")
+        
         
         do {
             try context.save()
@@ -41,16 +46,18 @@ class CoreDataUtils{
         let savedLeagues = nsManagedArray.compactMap { object in
             let name = object.value(forKey: "leagueName") as? String ?? "name default"
             let imagePath = object.value(forKey: "imagePath") as? String ?? "image path default"
+            let countryId = object.value(forKey:"countryId") as? Int ?? 00
+            let category = object.value(forKey:"category") as? Int ?? 00
+            let leagueID = object.value(forKey:"leagueID") as? Int ?? 00
             
-            return SavedLeague(leageuName: name, imagePath: imagePath)
+            return  SavedLeague(leageuName: name, imagePath: imagePath, leagueID: leagueID, countryId: countryId, category: category)
+           
         }
-        
         return savedLeagues
     }
     
     
-    private func readFromCoreData() -> [NSManagedObject]?{
-        
+    func readFromCoreData() -> [NSManagedObject]?{
         
         let fetchReq = NSFetchRequest<NSManagedObject>(entityName: "FavouriteLeague")
         
