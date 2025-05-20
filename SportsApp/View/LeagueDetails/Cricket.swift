@@ -14,16 +14,7 @@ class Cricket : SportProtocol{
     var latestEvents : [EventProtocol] = []
     var teams : [Team] = []
     
-    
-    
-    func getUpcomingEventsCount() -> Int {
-        return upComingEvents.count
-    }
-    
-    func getLatestEventsCount() -> Int {
-        return latestEvents.count
-    }
-    
+
     func configureUpcomingEventCell(_ cell: LeagueDetailsCollectionViewCell, at indexPath: IndexPath) {
         removeShimmer(cell: cell)
         if let upComingList = upComingEvents as? [CricketEvent]{
@@ -49,6 +40,7 @@ class Cricket : SportProtocol{
             cell.homeTeamName.text = latestList[indexPath.row].event_home_team
             cell.awayTeamName.text = latestList[indexPath.row].event_away_team
             cell.date.text = latestList[indexPath.row].event_date_start
+            cell.time.text = latestList[indexPath.row].event_time
             cell.finalScore.text = latestList[indexPath.row].event_away_final_result
             let homeURL = URL(string: latestList[indexPath.row].event_home_team_logo ?? "")
             let awayURL = URL(string: latestList[indexPath.row].event_away_team_logo ?? "")

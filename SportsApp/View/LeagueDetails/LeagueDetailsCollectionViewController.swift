@@ -18,10 +18,10 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
     var category: Int!
     var leagueImage :String!
     var isSavedLeague :Bool!
-    private var currentSport : SportProtocol!
+    var currentSport : SportProtocol!
+    var teameLogoPlaceholder : String!
     private var sportType : String!
     private var image : UIImage!
-    private var teameLogoPlaceholder : String!
     private let presenter = LeagueDetailsPresenter()
     private var shimmerView : ShimmeringView!
     private var  rightButton : UIBarButtonItem!
@@ -68,12 +68,10 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
             presenter.deleteFavouriteLeague(savedLeague: savedObj)
             rightButton.image = UIImage(systemName: "heart")
         }
-        
-      
     }
     
     
-    fileprivate func addFavoriteBtn() {
+    private func addFavoriteBtn() {
         rightButton = UIBarButtonItem(
             image:  isSavedLeague == true ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart"),
             style: .plain,
@@ -83,7 +81,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
         navigationItem.rightBarButtonItem = rightButton
     }
     
-    fileprivate func nibRegistration() {
+    private func nibRegistration() {
         let nib1 = UINib(nibName: "LeagueDetailsCollectionViewCell", bundle: nil)
         self.collectionView!.register(nib1, forCellWithReuseIdentifier: Strings.UPCOMING_EVENTS_CELL_IDENTIFIER)
         let nib2 = UINib(nibName: "LatestEventsCollectionViewCell", bundle: nil)
@@ -147,12 +145,10 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Strings.UPCOMING_EVENTS_CELL_IDENTIFIER, for: indexPath) as! LeagueDetailsCollectionViewCell
             configureUpcomingEventCell(cell, at: indexPath)
             return cell
-            
         case 1:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Strings.TEAM_CELL_IDENTIFIER, for: indexPath) as! TeamSectionCollectionViewCell
             setTeamsImageCell(cell, at: indexPath)
            return cell
-            
         default:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Strings.LATEST_EVENTS_CELL_IDENTIFIER, for: indexPath) as! LatestEventsCollectionViewCell
             configureLatestEventCell(cell, at: indexPath)
@@ -220,23 +216,9 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
         cell.background.image = image
     }
 
-// ---> Shimmer
-    private func setupShimmer(_ cell: UICollectionViewCell) {
-        let shimmer = ShimmeringView(frame: cell.contentView.bounds)
-        shimmer.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        shimmer.isShimmering = true
-        
-        let loadingView = UIView(frame: shimmer.bounds)
-        loadingView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.3)
-        loadingView.layer.cornerRadius = 15
-        shimmer.contentView = loadingView
 
-        cell.contentView.addSubview(shimmer)
-    }
 
     
-    
-//Presenter --> Methods
     func updateLeagueDetails(leagueDetails: [Event]){
        currentSport.updateLeagueDetails(leagueDetails: leagueDetails, collectionView: self.collectionView)
     }
@@ -254,136 +236,6 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
     }
     
 
-}
-
-
-
-extension LeagueDetailsCollectionViewController{
-    
-    //Draw Sections & Headers
-    
-    func drawSection() -> NSCollectionLayoutSection{
-        //item size
-        let bigItemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
-        
-        // item >> size
-        let item = NSCollectionLayoutItem(layoutSize: bigItemSize)
-        
-        //groupsize
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(250))
-        
-        //group >> size , item
-        let myGroup = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-        
-        myGroup.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 0, trailing: 10)
-        
-        //section >> group
-        let section = NSCollectionLayoutSection(group: myGroup)
-        section.orthogonalScrollingBehavior = .continuous
-        section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 0, bottom: 8, trailing: 0)
-        
-        self.setHeaderForSection(section: section)
-        self.setAnimationToSection(section: section)
-        
-        
-        
-        return section
-    }
-    
-    func drawSectionVertical() -> NSCollectionLayoutSection{
-        //item size
-        
-        let bigItemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
-        
-        // item >> size
-        let item = NSCollectionLayoutItem(layoutSize: bigItemSize)
-        
-        
-        //groupsize
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(200))
-        
-        //group >> size , item
-        let myGroup = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
-        myGroup.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 12, trailing: 0)
-        
-        //section >> group
-        let section = NSCollectionLayoutSection(group: myGroup)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 18, bottom: 0, trailing: 18)
-
-        self.setHeaderForSection(section: section)
-        self.setAnimationToSection(section: section)
-        
-        return section
-    }
-    
-    
-    private func drawTeamSection()->NSCollectionLayoutSection{
-        //item size
-        let bigItemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
-        
-        // item >> size
-        let item = NSCollectionLayoutItem(layoutSize: bigItemSize)
-        
-        //groupsize
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.3), heightDimension: .absolute(110))
-        
-        //group >> size , item
-        let myGroup = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
-        
-        myGroup.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 2, bottom: 0, trailing: 2)
-        
-        //section >> group
-        let section = NSCollectionLayoutSection(group: myGroup)
-        section.orthogonalScrollingBehavior = .continuous
-        section.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 5, bottom: 8, trailing: 5)
-        
-        self.setHeaderForSection(section: section)
-       // self.setAnimationToSection(section: section)
-
-        return section
-    }
-    
-    
-    func setHeaderForSection(section : NSCollectionLayoutSection){
-        
-        section.boundarySupplementaryItems = [
-            NSCollectionLayoutBoundarySupplementaryItem(
-                layoutSize: NSCollectionLayoutSize(
-                    widthDimension: .fractionalWidth(1.0),
-                    heightDimension: .absolute(60)
-                ),
-                elementKind: UICollectionView.elementKindSectionHeader,
-                alignment: .top
-            )
-        ]
-        
-    }
-    
-    func setAnimationToSection(section : NSCollectionLayoutSection){
-        
-        section.visibleItemsInvalidationHandler = { (items, offset, environment) in
-            items.forEach { item in
-                let distanceFromCenter = abs((item.frame.midX - offset.x) - environment.container.contentSize.width / 2.0)
-                let minScale: CGFloat = 0.8
-                let maxScale: CGFloat = 1.0
-                let scale = max(maxScale - (distanceFromCenter / environment.container.contentSize.width), minScale)
-                item.transform = CGAffineTransform(scaleX: scale, y: scale)
-            }
-        }
-        
-    }
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if (indexPath.section == 1 ){
-            var vc = storyboard?.instantiateViewController(withIdentifier: "teamDetailsd") as! TeamDetailsCollectionViewController
-            vc.teamDetailsItem = currentSport.teams[indexPath.row]
-            vc.placeHolder = teameLogoPlaceholder
-            self.navigationController?.pushViewController(vc, animated: true)
-            
-            
-        }
-    }
-
-    
 }
 
 

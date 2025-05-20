@@ -11,8 +11,6 @@ import ShimmerSwift
 
 class SportDetailsViewController: UIViewController , UITableViewDataSource, UITableViewDelegate, SportDetailsViewProtocol {
     
-    
-    
     @IBOutlet weak var tableView: UITableView!
     var footballLeagues : [League]!
     var  shimmerView : ShimmeringView!
@@ -24,7 +22,9 @@ class SportDetailsViewController: UIViewController , UITableViewDataSource, UITa
     let presenter = SportDetailsPresenter()
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.setSportType()
+        
         tableView.delegate = self
         tableView.dataSource = self
        
@@ -66,9 +66,11 @@ class SportDetailsViewController: UIViewController , UITableViewDataSource, UITa
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SportDetailsCell
         
-        cell.contentView.subviews.filter { $0 is ShimmeringView }.forEach {  $0.removeFromSuperview() }
+        cell.contentView.subviews.filter { $0 is ShimmeringView }.forEach {  $0.removeFromSuperview()}
+        
         if(footballLeagues == nil){
             let shimmerView = ShimmeringView(frame: cell.bounds)
             shimmerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -80,7 +82,6 @@ class SportDetailsViewController: UIViewController , UITableViewDataSource, UITa
             cell.leagueName.text = "Loading"
             cell.LeagueImage.image = nil
         }else{
-            
             switch (category) {
             case 0:
                 imagePlaceHolder = "footballPlaceHolder"
@@ -126,9 +127,7 @@ class SportDetailsViewController: UIViewController , UITableViewDataSource, UITa
         leagueDetailsViewController.countryId = footballLeagues[indexPath.row].country_key
         leagueDetailsViewController.leagueImage = footballLeagues[indexPath.row].league_logo == nil ? imagePlaceHolder : footballLeagues[indexPath.row].league_logo
         
-      
-        
-      var savedObj =   SavedLeague(leageuName: footballLeagues[indexPath.row].league_name! , imagePath:  (footballLeagues[indexPath.row].league_logo == nil ? imagePlaceHolder : footballLeagues[indexPath.row].league_logo) ?? imagePlaceHolder, leagueID: footballLeagues[indexPath.row].league_key ?? 0, countryId: footballLeagues[indexPath.row].country_key ?? 0, category: self.category)
+        let savedObj = SavedLeague(leageuName: footballLeagues[indexPath.row].league_name! , imagePath: (footballLeagues[indexPath.row].league_logo == nil ? imagePlaceHolder : footballLeagues[indexPath.row].league_logo) ?? imagePlaceHolder, leagueID: footballLeagues[indexPath.row].league_key ?? 0, countryId: footballLeagues[indexPath.row].country_key ?? 0, category: self.category)
    
         presenter.getAllFavourite()
         
@@ -138,8 +137,7 @@ class SportDetailsViewController: UIViewController , UITableViewDataSource, UITa
         }else{
             leagueDetailsViewController.isSavedLeague = false
         }
-            
-            self.navigationController?.pushViewController(leagueDetailsViewController, animated: true)
+        self.navigationController?.pushViewController(leagueDetailsViewController, animated: true)
             
     }
     

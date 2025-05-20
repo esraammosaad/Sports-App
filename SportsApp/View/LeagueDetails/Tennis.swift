@@ -14,16 +14,6 @@ class Tennis : SportProtocol{
     var latestEvents : [EventProtocol] = []
     var teams : [Team] = []
     
-    
-    
-    func getUpcomingEventsCount() -> Int {
-        return upComingEvents.count
-    }
-    
-    func getLatestEventsCount() -> Int {
-        return latestEvents.count
-    }
-    
     func configureUpcomingEventCell(_ cell: LeagueDetailsCollectionViewCell, at indexPath: IndexPath) {
         if let upComingList = upComingEvents as? [TennisEvent]{
             removeShimmer(cell: cell)
@@ -45,6 +35,7 @@ class Tennis : SportProtocol{
             cell.homeTeamName.text = latestList[indexPath.row].event_first_player
             cell.awayTeamName.text = latestList[indexPath.row].event_second_player
             cell.date.text = latestList[indexPath.row].event_date
+            cell.time.text = latestList[indexPath.row].event_time
             cell.finalScore.text = latestList[indexPath.row].event_final_result
             cell.homeTeamImage.image = UIImage(named: "tennisP1")
             cell.awayTeamImage.image = UIImage(named: "tennisP2")

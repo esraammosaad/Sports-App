@@ -15,8 +15,6 @@ protocol SportProtocol{
     var latestEvents: [EventProtocol] { get }
     var teams: [Team] { get }
     
-    func getUpcomingEventsCount() -> Int
-    func getLatestEventsCount() -> Int
     func configureUpcomingEventCell(_ cell: LeagueDetailsCollectionViewCell, at indexPath: IndexPath)
     func configureLatestEventCell(_ cell: LatestEventsCollectionViewCell, at indexPath: IndexPath)
     func updateLeagueDetails(leagueDetails: [EventProtocol], collectionView: UICollectionView)

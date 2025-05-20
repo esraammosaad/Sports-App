@@ -130,7 +130,7 @@
                 <outlet property="date" destination="POQ-gz-hqb" id="OuW-Ov-V4L"/>
                 <outlet property="homeTeamImage" destination="g1K-Hg-ECG" id="Toi-GX-i60"/>
                 <outlet property="homeTeamName" destination="PB1-Dy-v7f" id="Gaw-vo-Qvt"/>
-                <outlet property="time" destination="oKj-mS-Uaj" id="Q3b-Dm-Jho"/>
+                <outlet property="time" destination="oKj-mS-Uaj" id="Wq8-mj-UQa"/>
             </connections>
             <point key="canvasLocation" x="204.61538461538461" y="-65.402843601895725"/>
         </collectionViewCell>
