@@ -6,10 +6,8 @@
 //
 
 import Foundation
-class CricketEvent : Decodable, EventProtocol {
-    
+struct CricketEvent : Decodable, EventProtocol {
 
-    
     var event_key : Int?
     var event_date_start : String?
     var event_time : String?

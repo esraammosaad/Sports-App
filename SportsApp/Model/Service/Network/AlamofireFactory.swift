@@ -50,22 +50,6 @@ class AlamofireFactory{
         }
     }
     
-    
-    
-    static func tennisLeagueDetails(url : String, completion : @escaping (TeamResponse?) -> Void){
-        AF.request(url).validate(statusCode: 200..<300).responseDecodable(of:TeamResponse.self){
-            response in
-            switch response.result{
-            case .failure(let error):
-                print(error.localizedDescription)
-                completion(nil)
-            case .success(let successResponse):
-                completion(successResponse)
-            }
-        }
-    }
-    
-    
     static func  getCricketLeagueDetails(url : String, completion : @escaping (CricketEventResponse?) -> Void){
         AF.request(url).validate(statusCode: 200..<300).responseDecodable(of:CricketEventResponse.self){
             response in
@@ -79,7 +63,7 @@ class AlamofireFactory{
         }
     }
     
-    static func  getTennisDetails(url : String, completion : @escaping (TennisEventResponse?) -> Void){
+    static func  getTennisLeagueDetails(url : String, completion : @escaping (TennisEventResponse?) -> Void){
         AF.request(url).validate(statusCode: 200..<300).responseDecodable(of:TennisEventResponse.self){
             response in
             print(url)

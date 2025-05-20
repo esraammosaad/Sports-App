@@ -6,7 +6,7 @@
 //
 
 import Foundation
-class TennisEventResponse : Decodable{
+struct TennisEventResponse : Decodable{
     
     var result : [TennisEvent]?
     var success : Int

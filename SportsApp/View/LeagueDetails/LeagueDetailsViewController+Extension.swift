@@ -59,7 +59,7 @@ extension LeagueDetailsCollectionViewController{
         
         //section >> group
         let section = NSCollectionLayoutSection(group: myGroup)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 18, bottom: 0, trailing: 18)
+        section.contentInsets = NSDirectionalEdgeInsets(top: 8, leading: 14, bottom: 0, trailing: 14)
 
         self.setHeaderForSection(section: section)
         self.setAnimationToSection(section: section)

@@ -7,9 +7,9 @@
 
 import Foundation
 
-class CricketEventResponse : Decodable{
+struct CricketEventResponse : Decodable{
     
     var result : [CricketEvent]?
-    var success : Int
+    var success : Int?
     
 }

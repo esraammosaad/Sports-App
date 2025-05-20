@@ -11,6 +11,7 @@ class LeagueDetailsPresenter{
     
     
     var leagueDetailsViewController : LeagueDetailsViewProtocol!
+    var sportsServices : SportsServicesProtocol = SportsServices()
     
     func setViewController(leagueDetailsViewController : LeagueDetailsViewProtocol){
 
@@ -21,7 +22,7 @@ class LeagueDetailsPresenter{
     
     func getLeagueDetails(sportType : String, leagueID : Int){
 
-        SportsServices.getLeagueDetails(sportType: sportType, leagueID: leagueID  ){
+        sportsServices.getLeagueDetails(sportType: sportType, leagueID: leagueID  ){
             leagueDetailsResponse in
             if let leagueDetails = leagueDetailsResponse?.result {
                 self.leagueDetailsViewController.updateLeagueDetails(leagueDetails: leagueDetails)
@@ -32,7 +33,7 @@ class LeagueDetailsPresenter{
     }
     
     func getLeagueTeams(sportType : String, leagueID : Int){
-        SportsServices.getLeagueTeams(sportType: sportType, leagueID: leagueID  ){
+        sportsServices.getLeagueTeams(sportType: sportType, leagueID: leagueID  ){
             leagueTeams in
             if let teams = leagueTeams?.result {
                 self.leagueDetailsViewController.getLeagueTeams(teams: teams)
@@ -41,7 +42,7 @@ class LeagueDetailsPresenter{
     }
     
     func getCricketLeagueDetails (leagueId:Int){
-        SportsServices.getCricketLeagueDetails(leagueID: leagueId){
+        sportsServices.getCricketLeagueDetails(leagueID: leagueId){
             cricketEvents in
             if let cricketEvents = cricketEvents?.result {
                 self.leagueDetailsViewController.updateCricketDetails(cricketEvents: cricketEvents)
@@ -50,7 +51,7 @@ class LeagueDetailsPresenter{
     }
     
     func getTnnisEvents (countryId:Int){
-        SportsServices.getTenniseDetails(countryID: countryId){
+        sportsServices.getTenniseLeagueDetails(countryID: countryId){
             tennisEvents in
             if let tennisEvents = tennisEvents?.result{
                 self.leagueDetailsViewController.getTennisEvents(tennisEvents: tennisEvents)

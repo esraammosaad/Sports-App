@@ -11,6 +11,7 @@ class SportDetailsPresenter{
     
     
     var sportDetailsViewController : SportDetailsViewProtocol!
+    var sportsServices : SportsServicesProtocol = SportsServices()
     
     func setViewController(sportDetailsVireController : SportDetailsViewProtocol){
         
@@ -21,7 +22,7 @@ class SportDetailsPresenter{
     
     func getSportDetails(sportType : String){
         
-        SportsServices.getLeagues(sportType: sportType){
+        sportsServices.getLeagues(sportType: sportType){
             leaguesResponse in
             if let leagues = leaguesResponse?.result{
                 self.sportDetailsViewController.updateLeagues(leagues: leagues)
