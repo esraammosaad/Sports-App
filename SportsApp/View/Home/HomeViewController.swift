@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Reachability
 
 private let reuseIdentifier = "cell"
 
@@ -13,14 +14,15 @@ private let reuseIdentifier = "cell"
 class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     @IBOutlet weak var collectionView: UICollectionView!
     var allLeaguesResponse : [League]!
+    var reachability : Reachability!
+    var isConnectedToInternet : Bool!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupReachability()
         collectionView.delegate = self
         collectionView.dataSource = self
         self.navigationItem.title = "Sports"
-        
-        
         
        let nib = UINib(nibName: "HomeCollectionViewCell", bundle: nil)
        self.collectionView!.register(nib, forCellWithReuseIdentifier: reuseIdentifier)
@@ -28,28 +30,53 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
 
     }
     
+    func setupReachability() {
+        do {
+            
+            reachability = try Reachability()
+
+            reachability.whenReachable = { reachability in
+                self.isConnectedToInternet = true
+            }
+
+            reachability.whenUnreachable = { _ in
+                self.isConnectedToInternet = false
+                let alert = showNoInternetAlert()
+                self.present(alert, animated: true)
+
+            }
+
+            try reachability.startNotifier()
+
+        } catch {
+            print("Unable to start Reachability: \(error)")
+        }
+    }
+    
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 26
+        return 8
     }
   
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: 12, bottom: 0, right: 12)
+        return UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
     }
+    
+    
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 12
+        return 0
     }
     
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+    
         return 1
     }
 
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
+       
         return 4
     }
 
@@ -66,6 +93,7 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         switch(indexPath.row){
         case 0:
             cell.sportName.text = "Football"
+            cell.sportImage.image = UIImage(named: "foot")
         case 1:
             cell.sportName.text = "Basketball"
             cell.sportImage.image = UIImage(named: "basket")
@@ -77,9 +105,6 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             cell.sportImage.image = UIImage(named: "cricket")
         
         }
-    
-        
-    
         return cell
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -95,10 +120,20 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
             vc.category = 3
         }
         
-        self.navigationController?.pushViewController(vc, animated: true)
+        if(isConnectedToInternet){
+            
+            self.navigationController?.pushViewController(vc, animated: true)
+            
+        }else{
+           let alert = showNoInternetAlert()
+           self.present(alert, animated: true)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 180, height: 270)
+        return CGSize(width: (self.view.bounds.width - 12*3)/2, height: self.view.bounds.height/4)
     }
+    
+
+
 }

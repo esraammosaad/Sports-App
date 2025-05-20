@@ -14,7 +14,6 @@ class HomeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var sportName: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
 }

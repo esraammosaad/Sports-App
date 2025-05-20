@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qTa-X7-9LR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="qTa-X7-9LR">
     <device id="retina6_72" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -20,7 +20,7 @@
             </objects>
             <point key="canvasLocation" x="-1743" y="-559"/>
         </scene>
-        <!--Home-->
+        <!--Sports-->
         <scene sceneID="JMv-ee-hXH">
             <objects>
                 <viewController storyboardIdentifier="main" id="aD7-uO-277" customClass="HomeViewController" customModule="SportsApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -50,7 +50,7 @@
                                 </cells>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your sport, your updates—choose now!" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hdn-3n-dcu">
-                                <rect key="frame" x="18" y="103" width="313" height="98"/>
+                                <rect key="frame" x="12" y="103" width="412" height="104"/>
                                 <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="28"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -62,15 +62,15 @@
                             <constraint firstItem="av3-0a-7nl" firstAttribute="leading" secondItem="uP8-Xn-FnV" secondAttribute="leading" id="BrV-xH-8B4"/>
                             <constraint firstAttribute="bottom" secondItem="av3-0a-7nl" secondAttribute="bottom" id="Dnj-Ax-JwB"/>
                             <constraint firstItem="hdn-3n-dcu" firstAttribute="top" secondItem="uP8-Xn-FnV" secondAttribute="top" id="Gpi-7M-yVe"/>
-                            <constraint firstItem="av3-0a-7nl" firstAttribute="top" secondItem="hdn-3n-dcu" secondAttribute="bottom" constant="12" id="QCE-sW-ShZ"/>
+                            <constraint firstItem="av3-0a-7nl" firstAttribute="top" secondItem="hdn-3n-dcu" secondAttribute="bottom" constant="6" id="QCE-sW-ShZ"/>
                             <constraint firstItem="av3-0a-7nl" firstAttribute="trailing" secondItem="uP8-Xn-FnV" secondAttribute="trailing" id="TyD-xE-CNs"/>
-                            <constraint firstItem="hdn-3n-dcu" firstAttribute="leading" secondItem="uP8-Xn-FnV" secondAttribute="leading" constant="18" id="azB-bB-vye"/>
+                            <constraint firstItem="hdn-3n-dcu" firstAttribute="leading" secondItem="uP8-Xn-FnV" secondAttribute="leading" constant="12" id="azB-bB-vye"/>
                             <constraint firstItem="av3-0a-7nl" firstAttribute="top" secondItem="uP8-Xn-FnV" secondAttribute="top" constant="110" id="ftC-Iw-s30"/>
                             <constraint firstItem="av3-0a-7nl" firstAttribute="width" secondItem="p1i-nY-krE" secondAttribute="width" id="gYo-uU-1M9"/>
-                            <constraint firstItem="uP8-Xn-FnV" firstAttribute="trailing" secondItem="hdn-3n-dcu" secondAttribute="trailing" constant="99" id="wGB-5b-5B3"/>
+                            <constraint firstItem="uP8-Xn-FnV" firstAttribute="trailing" secondItem="hdn-3n-dcu" secondAttribute="trailing" constant="6" id="wGB-5b-5B3"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" image="homekit" catalog="system" id="8xu-Fw-AUQ" userLabel="Home"/>
+                    <tabBarItem key="tabBarItem" title="Sports" image="soccerball" catalog="system" id="8xu-Fw-AUQ" userLabel="Home"/>
                     <navigationItem key="navigationItem" id="Sjh-s3-Zpj"/>
                     <connections>
                         <outlet property="collectionView" destination="av3-0a-7nl" id="JrI-0E-Cdp"/>
@@ -129,7 +129,9 @@
                             <constraint firstItem="WoP-Il-TpV" firstAttribute="bottom" secondItem="y1V-DJ-HQU" secondAttribute="bottom" id="iEq-mr-JhK"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Favourits" image="heart.fill" catalog="system" selectedImage="heart.fill" id="ShW-FP-J8a"/>
+                    <tabBarItem key="tabBarItem" title="Favourits" image="heart.fill" catalog="system" selectedImage="heart.fill" id="ShW-FP-J8a">
+                        <color key="badgeColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBarItem>
                     <connections>
                         <outlet property="tableView" destination="WoP-Il-TpV" id="sfI-Yo-hrF"/>
                     </connections>
@@ -567,6 +569,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="selectedImageTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="aD7-uO-277" kind="relationship" relationship="viewControllers" id="y7a-dN-QEx"/>
@@ -578,12 +582,13 @@
             <point key="canvasLocation" x="818" y="-559"/>
         </scene>
     </scenes>
+    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
     <resources>
         <image name="basket" width="1080" height="1920"/>
         <image name="foot" width="1080" height="1920"/>
         <image name="heart" catalog="system" width="128" height="107"/>
         <image name="heart.fill" catalog="system" width="128" height="107"/>
-        <image name="homekit" catalog="system" width="128" height="104"/>
+        <image name="soccerball" catalog="system" width="128" height="123"/>
         <image name="tenn" width="1080" height="1920"/>
         <systemColor name="linkColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
