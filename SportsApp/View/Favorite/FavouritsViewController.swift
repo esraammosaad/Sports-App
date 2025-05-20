@@ -42,7 +42,11 @@ class FavouritsViewController: UIViewController ,UITableViewDataSource, UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "favCell", for: indexPath) as! FavouriteTableViewCell
-        cell.contentView.subviews.filter { $0 is ShimmeringView }.forEach {  $0.removeFromSuperview() }
+        cell.contentView.subviews.filter { $0 is ShimmeringView }.forEach {  $0.removeFromSuperview()}
+        let radius = CGRectGetWidth(cell.leagueImage!.frame) / 2
+        cell.leagueImage?.layer.cornerRadius = radius
+        cell.leagueImage?.layer.masksToBounds = true
+        cell.leagueImage?.clipsToBounds = true
         if(favouriteLeagues == nil ){
             let shimmerView = ShimmeringView(frame: cell.bounds)
             shimmerView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -82,7 +86,7 @@ class FavouritsViewController: UIViewController ,UITableViewDataSource, UITableV
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 130
+        return 110
     }
     
     
@@ -125,8 +129,7 @@ class FavouritsViewController: UIViewController ,UITableViewDataSource, UITableV
             leagueDetailsViewController.category = favouriteLeagues[indexPath.row].category
             leagueDetailsViewController.countryId = favouriteLeagues[indexPath.row].countryId
             leagueDetailsViewController.leagueImage = favouriteLeagues[indexPath.row].imagePath
-            
-            leagueDetailsViewController.isSavedLeague = true
+        
             self.navigationController?.pushViewController(leagueDetailsViewController, animated: true)
 
             

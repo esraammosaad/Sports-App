@@ -10,6 +10,5 @@ import Foundation
 protocol SportDetailsViewProtocol{
     
     func updateLeagues(leagues : [League])
-    func getFavouriteLEagues(favouriteLEagues : [SavedLeague])
     
 }

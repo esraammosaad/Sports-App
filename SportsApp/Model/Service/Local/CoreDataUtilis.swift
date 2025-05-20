@@ -56,6 +56,14 @@ class CoreDataUtils{
         return savedLeagues
     }
     
+    func isFavorite(leagueName : String) -> Bool{
+        let nsManagedArray = self.readFromCoreData() ?? []
+        let savedLeague = nsManagedArray.filter{ $0.value(forKey: "leagueName") as? String ?? "name default" == leagueName }
+        if(savedLeague.isEmpty){
+            return false
+        }
+        return true
+    }
     
     func readFromCoreData() -> [NSManagedObject]?{
         

@@ -13,12 +13,11 @@ class SportDetailsViewController: UIViewController , UITableViewDataSource, UITa
     
     @IBOutlet weak var tableView: UITableView!
     var footballLeagues : [League]!
-    var  shimmerView : ShimmeringView!
+    var shimmerView : ShimmeringView!
     var category: Int!
     var sportTitle : String!
     var sportType : String!
     var imagePlaceHolder :String!
-    var favouriteLEagues : [SavedLeague] = []
     let presenter = SportDetailsPresenter()
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -114,10 +113,7 @@ class SportDetailsViewController: UIViewController , UITableViewDataSource, UITa
             self.tableView.reloadData()
         }
     }
-    func getFavouriteLEagues(favouriteLEagues: [SavedLeague]) {
-        self.favouriteLEagues = favouriteLEagues
-    }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let leagueDetailsViewController = self.storyboard?.instantiateViewController(withIdentifier: "leagueDetails") as! LeagueDetailsCollectionViewController
@@ -127,16 +123,6 @@ class SportDetailsViewController: UIViewController , UITableViewDataSource, UITa
         leagueDetailsViewController.countryId = footballLeagues[indexPath.row].country_key
         leagueDetailsViewController.leagueImage = footballLeagues[indexPath.row].league_logo == nil ? imagePlaceHolder : footballLeagues[indexPath.row].league_logo
         
-        let savedObj = SavedLeague(leageuName: footballLeagues[indexPath.row].league_name! , imagePath: (footballLeagues[indexPath.row].league_logo == nil ? imagePlaceHolder : footballLeagues[indexPath.row].league_logo) ?? imagePlaceHolder, leagueID: footballLeagues[indexPath.row].league_key ?? 0, countryId: footballLeagues[indexPath.row].country_key ?? 0, category: self.category)
-   
-        presenter.getAllFavourite()
-        
-        if favouriteLEagues.contains(savedObj) {
-            leagueDetailsViewController.isSavedLeague = true
-           
-        }else{
-            leagueDetailsViewController.isSavedLeague = false
-        }
         self.navigationController?.pushViewController(leagueDetailsViewController, animated: true)
             
     }

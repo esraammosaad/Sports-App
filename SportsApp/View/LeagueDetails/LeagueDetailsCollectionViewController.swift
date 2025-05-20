@@ -17,9 +17,9 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
     var countryId :Int!
     var category: Int!
     var leagueImage :String!
-    var isSavedLeague :Bool!
     var currentSport : SportProtocol!
     var teameLogoPlaceholder : String!
+    var isFavorite : Bool!
     private var sportType : String!
     private var image : UIImage!
     private let presenter = LeagueDetailsPresenter()
@@ -30,6 +30,12 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
     
     override func viewWillAppear(_ animated: Bool) {
         addFavoriteBtn()
+        isFavorite = presenter.isFavorite(leagueName: leagueTitle)
+        if(isFavorite){
+            rightButton.image = UIImage(systemName: "heart.fill")
+        }else{
+            rightButton.image = UIImage(systemName: "heart")
+        }
     }
     
     override func viewDidLoad() {
@@ -52,28 +58,51 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
         }
         self.collectionView.setCollectionViewLayout(layout, animated: true)
         presenter.setViewController(leagueDetailsViewController: self)
-        
-
-
     }
     @objc func didTapRightButton() {
-        if rightButton.image == UIImage(systemName: "heart"){
+        if !isFavorite{
             let savedObj = SavedLeague(leageuName: leagueTitle, imagePath:leagueImage, leagueID: leagueID, countryId: countryId ?? 00, category: category)
             presenter.setFavouriteLeague(SavedLeague: savedObj)
             rightButton.image = UIImage(systemName: "heart.fill")
+            isFavorite = true
         }else
         {
            let savedObj =  SavedLeague(leageuName: leagueTitle, imagePath: leagueImage, leagueID: leagueID, countryId: countryId, category: category)
             
-            presenter.deleteFavouriteLeague(savedLeague: savedObj)
-            rightButton.image = UIImage(systemName: "heart")
+            self.showDeleteConfirmationAlert{
+                _ in
+                self.presenter.deleteFavouriteLeague(savedLeague: savedObj)
+                self.rightButton.image = UIImage(systemName: "heart")
+                self.isFavorite = false
+            }
+            
+          
         }
+    }
+    
+    
+    
+    
+    func showDeleteConfirmationAlert(handler : @escaping ((UIAlertAction)->Void)) {
+        let alert = UIAlertController(
+            title: "Delete Favorite",
+            message: "Are you sure you want to remove this league from your favorites?",
+            preferredStyle: .alert
+        )
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive, handler: handler)
+        alert.addAction(cancel)
+        alert.addAction(deleteAction)
+        
+        self.present(alert, animated: true)
     }
     
     
     private func addFavoriteBtn() {
         rightButton = UIBarButtonItem(
-            image:  isSavedLeague == true ? UIImage(systemName: "heart.fill") : UIImage(systemName: "heart"),
+            image: UIImage(systemName: "heart"),
             style: .plain,
             target: self,
             action: #selector(didTapRightButton)
@@ -200,7 +229,7 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
         {
             currentSport.configureTeamCell(cell, at: indexPath, imageName: teameLogoPlaceholder)
         }
-        cell.layer.cornerRadius = 25
+        cell.layer.cornerRadius = 15
         cell.clipsToBounds = true
     }
     

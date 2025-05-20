@@ -65,5 +65,9 @@ class LeagueDetailsPresenter{
     func deleteFavouriteLeague (savedLeague :SavedLeague){
         CoreDataUtils.shared.deleteLeagueFromFavourits(savedLeague: savedLeague)
     }
+    
+    func isFavorite (leagueName :String) -> Bool{
+        return CoreDataUtils.shared.isFavorite(leagueName: leagueName)
+    }
   
 }
