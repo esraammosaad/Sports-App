@@ -15,17 +15,17 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
     @IBOutlet weak var collectionView: UICollectionView!
     var allLeaguesResponse : [League]!
     var reachability : Reachability!
-    var isConnectedToInternet : Bool!
+    var isConnectedToInternet : Bool! = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupReachability()
         collectionView.delegate = self
         collectionView.dataSource = self
         self.navigationItem.title = "Sports"
         
        let nib = UINib(nibName: "HomeCollectionViewCell", bundle: nil)
        self.collectionView!.register(nib, forCellWithReuseIdentifier: reuseIdentifier)
+        setupReachability()
 
 
     }
@@ -37,21 +37,30 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
 
             reachability.whenReachable = { reachability in
                 self.isConnectedToInternet = true
+                print("internet")
             }
 
             reachability.whenUnreachable = { _ in
                 self.isConnectedToInternet = false
                 let alert = showNoInternetAlert()
                 self.present(alert, animated: true)
+                print("no internet")
 
             }
 
             try reachability.startNotifier()
+            self.isConnectedToInternet = reachability.connection != .unavailable
 
         } catch {
             print("Unable to start Reachability: \(error)")
         }
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        reachability.stopNotifier()
+    }
+
     
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
@@ -119,14 +128,15 @@ class HomeViewController: UIViewController, UICollectionViewDelegate, UICollecti
         default:
             vc.category = 3
         }
+        setupReachability()
         
         if(isConnectedToInternet){
-            
             self.navigationController?.pushViewController(vc, animated: true)
-            
         }else{
+            
            let alert = showNoInternetAlert()
            self.present(alert, animated: true)
+            
         }
     }
     

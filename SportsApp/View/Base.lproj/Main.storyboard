@@ -153,7 +153,7 @@
         <!--Sport Details View Controller-->
         <scene sceneID="4xl-VO-JPl">
             <objects>
-                <viewController storyboardIdentifier="details" id="Wri-59-d6Z" customClass="SportDetailsViewController" customModule="SportsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="details" autoresizesArchivedViewToFullSize="NO" modalTransitionStyle="flipHorizontal" id="Wri-59-d6Z" customClass="SportDetailsViewController" customModule="SportsApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Dk3-ie-K6E">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -221,20 +221,20 @@
         <!--League Details Collection View Controller-->
         <scene sceneID="gj5-Ok-Brj">
             <objects>
-                <collectionViewController storyboardIdentifier="leagueDetails" id="lxz-3o-M52" customClass="LeagueDetailsCollectionViewController" customModule="SportsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="leagueDetails" autoresizesArchivedViewToFullSize="NO" id="lxz-3o-M52" customClass="LeagueDetailsCollectionViewController" customModule="SportsApp" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" id="4dP-EK-NR1">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemGray5Color"/>
-                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="V3A-P6-3In">
+                        <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" sectionInsetReference="layoutMargins" id="V3A-P6-3In">
                             <size key="itemSize" width="128" height="128"/>
                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            <inset key="sectionInset" minX="0.0" minY="80" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="uxY-Zu-nOr">
-                                <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" reuseIdentifier="cell" id="uxY-Zu-nOr">
+                                <rect key="frame" x="20" y="88" width="128" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="s65-bd-Khg">
                                     <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
@@ -242,7 +242,7 @@
                                 </collectionViewCellContentView>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell2" id="ZRs-Ph-DCL">
-                                <rect key="frame" x="150" y="0.0" width="128" height="128"/>
+                                <rect key="frame" x="280" y="88" width="128" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="8cF-Ci-EZm">
                                     <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
@@ -250,7 +250,7 @@
                                 </collectionViewCellContentView>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell3" id="aPF-1l-PTR">
-                                <rect key="frame" x="300" y="0.0" width="128" height="128"/>
+                                <rect key="frame" x="20" y="226" width="128" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="j2h-J1-2UP">
                                     <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
@@ -525,7 +525,7 @@
         <!--Navigation Controller-->
         <scene sceneID="SNq-Br-Bvj">
             <objects>
-                <navigationController storyboardIdentifier="navigationController" hidesBarsOnSwipe="YES" id="2SK-oN-goF" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="navigationController" autoresizesArchivedViewToFullSize="NO" id="2SK-oN-goF" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="RXC-dT-4e8">
                         <rect key="frame" x="0.0" y="47" width="428" height="44"/>
@@ -543,7 +543,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="mJa-23-aRg">
             <objects>
-                <tabBarController storyboardIdentifier="tabBar" id="79g-Y4-uSx" customClass="TabBarController" customModule="SportsApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabBar" autoresizesArchivedViewToFullSize="NO" modalTransitionStyle="flipHorizontal" id="79g-Y4-uSx" customClass="TabBarController" customModule="SportsApp" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="3f7-DV-yGc"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hb8-ew-1o8">

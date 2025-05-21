@@ -77,7 +77,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDelegate, UI
     
     func setupPageControl(){
         
-        pageControl = UIPageControl(frame: CGRect(x: 0 , y: UIScreen.main.bounds.maxY - 100, width: UIScreen.main.bounds.width, height: 40))
+        pageControl = UIPageControl(frame: CGRect(x: 0 , y: UIScreen.main.bounds.maxY - 80, width: UIScreen.main.bounds.width, height: 40))
         
         pageControl.numberOfPages = arrContainer.count
         pageControl.currentPage = 0

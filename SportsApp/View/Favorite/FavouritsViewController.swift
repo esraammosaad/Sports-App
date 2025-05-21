@@ -17,7 +17,7 @@ class FavouritsViewController: UIViewController ,UITableViewDataSource, UITableV
     @IBOutlet weak var tableView: UITableView!
     private var presenter = FavouriteLeaguePresenter()
     var favouriteLeagues : [SavedLeague]!
-    private let reachability = try! Reachability()
+    private var reachability = try! Reachability()
     private var animationView : LottieAnimationView!
     private var label : UILabel!
     
@@ -37,6 +37,12 @@ class FavouritsViewController: UIViewController ,UITableViewDataSource, UITableV
         presenter.setViewController(viewController: self)
         updateFavoritesUI()
 
+    }
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        reachability.stopNotifier()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -122,6 +128,8 @@ class FavouritsViewController: UIViewController ,UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        reachability = try! Reachability()
         if reachability.connection != .unavailable {
             let leagueDetailsViewController = self.storyboard?.instantiateViewController(withIdentifier: "leagueDetails") as! LeagueDetailsCollectionViewController
             leagueDetailsViewController.leagueID = favouriteLeagues[indexPath.row].leagueID

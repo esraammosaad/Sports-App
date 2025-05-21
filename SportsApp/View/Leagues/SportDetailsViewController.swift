@@ -61,6 +61,12 @@ class SportDetailsViewController: UIViewController , UITableViewDataSource, UITa
     }
     
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        reachability.stopNotifier()
+    }
+    
+    
     private func setSportType(){
         
         switch(category){
@@ -147,8 +153,13 @@ class SportDetailsViewController: UIViewController , UITableViewDataSource, UITa
         leagueDetailsViewController.category = self.category
         leagueDetailsViewController.countryId = footballLeagues[indexPath.row].country_key
         leagueDetailsViewController.leagueImage = footballLeagues[indexPath.row].league_logo == nil ? imagePlaceHolder : footballLeagues[indexPath.row].league_logo
-        
-        self.navigationController?.pushViewController(leagueDetailsViewController, animated: true)
+        setupReachability()
+        if(isConnectedToInternet){
+            self.navigationController?.pushViewController(leagueDetailsViewController, animated: true)
+        }else{
+            let alert = showNoInternetAlert()
+            self.present(alert, animated: true)
+        }
             
     }
     

@@ -49,6 +49,8 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
         self.title = leagueTitle
         nibRegistration()
         setupReachability()
+        collectionView.alwaysBounceVertical = true
+        collectionView.delaysContentTouches = false
         let layout = UICollectionViewCompositionalLayout{index ,environement in
             switch(index){
             case 0 :
@@ -86,6 +88,12 @@ class LeagueDetailsCollectionViewController: UICollectionViewController,UICollec
         } catch {
             print("Unable to start Reachability: \(error)")
         }
+    }
+    
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        reachability.stopNotifier()
     }
     @objc func didTapRightButton() {
         if !isFavorite{
